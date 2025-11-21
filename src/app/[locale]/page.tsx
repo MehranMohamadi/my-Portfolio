@@ -1,14 +1,14 @@
 'use client'
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useApp } from "../contexts/AppContext";
-import { Header } from "../components/Header";
-import { IntroSection } from "../components/IntroSection";
-import { SkillsSection } from "../components/SkillsSection";
-import { ProjectsSection } from "../components/ProjectsSection";
-import { AboutSection } from "../components/AboutSection";
-import { ContactSection } from "../components/ContactSection";
-import { Footer } from "../components/Footer";
+import { useApp } from "../../contexts/AppContext";
+import { Header } from "../../components/Header";
+import { IntroSection } from "../../components/IntroSection";
+import { SkillsSection } from "../../components/SkillsSection";
+import { ProjectsSection } from "../../components/ProjectsSection";
+import { AboutSection } from "../../components/AboutSection";
+import { ContactSection } from "../../components/ContactSection";
+import { Footer } from "../../components/Footer";
 
 export default function HomePage() {
   const { ripples } = useApp();

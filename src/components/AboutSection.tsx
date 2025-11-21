@@ -1,12 +1,11 @@
+'use client'
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useApp } from '../contexts/AppContext';
-import { translations } from '../data/translations';
+import { useTranslations } from 'next-intl';
 import { Heart, Code, Coffee } from 'lucide-react';
 
 export const AboutSection: React.FC = () => {
-  const { language } = useApp();
-  const t = translations[language];
+  const t = useTranslations(); // hook برای گرفتن متن‌ها طبق locale
 
   return (
     <section id="about" className="py-20 px-4">
@@ -20,10 +19,10 @@ export const AboutSection: React.FC = () => {
           className="text-center mb-12"
         >
           <h2 className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
-            {t.aboutTitle}
+            {t('aboutTitle')}
           </h2>
           <p className="text-gray-600 dark:text-gray-400">
-            {t.aboutSubtitle}
+            {t('aboutSubtitle')}
           </p>
         </motion.div>
 
@@ -42,7 +41,7 @@ export const AboutSection: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              {t.aboutText1}
+              {t('aboutText1')}
             </motion.p>
             <motion.p
               initial={{ opacity: 0, x: -20 }}
@@ -50,7 +49,7 @@ export const AboutSection: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              {t.aboutText2}
+              {t('aboutText2')}
             </motion.p>
             <motion.p
               initial={{ opacity: 0, x: -20 }}
@@ -58,7 +57,7 @@ export const AboutSection: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              {t.aboutText3}
+              {t('aboutText3')}
             </motion.p>
           </div>
 
@@ -70,10 +69,7 @@ export const AboutSection: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 pt-8 border-t border-gray-200/50 dark:border-gray-600/50"
           >
-            <motion.div
-              whileHover={{ scale: 1.05, y: -5 }}
-              className="text-center group"
-            >
+            <motion.div whileHover={{ scale: 1.05, y: -5 }} className="text-center group">
               <motion.div
                 whileHover={{ rotate: 360 }}
                 transition={{ duration: 0.6 }}
@@ -84,11 +80,7 @@ export const AboutSection: React.FC = () => {
               <p className="text-gray-900 dark:text-white">5+ Years</p>
               <p className="text-gray-600 dark:text-gray-400">Experience</p>
             </motion.div>
-
-            <motion.div
-              whileHover={{ scale: 1.05, y: -5 }}
-              className="text-center group"
-            >
+            <motion.div whileHover={{ scale: 1.05, y: -5 }} className="text-center group">
               <motion.div
                 whileHover={{ rotate: 360 }}
                 transition={{ duration: 0.6 }}
@@ -99,11 +91,7 @@ export const AboutSection: React.FC = () => {
               <p className="text-gray-900 dark:text-white">50+ Projects</p>
               <p className="text-gray-600 dark:text-gray-400">Completed</p>
             </motion.div>
-
-            <motion.div
-              whileHover={{ scale: 1.05, y: -5 }}
-              className="text-center group"
-            >
+            <motion.div whileHover={{ scale: 1.05, y: -5 }} className="text-center group">
               <motion.div
                 whileHover={{ rotate: 360 }}
                 transition={{ duration: 0.6 }}
