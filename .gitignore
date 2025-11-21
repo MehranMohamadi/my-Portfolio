@@ -1,61 +1,88 @@
-# Node modules
-
+# ----------- Node & Package Manager ----------- #
 node_modules/
-
-# Build outputs
-
-dist/
-build/
-out/
-
-# Vite cache
-
-.vite/
-
-# Logs
-
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# Environment variables
+# ----------- Build Output ----------- #
+.next/
+out/
+build/
 
+# ----------- Environment Files ----------- #
 .env
 .env.local
-.env.*.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# Editor directories and files
+# ----------- Logs ----------- #
+logs
+*.log
+*.log.*
+pids
+*.pid
+*.seed
+dump.rdb
 
-.vscode/
-.idea/
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-
-# MacOS files
-
-.DS_Store
-
-# TypeScript cache
-
+# ----------- TypeScript ----------- #
 *.tsbuildinfo
 
-# Optional: coverage reports
+# ----------- Cache ----------- #
+.cache/
+.parcel-cache/
+dist/
 
-coverage/
+# ----------- OS-specific ----------- #
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
 
-# Optional: local test databases
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
 
-*.sqlite
-*.db
+# Linux
+*~
 
-# Optional: Yarn Berry cache
+# ----------- IDE / Editor ----------- #
+# VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 
-.yarn/cache/
-.yarn/unplugged/
-.yarn/build-state.yml
-.yarn/install-state.gz
-.yarn/patches/
+# JetBrains (WebStorm/IntelliJ/etc.)
+.idea/
+
+# ----------- Misc ----------- #
+# optional npm cache directory
+.npm/
+
+# optional eslint cache
+.eslintcache
+
+# optional stylelint cache
+.stylelintcache
+
+# optional REPL history
+.node_repl_history
+
+# optional cypress cache
+.cy
+
+# optional playwright cache
+.playwright/
+
+# optional Next.js type generation
+.next/types
+
+# Storybook build output
+storybook-static
+
+# Optional 'vercel' directory for deployments
+.vercel
