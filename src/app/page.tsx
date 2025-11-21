@@ -1,3 +1,5 @@
+'use client'
+
 import { motion, AnimatePresence } from "framer-motion";
 import { useApp } from "../contexts/AppContext";
 import { Header } from "../components/Header";
@@ -10,17 +12,15 @@ import { Footer } from "../components/Footer";
 
 export default function HomePage() {
   const { ripples } = useApp();
-
   return (
     <div className="min-h-screen relative">
-      {/* Theme Ripple Effects */}
       <AnimatePresence>
         {ripples.map((ripple) => (
           <motion.div
             key={ripple.id}
             initial={{ scale: 0, opacity: 1 }}
             animate={{ scale: 100, opacity: 0 }}
-            exit={{ opacitsy: 0 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
             className="fixed pointer-events-none z-[9999] rounded-full"
             style={{
