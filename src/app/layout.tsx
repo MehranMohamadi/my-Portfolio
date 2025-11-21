@@ -1,12 +1,16 @@
+'use client' // لازم نیست اینجا باشه چون RootLayout خودش Server Componentه
 import '../styles/global.css';
-import { AppProvider } from "../contexts/AppContext";
+import { NextIntlClientProvider } from 'next-intl';
+import { AppProvider } from '../contexts/AppContext'; // مسیر درست رو بزن
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
         <AppProvider>
-          {children}
+          <NextIntlClientProvider locale='en'>
+            {children}
+          </NextIntlClientProvider>
         </AppProvider>
       </body>
     </html>
