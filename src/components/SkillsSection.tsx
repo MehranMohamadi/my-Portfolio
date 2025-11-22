@@ -73,8 +73,8 @@ const itemVariants = {
 };
 
 export const SkillsSection: React.FC = () => {
-  const { language } = useApp();
-  const t = translations[language];
+  const { locale } = useApp();
+  const t = translations[locale];
 
   return (
     <section id="skills" className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
@@ -154,10 +154,10 @@ export const SkillsSection: React.FC = () => {
 
                 {/* Content */}
                 <h3 className="mb-2 text-gray-900 dark:text-white text-lg sm:text-xl font-semibold">
-                  {skill.title[language]}
+                  {skill.title[locale]}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base">
-                  {skill.items[language]}
+                  {skill.items[locale]}
                 </p>
 
                 {/* Bottom Gradient Line */}

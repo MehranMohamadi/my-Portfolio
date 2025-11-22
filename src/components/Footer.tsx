@@ -5,8 +5,8 @@ import { translations } from '../data/translations';
 import { Github, Linkedin, Twitter, Mail, Heart } from 'lucide-react';
 
 export const Footer: React.FC = () => {
-  const { language } = useApp();
-  const t = translations[language];
+  const { locale } = useApp();
+  const t = translations[locale];
 
   const socialLinks = [
     { icon: Github, href: '#', label: 'GitHub', color: 'from-gray-700 to-gray-900' },

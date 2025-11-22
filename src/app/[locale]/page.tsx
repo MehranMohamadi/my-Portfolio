@@ -22,7 +22,7 @@ export default function HomePage() {
             animate={{ scale: 100, opacity: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
-            className="fixed pointer-events-none z-[9999] rounded-full"
+            className="fixed pointer-events-none z-9999 rounded-full"
             style={{
               left: ripple.x,
               top: ripple.y,

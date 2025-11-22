@@ -5,8 +5,8 @@ import { translations } from '../data/translations';
 import { ArrowRight, Mail, Code, Zap, Sparkles } from 'lucide-react';
 
 export const IntroSection: React.FC = () => {
-  const { language } = useApp();
-  const t = translations[language];
+  const { locale } = useApp();
+  const t = translations[locale];
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);

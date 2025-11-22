@@ -66,8 +66,8 @@ const itemVariants = {
 };
 
 export const ProjectsSection: React.FC = () => {
-  const { language } = useApp();
-  const t = translations[language];
+  const { locale } = useApp();
+  const t = translations[locale];
 
   const timelineItems = [
     { year: '2022', title: projects[5].titleKey },

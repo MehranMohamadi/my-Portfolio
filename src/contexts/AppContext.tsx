@@ -1,9 +1,8 @@
-'use client'
-
+'use client';
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useLocale } from 'next-intl'; // گرفتن زبان فعال از next-intl
 
-export type Language = 'en' | 'fa' | 'ar';
 export type Theme = 'light' | 'dark';
 
 interface RippleEffect {
@@ -14,8 +13,7 @@ interface RippleEffect {
 }
 
 interface AppContextType {
-  language: Language;
-  setLanguage: (lang: Language) => void;
+  locale: string; // زبان فعال از next-intl
   theme: Theme;
   setTheme: (theme: Theme) => void;
   setThemeWithRipple: (theme: Theme, x: number, y: number) => void;
@@ -26,21 +24,24 @@ interface AppContextType {
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>('en');
+  const locale = useLocale(); // 'en', 'fa', 'ar' از مسیر URL می‌گیرد
   const [theme, setTheme] = useState<Theme>('light');
   const [ripples, setRipples] = useState<RippleEffect[]>([]);
 
-  const isRTL = language === 'fa' || language === 'ar';
+  const isRTL = locale === 'fa' || locale === 'ar';
 
+  // تغییر جهت صفحه بر اساس زبان
   useEffect(() => {
     document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
-    document.documentElement.lang = language;
-  }, [language, isRTL]);
+    document.documentElement.lang = locale;
+  }, [locale, isRTL]);
 
+  // تغییر تم صفحه
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark');
   }, [theme]);
 
+  // تغییر تم همراه ripple
   const setThemeWithRipple = (newTheme: Theme, x: number, y: number) => {
     const ripple: RippleEffect = {
       x,
@@ -48,9 +49,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       id: Date.now(),
       targetTheme: newTheme,
     };
-    
     setRipples(prev => [...prev, ripple]);
-    
+
     // Start theme transition after a short delay
     setTimeout(() => {
       setTheme(newTheme);
@@ -63,7 +63,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   return (
-    <AppContext.Provider value={{ language, setLanguage, theme, setTheme, setThemeWithRipple, isRTL, ripples }}>
+    <AppContext.Provider value={{ locale, theme, setTheme, setThemeWithRipple, isRTL, ripples }}>
       {children}
     </AppContext.Provider>
   );

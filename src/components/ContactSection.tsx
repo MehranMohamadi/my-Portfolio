@@ -5,8 +5,8 @@ import { translations } from '../data/translations';
 import { Send, CheckCircle, Mail, User, MessageSquare, Sparkles, Rocket } from 'lucide-react';
 
 export const ContactSection: React.FC = () => {
-  const { language } = useApp();
-  const t = translations[language];
+  const { locale } = useApp();
+  const t = translations[locale];
   const [formData, setFormData] = useState({
     name: '',
     email: '',
