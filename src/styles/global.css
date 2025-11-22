@@ -1,3 +1,8 @@
+
+
+@import './fonts/persian/iranYekan/iranYekan.css';
+@import './fonts/persian/notoNaskh/notoNaskh.css';
+
 @import "tailwindcss";
 
 @import './index.css';

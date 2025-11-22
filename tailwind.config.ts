@@ -4,7 +4,12 @@ const config: Config = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   darkMode: 'class',
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        notoNaskh: ['NotoNaskh', 'serif'],
+        iranYekan: ['IranYekan', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }

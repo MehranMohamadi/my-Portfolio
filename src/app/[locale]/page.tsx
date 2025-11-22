@@ -39,7 +39,7 @@ export default function HomePage() {
       </AnimatePresence>
 
       <Header />
-      <main className="overflow-x-hidden">
+      <main className="overflow-x-hidden bg-background">
         <IntroSection />
         <SkillsSection />
         <ProjectsSection />

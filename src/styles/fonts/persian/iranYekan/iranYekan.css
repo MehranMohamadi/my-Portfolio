@@ -1,0 +1,104 @@
+@font-face {
+  font-family: iranYekan;
+  src: url('IranYekan-FD-Thin.woff2') format('woff2');
+  font-weight: 100 200;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: iranYekan;
+  src: url('IranYekan-FD-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: iranYekan;
+  src: url('IranYekan-FD.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: iranYekan;
+  src: url('IranYekan-FD-Medium.woff2') format('woff2');
+  font-weight: 500 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: iranYekan;
+  src: url('IranYekan-FD-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: iranYekan;
+  src: url('IranYekan-FD-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: iranYekan;
+  src: url('IranYekan-FD-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: iranYekan-en-number;
+  src: url('IranYekan-Thin.woff2') format('woff2');
+  font-weight: 100 200;
+  unicode-range: U+0030-0039;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: iranYekan-en-number;
+  src: url('IranYekan-Light.woff2') format('woff2');
+  font-weight: 300;
+  unicode-range: U+0030-0039;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: iranYekan-en-number;
+  src: url('IranYekan.woff2') format('woff2');
+  font-weight: 400;
+  unicode-range: U+0030-0039;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: iranYekan-en-number;
+  src: url('IranYekan-Medium.woff2') format('woff2');
+  font-weight: 500 600;
+  unicode-range: U+0030-0039;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: iranYekan-en-number;
+  src: url('IranYekan-Bold.woff2') format('woff2');
+  font-weight: 700;
+  unicode-range: U+0030-0039;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: iranYekan-en-number;
+  src: url('IranYekan-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  unicode-range: U+0030-0039;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: iranYekan-en-number;
+  src: url('IranYekan-Black.woff2') format('woff2');
+  font-weight: 900;
+  unicode-range: U+0030-0039;
+  font-display: swap;
+}
