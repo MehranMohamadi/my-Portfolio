@@ -226,7 +226,7 @@ export const IntroSection: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="flex justify-center order-1 lg:order-2"
           >
-            <div className="relative group w-full max-w-sm">
+            <div className="relative group w-full max-w-sm ">
               <motion.div
                 animate={{
                   scale: [1, 1.2, 1],
@@ -237,7 +237,7 @@ export const IntroSection: React.FC = () => {
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="absolute -inset-4 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-3xl opacity-30 blur-2xl group-hover:opacity-40"
+                className="absolute inset-0 origin-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-3xl opacity-30 blur-2xl group-hover:opacity-40"
               ></motion.div>
               
               <motion.div
