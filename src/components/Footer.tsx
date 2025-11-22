@@ -1,12 +1,14 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useApp } from '../contexts/AppContext';
-import { translations } from '../data/translations';
 import { Github, Linkedin, Twitter, Mail, Heart } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 export const Footer: React.FC = () => {
   const { locale } = useApp();
-  const t = translations[locale];
+  const t = useTranslations(); // تابع برای گرفتن متن‌ها
 
   const socialLinks = [
     { icon: Github, href: '#', label: 'GitHub', color: 'from-gray-700 to-gray-900' },
@@ -62,12 +64,9 @@ export const Footer: React.FC = () => {
                 whileTap={{ scale: 0.95 }}
                 className="group relative p-4 rounded-2xl backdrop-blur-xl bg-white/70 dark:bg-gray-800/70 border-2 border-white/40 dark:border-gray-700/40 hover:border-white/60 dark:hover:border-gray-600/60 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
               >
-                {/* Hover Gradient Background */}
                 <motion.div
                   className={`absolute inset-0 bg-gradient-to-br ${social.color} opacity-0 group-hover:opacity-20 transition-opacity duration-300`}
                 ></motion.div>
-                
-                {/* Icon Glow on Hover */}
                 <motion.div
                   animate={{
                     scale: [1, 1.5, 1],
@@ -79,7 +78,6 @@ export const Footer: React.FC = () => {
                   }}
                   className={`absolute inset-0 bg-gradient-to-br ${social.color} blur-xl opacity-0 group-hover:opacity-100`}
                 ></motion.div>
-
                 <Icon className="relative w-6 h-6 text-gray-600 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
               </motion.a>
             );
@@ -113,14 +111,14 @@ export const Footer: React.FC = () => {
             className="text-gray-700 dark:text-gray-300 font-medium text-sm sm:text-base"
             whileHover={{ scale: 1.02 }}
           >
-            {t.footerText}
+            {t('footerText')}
           </motion.p>
           
           <motion.p
             className="text-gray-600 dark:text-gray-400 flex items-center justify-center gap-2 flex-wrap text-sm"
             whileHover={{ scale: 1.02 }}
           >
-            <span>{t.footerMade.split('❤️')[0]}</span>
+            <span>{t('footerMade').split('❤️')[0]}</span>
             <motion.span
               animate={{
                 scale: [1, 1.2, 1],
@@ -132,7 +130,7 @@ export const Footer: React.FC = () => {
             >
               <Heart className="w-4 h-4 text-red-500 fill-current inline" />
             </motion.span>
-            <span>{t.footerMade.split('❤️')[1]}</span>
+            <span>{t('footerMade').split('❤️')[1]}</span>
           </motion.p>
 
           {/* Decorative Dots */}
@@ -156,7 +154,6 @@ export const Footer: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* Corner Glass Accents */}
       <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-blue-500/10 to-transparent pointer-events-none"></div>
       <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-purple-500/10 to-transparent pointer-events-none"></div>
     </footer>

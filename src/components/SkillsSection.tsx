@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useApp } from '../contexts/AppContext';
 import { translations } from '../data/translations';
 import { Code2, Wind, Component, FileCode, Sparkles, FileType } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 const skills = [
   {
@@ -74,7 +75,7 @@ const itemVariants = {
 
 export const SkillsSection: React.FC = () => {
   const { locale } = useApp();
-  const t = translations[locale];
+  const t = useTranslations(); 
 
   return (
     <section id="skills" className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
@@ -88,10 +89,12 @@ export const SkillsSection: React.FC = () => {
           className="text-center mb-8 sm:mb-12"
         >
           <h2 className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2 text-2xl sm:text-3xl lg:text-4xl">
-            {t.skillsTitle}
+              {t('skillsTitle')}
+
           </h2>
           <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base">
-            {t.skillsSubtitle}
+    
+              {t('skillsSubtitle')}
           </p>
         </motion.div>
 
