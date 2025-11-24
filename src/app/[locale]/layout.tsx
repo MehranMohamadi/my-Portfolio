@@ -13,7 +13,7 @@ export default async function LocaleLayout({ children, params }) {
   }
 
   return (
-    <html lang={locale}>
+    <html lang={locale} data-scroll-behavior="smooth">
       <body>
         <Providers locale={locale} messages={messages}>
           {children}
