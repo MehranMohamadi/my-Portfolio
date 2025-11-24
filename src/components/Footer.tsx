@@ -133,24 +133,7 @@ export const Footer: React.FC = () => {
             <span>{t('footerMade').split('❤️')[1]}</span>
           </motion.p>
 
-          {/* Decorative Dots */}
-          <div className="flex justify-center gap-2 pt-2">
-            {[...Array(3)].map((_, i) => (
-              <motion.div
-                key={i}
-                animate={{
-                  scale: [1, 1.5, 1],
-                  opacity: [0.3, 1, 0.3],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  delay: i * 0.2,
-                }}
-                className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-600 to-purple-600"
-              ></motion.div>
-            ))}
-          </div>
+       
         </motion.div>
       </div>
 

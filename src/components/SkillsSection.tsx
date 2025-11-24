@@ -1,7 +1,6 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { useApp } from '../contexts/AppContext';
-import { translations } from '../data/translations';
 import { Code2, Wind, Component, FileCode, Sparkles, FileType } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
@@ -50,7 +49,7 @@ const skills = [
   },
 ];
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -60,7 +59,7 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, scale: 0.8, y: 20 },
   visible: {
     opacity: 1,
@@ -72,7 +71,6 @@ const itemVariants = {
     },
   },
 };
-
 export const SkillsSection: React.FC = () => {
   const { locale } = useApp();
   const t = useTranslations(); 
@@ -113,7 +111,7 @@ export const SkillsSection: React.FC = () => {
                 key={index}
                 variants={itemVariants}
                 whileHover={{ scale: 1.05, y: -10 }}
-                className={`group relative backdrop-blur-xl bg-white/50 dark:bg-gray-800/50 p-6 sm:p-8 rounded-3xl border border-white/30 dark:border-gray-600/30 hover:border-white/60 dark:hover:border-gray-500/60 transition-all duration-500 hover:shadow-2xl hover:${skill.shadowColor}`}
+                className={`group relative backdrop-blur-xl flex flex-col items-center justify-center bg-white/50 dark:bg-gray-800/50 p-6 sm:p-8 rounded-3xl border border-white/30 dark:border-gray-600/30 hover:border-white/60 dark:hover:border-gray-500/60 transition-all duration-500 hover:shadow-2xl hover:${skill.shadowColor}`}
               >
                 {/* Animated Background Gradient */}
                 <motion.div

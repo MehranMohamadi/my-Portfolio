@@ -52,7 +52,7 @@ export const IntroSection: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="space-y-4 sm:space-y-6 text-center lg:text-left order-2 lg:order-1"
           >
-            <div className="space-y-2">
+            <div className="space-y-2 text-start">
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -83,7 +83,7 @@ export const IntroSection: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="text-gray-600 dark:text-gray-400 max-w-lg mx-auto lg:mx-0 text-sm sm:text-base"
+              className="text-gray-600 dark:text-gray-400 max-w-lg mx-auto lg:mx-0 text-sm sm:text-base text-start"
             >
               {t('introDescription')}
             </motion.p>
@@ -119,7 +119,7 @@ export const IntroSection: React.FC = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
-              className="pt-8 flex justify-center lg:justify-start"
+              className="pt-8 flex justify-center"
             >
               <div className="relative">
                 <div className="relative w-32 h-32 sm:w-40 sm:h-40">
@@ -252,7 +252,7 @@ export const IntroSection: React.FC = () => {
                     className="w-48 h-48 sm:w-64 sm:h-64 mx-auto rounded-2xl overflow-hidden ring-4 ring-white/50 dark:ring-gray-600/50 shadow-xl"
                   >
                     <img
-                      src="https://images.unsplash.com/photo-1655249481446-25d575f1c054?..."
+                      src="../img/profile.png"
                       alt="Profile"
                       className="w-full h-full object-cover"
                     />

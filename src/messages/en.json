@@ -6,8 +6,8 @@
   "contact": "Contact",
   "introGreeting": "Hello, I'm",
   "introName": "Mehran Mohammadi",
-  "introTitle": "Front-end Developer & Creative Designer",
-  "introDescription": "Passionate about creating elegant solutions to complex problems. I specialize in building modern web applications with cutting-edge technologies.",
+  "introTitle": "Frontend Developer",
+  "introDescription": "I'm passionate about creating engaging and functional digital experiences. Using the latest technologies, I focus on building modern web applications and crafting creative, effective solutions for complex challenges.",
   "viewWork": "View My Work",
   "contactMe": "Contact Me",
   "skillsTitle": "My Skills",
@@ -29,7 +29,7 @@
   "contactSubmit": "Send Message",
   "contactSuccess": "Message sent successfully!",
   "footerText": "© 2025 Mehran Mohammadi. All rights reserved.",
-  "footerMade": "Made with ❤️ and React",
+  "footerMade": "Made with ❤️",
   "project1Title": "E-Commerce Platform",
   "project1Desc": "A modern shopping experience with advanced filtering and seamless checkout",
   "project2Title": "Task Management App",
@@ -41,5 +41,11 @@
   "project5Title": "Food Delivery App",
   "project5Desc": "Real-time order tracking and restaurant discovery platform",
   "project6Title": "Fitness Tracker",
-  "project6Desc": "Personal health monitoring with AI-powered recommendations"
+  "project6Desc": "Personal health monitoring with AI-powered recommendations",
+  "years": "Years",
+  "experience": "Experience",
+  "completed": "Completed",
+  "project": "Projects",
+  "consumed": "Consumed",
+  "coffee": "Coffee"
 }

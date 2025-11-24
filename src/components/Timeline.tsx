@@ -20,36 +20,10 @@ export const Timeline: React.FC<TimelineProps> = ({ items }) => {
     <div className="relative py-8 px-4">
       {/* Animated Vertical Timeline Line with Gradient */}
       <div className="absolute left-4 sm:left-8 md:left-1/2 top-0 bottom-0 w-1 md:w-2 rounded-full overflow-hidden">
-        <motion.div
-          animate={{
-            y: ['0%', '100%'],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="absolute inset-0 bg-gradient-to-b from-blue-500 via-purple-500 via-pink-500 to-orange-500 opacity-50"
-        ></motion.div>
+      
         <div className="absolute inset-0 bg-gradient-to-b from-blue-500 via-purple-500 via-pink-500 to-orange-500 opacity-30"></div>
         
-        {/* Flowing Particles */}
-        {[...Array(5)].map((_, i) => (
-          <motion.div
-            key={i}
-            animate={{
-              y: ['-10%', '110%'],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              delay: i * 0.4,
-              ease: "linear",
-            }}
-            className="absolute left-1/2 transform -translate-x-1/2 w-2 h-8 bg-white rounded-full blur-sm"
-            style={{ opacity: 0.6 }}
-          ></motion.div>
-        ))}
+  
       </div>
 
       {/* Timeline Items */}
@@ -182,7 +156,7 @@ export const Timeline: React.FC<TimelineProps> = ({ items }) => {
               </div>
 
               {/* Enhanced Center Marker */}
-              <div className="absolute left-4 sm:left-8 md:left-1/2 transform md:-translate-x-1/2 flex items-center justify-center z-20">
+              <div className="absolute start-4 sm:start-8 md:left-1/2 transform md:-translate-x-1/2 flex items-center justify-center z-20">
                 <motion.div
                   initial={{ scale: 0, rotate: -180 }}
                   whileInView={{ scale: 1, rotate: 0 }}
@@ -202,7 +176,7 @@ export const Timeline: React.FC<TimelineProps> = ({ items }) => {
                       repeat: Infinity,
                       ease: "easeInOut",
                     }}
-                    className={`absolute -inset-2 rounded-full border-2 border-dashed ${bgColors[index % 4]} opacity-30`}
+                    className={`absolute -inset-2 rounded-full ${bgColors[index % 4]} opacity-30`}
                   ></motion.div>
 
                   {/* Pulsing Glow */}
@@ -253,28 +227,7 @@ export const Timeline: React.FC<TimelineProps> = ({ items }) => {
                     )}
                   </motion.div>
 
-                  {/* Orbiting Particles */}
-                  {item.active && (
-                    <>
-                      {[...Array(3)].map((_, i) => (
-                        <motion.div
-                          key={i}
-                          animate={{
-                            rotate: [0, 360],
-                          }}
-                          transition={{
-                            duration: 3,
-                            repeat: Infinity,
-                            delay: i * 0.3,
-                            ease: "linear",
-                          }}
-                          className="absolute inset-0"
-                        >
-                          <div className={`absolute top-0 left-1/2 -translate-x-1/2 -translate-y-2 w-1.5 h-1.5 rounded-full ${bgColors[index % 4]}`}></div>
-                        </motion.div>
-                      ))}
-                    </>
-                  )}
+    
                 </motion.div>
               </div>
 

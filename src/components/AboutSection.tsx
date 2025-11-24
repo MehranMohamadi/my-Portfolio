@@ -77,8 +77,8 @@ export const AboutSection: React.FC = () => {
               >
                 <Code className="w-6 h-6 text-blue-600 dark:text-blue-400" />
               </motion.div>
-              <p className="text-gray-900 dark:text-white">5+ Years</p>
-              <p className="text-gray-600 dark:text-gray-400">Experience</p>
+              <p className="text-gray-900 dark:text-white">4+ {t('years')}</p>
+              <p className="text-gray-600 dark:text-gray-400">{t('experience')}</p>
             </motion.div>
             <motion.div whileHover={{ scale: 1.05, y: -5 }} className="text-center group">
               <motion.div
@@ -88,8 +88,8 @@ export const AboutSection: React.FC = () => {
               >
                 <Heart className="w-6 h-6 text-purple-600 dark:text-purple-400" />
               </motion.div>
-              <p className="text-gray-900 dark:text-white">50+ Projects</p>
-              <p className="text-gray-600 dark:text-gray-400">Completed</p>
+              <p className="text-gray-900 dark:text-white">7+ {t('project')}</p>
+              <p className="text-gray-600 dark:text-gray-400">{t('completed')}</p>
             </motion.div>
             <motion.div whileHover={{ scale: 1.05, y: -5 }} className="text-center group">
               <motion.div
@@ -99,8 +99,8 @@ export const AboutSection: React.FC = () => {
               >
                 <Coffee className="w-6 h-6 text-pink-600 dark:text-pink-400" />
               </motion.div>
-              <p className="text-gray-900 dark:text-white">∞ Coffee</p>
-              <p className="text-gray-600 dark:text-gray-400">Consumed</p>
+              <p className="text-gray-900 dark:text-white">∞ {t('coffee')}</p>
+              <p className="text-gray-600 dark:text-gray-400">{t('consumed')}</p>
             </motion.div>
           </motion.div>
         </motion.div>
