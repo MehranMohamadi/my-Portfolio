@@ -8,6 +8,7 @@ const config: Config = {
       fontFamily: {
         notoNaskh: ['NotoNaskh', 'serif'],
         iranYekan: ['IranYekan', 'sans-serif'],
+        YekanBakh: ['Yekan Bakh','sans-serif'],
       },
     },
   },
