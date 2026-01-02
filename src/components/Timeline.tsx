@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Zap, Star, Sparkles, Rocket } from 'lucide-react';
 
 interface TimelineItem {
@@ -51,12 +50,8 @@ export const Timeline: React.FC<TimelineProps> = ({ items }) => {
           const Icon = icons[index % icons.length];
           
           return (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, x: isLeft ? -50 : 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
               className={`relative flex items-center ${
                 isLeft ? 'md:justify-start' : 'md:justify-end'
               } justify-start`}
@@ -67,8 +62,7 @@ export const Timeline: React.FC<TimelineProps> = ({ items }) => {
                   !isLeft ? 'md:mr-8' : ''
                 }`}
               >
-                <motion.div
-                  whileHover={{ scale: 1.05, y: -10, rotateY: isLeft ? 5 : -5 }}
+                <div
                   className={`relative backdrop-blur-2xl bg-white/70 dark:bg-gray-900/70 p-4 sm:p-6 rounded-3xl border-2 border-white/40 dark:border-gray-700/40 shadow-2xl hover:shadow-3xl transition-all duration-500 overflow-hidden ${
                     item.active ? `hover:${shadowColors[index % 4]}` : ''
                   }`}
@@ -82,29 +76,19 @@ export const Timeline: React.FC<TimelineProps> = ({ items }) => {
                   <div className="relative z-10">
                     <div className="flex items-center gap-3 mb-3">
                       {/* Icon with Animation */}
-                      <motion.div
-                        whileHover={{ rotate: 360, scale: 1.2 }}
-                        transition={{ duration: 0.6 }}
+                      <div
                         className={`p-2 sm:p-3 rounded-xl bg-gradient-to-br ${colors[index % 4]} shadow-lg`}
                       >
                         <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                      </motion.div>
+                      </div>
                       
                       {/* Year Badge */}
                       <div className={`relative inline-block px-3 sm:px-4 py-1 rounded-full bg-gradient-to-r ${colors[index % 4]} text-white text-sm sm:text-base font-semibold shadow-lg`}>
                         {item.year}
                         {/* Badge Glow */}
-                        <motion.div
-                          animate={{
-                            scale: [1, 1.3, 1],
-                            opacity: [0.3, 0, 0.3],
-                          }}
-                          transition={{
-                            duration: 2,
-                            repeat: Infinity,
-                          }}
+                        <div
                           className={`absolute inset-0 rounded-full bg-gradient-to-r ${colors[index % 4]} blur-md -z-10`}
-                        ></motion.div>
+                        ></div>
                       </div>
                     </div>
                     
@@ -113,24 +97,14 @@ export const Timeline: React.FC<TimelineProps> = ({ items }) => {
                     </h3>
                     
                     {item.active && (
-                      <motion.div
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
+                      <div
                         className="flex items-center gap-2 text-green-600 dark:text-green-400 text-sm"
                       >
-                        <motion.div
-                          animate={{
-                            scale: [1, 1.5, 1],
-                            opacity: [1, 0.5, 1],
-                          }}
-                          transition={{
-                            duration: 1.5,
-                            repeat: Infinity,
-                          }}
+                        <div
                           className="w-2 h-2 rounded-full bg-green-500"
-                        ></motion.div>
+                        ></div>
                         <span className="font-semibold">فعلی</span>
-                      </motion.div>
+                      </div>
                     )}
                   </div>
 
@@ -139,7 +113,7 @@ export const Timeline: React.FC<TimelineProps> = ({ items }) => {
                   
                   {/* Corner Accents */}
                   <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-white/30 dark:from-white/10 to-transparent rounded-tr-3xl pointer-events-none"></div>
-                </motion.div>
+                </div>
               </div>
 
               {/* Enhanced Center Marker */}
@@ -167,7 +141,7 @@ export const Timeline: React.FC<TimelineProps> = ({ items }) => {
 
               {/* Connecting Line to Marker (Mobile only) */}
               <div className="md:hidden absolute left-4 sm:left-8 h-0.5 w-4 sm:w-8 bg-gradient-to-r from-gray-300 dark:from-gray-600 to-transparent"></div>
-            </motion.div>
+            </div>
           );
         })}
       </div>

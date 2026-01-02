@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion, Variants } from 'framer-motion';
 import { useApp } from '../contexts/AppContext';
 import { Code2, Wind, Component, FileCode, Sparkles, FileType } from 'lucide-react';
 import { useTranslations } from 'next-intl';
@@ -49,28 +48,6 @@ const skills = [
   },
 ];
 
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-};
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, scale: 0.8, y: 20 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  },
-};
 export const SkillsSection: React.FC = () => {
   const { locale } = useApp();
   const t = useTranslations(); 
@@ -79,11 +56,7 @@ export const SkillsSection: React.FC = () => {
     <section id="skills" className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+        <div
           className="text-center mb-8 sm:mb-12"
         >
           <h2 className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2 text-2xl sm:text-3xl lg:text-4xl">
@@ -94,23 +67,17 @@ export const SkillsSection: React.FC = () => {
     
               {t('skillsSubtitle')}
           </p>
-        </motion.div>
+        </div>
 
         {/* Skills Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+        <div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
         >
           {skills.map((skill, index) => {
             const Icon = skill.icon;
             return (
-              <motion.div
+              <div
                 key={index}
-                variants={itemVariants}
-                whileHover={{ scale: 1.05, y: -10 }}
                 className={`group relative backdrop-blur-xl flex flex-col items-center justify-center bg-white/50 dark:bg-gray-800/50 p-6 sm:p-8 rounded-3xl border border-white/30 dark:border-gray-600/30 hover:border-white/60 dark:hover:border-gray-500/60 transition-all duration-500 hover:shadow-2xl hover:${skill.shadowColor}`}
               >
             
@@ -118,15 +85,13 @@ export const SkillsSection: React.FC = () => {
                 <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/20 to-transparent rounded-t-3xl pointer-events-none"></div>
 
                 {/* Icon Container */}
-                <motion.div
-                  whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
-                  transition={{ duration: 0.5 }}
+                <div
                   className={`relative mb-4 inline-flex p-4 rounded-2xl bg-gradient-to-br ${skill.color} shadow-lg`}
                 >
                   <Icon className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                   
       
-                </motion.div>
+                </div>
 
                 {/* Content */}
                 <h3 className="mb-2 text-gray-900 dark:text-white text-lg sm:text-xl font-semibold">
@@ -138,10 +103,10 @@ export const SkillsSection: React.FC = () => {
 
                 {/* Bottom Gradient Line */}
                 <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${skill.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-b-3xl`}></div>
-              </motion.div>
+              </div>
             );
           })}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
