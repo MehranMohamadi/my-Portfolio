@@ -19,6 +19,7 @@ This set of fonts are used in this project under the license: (.....)
 
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh ExtraCondensed;
 	font-style: normal;
 	font-weight: 100;
@@ -28,6 +29,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh ExtraCondensed;
 	font-style: normal;
 	font-weight: 300;
@@ -37,6 +39,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh ExtraCondensed;
 	font-style: normal;
 	font-weight: normal;
@@ -46,6 +49,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh ExtraCondensed;
 	font-style: normal;
 	font-weight: 600;
@@ -55,6 +59,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh ExtraCondensed;
 	font-style: normal;
 	font-weight: bold;
@@ -64,6 +69,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh ExtraCondensed;
 	font-style: normal;
 	font-weight: 800;
@@ -73,6 +79,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh ExtraCondensed;
 	font-style: normal;
 	font-weight: 900;
@@ -82,6 +89,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh ExtraCondensed;
 	font-style: normal;
 	font-weight: 950;
@@ -91,6 +99,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh Condensed;
 	font-style: normal;
 	font-weight: 100;
@@ -100,6 +109,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh Condensed;
 	font-style: normal;
 	font-weight: 300;
@@ -109,6 +119,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh Condensed;
 	font-style: normal;
 	font-weight: normal;
@@ -118,6 +129,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh Condensed;
 	font-style: normal;
 	font-weight: 600;
@@ -127,6 +139,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh Condensed;
 	font-style: normal;
 	font-weight: bold;
@@ -136,6 +149,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh Condensed;
 	font-style: normal;
 	font-weight: 800;
@@ -145,6 +159,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh Condensed;
 	font-style: normal;
 	font-weight: 900;
@@ -154,6 +169,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh Condensed;
 	font-style: normal;
 	font-weight: 950;
@@ -163,6 +179,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh SemiCondensed;
 	font-style: normal;
 	font-weight: 100;
@@ -172,6 +189,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh SemiCondensed;
 	font-style: normal;
 	font-weight: 300;
@@ -181,6 +199,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh SemiCondensed;
 	font-style: normal;
 	font-weight: normal;
@@ -190,6 +209,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh SemiCondensed;
 	font-style: normal;
 	font-weight: 600;
@@ -199,6 +219,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh SemiCondensed;
 	font-style: normal;
 	font-weight: bold;
@@ -208,6 +229,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh SemiCondensed;
 	font-style: normal;
 	font-weight: 800;
@@ -217,6 +239,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh SemiCondensed;
 	font-style: normal;
 	font-weight: 900;
@@ -226,6 +249,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh SemiCondensed;
 	font-style: normal;
 	font-weight: 950;
@@ -235,6 +259,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh;
 	font-style: normal;
 	font-weight: 100;
@@ -244,6 +269,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh;
 	font-style: normal;
 	font-weight: 300;
@@ -253,6 +279,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh;
 	font-style: normal;
 	font-weight: normal;
@@ -262,6 +289,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh;
 	font-style: normal;
 	font-weight: 600;
@@ -271,6 +299,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh;
 	font-style: normal;
 	font-weight: bold;
@@ -280,6 +309,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh;
 	font-style: normal;
 	font-weight: 800;
@@ -289,6 +319,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh;
 	font-style: normal;
 	font-weight: 900;
@@ -298,6 +329,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh;
 	font-style: normal;
 	font-weight: 950;
@@ -307,6 +339,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh SemiExpanded;
 	font-style: normal;
 	font-weight: 100;
@@ -316,6 +349,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh SemiExpanded;
 	font-style: normal;
 	font-weight: 300;
@@ -325,6 +359,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh SemiExpanded;
 	font-style: normal;
 	font-weight: normal;
@@ -334,6 +369,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh SemiExpanded;
 	font-style: normal;
 	font-weight: 600;
@@ -343,6 +379,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh SemiExpanded;
 	font-style: normal;
 	font-weight: bold;
@@ -352,6 +389,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh SemiExpanded;
 	font-style: normal;
 	font-weight: 800;
@@ -361,6 +399,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh SemiExpanded;
 	font-style: normal;
 	font-weight: 900;
@@ -370,6 +409,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh SemiExpanded;
 	font-style: normal;
 	font-weight: 950;
@@ -379,6 +419,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh Expanded;
 	font-style: normal;
 	font-weight: 100;
@@ -388,6 +429,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh Expanded;
 	font-style: normal;
 	font-weight: 300;
@@ -397,6 +439,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh Expanded;
 	font-style: normal;
 	font-weight: normal;
@@ -406,6 +449,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh Expanded;
 	font-style: normal;
 	font-weight: 600;
@@ -415,6 +459,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh Expanded;
 	font-style: normal;
 	font-weight: bold;
@@ -424,6 +469,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh Expanded;
 	font-style: normal;
 	font-weight: 800;
@@ -433,6 +479,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh Expanded;
 	font-style: normal;
 	font-weight: 900;
@@ -442,6 +489,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh Expanded;
 	font-style: normal;
 	font-weight: 950;
@@ -451,6 +499,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh ExtraExpanded;
 	font-style: normal;
 	font-weight: 100;
@@ -460,6 +509,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh ExtraExpanded;
 	font-style: normal;
 	font-weight: 300;
@@ -469,6 +519,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh ExtraExpanded;
 	font-style: normal;
 	font-weight: normal;
@@ -478,6 +529,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh ExtraExpanded;
 	font-style: normal;
 	font-weight: 600;
@@ -487,6 +539,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh ExtraExpanded;
 	font-style: normal;
 	font-weight: bold;
@@ -496,6 +549,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh ExtraExpanded;
 	font-style: normal;
 	font-weight: 800;
@@ -505,6 +559,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh ExtraExpanded;
 	font-style: normal;
 	font-weight: 900;
@@ -514,6 +569,7 @@ This set of fonts are used in this project under the license: (.....)
 }
 
 @font-face {
+	font-display: swap;
 	font-family: Yekan Bakh ExtraExpanded;
 	font-style: normal;
 	font-weight: 950;
