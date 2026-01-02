@@ -65,13 +65,11 @@ export const ContactSection: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-8 sm:mb-12"
         >
-          <motion.div
-            animate={{ rotate: [0, 360] }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          <div
             className="inline-flex p-4 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 mb-4"
           >
             <Sparkles className="w-8 h-8 text-blue-600 dark:text-blue-400" />
-          </motion.div>
+          </div>
           
           <h2 className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2 text-2xl sm:text-3xl lg:text-4xl">
             {t('contactTitle')}
@@ -95,12 +93,7 @@ export const ContactSection: React.FC = () => {
             {/* Top Glass Reflection */}
             <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-white/50 dark:from-white/10 to-transparent pointer-events-none rounded-t-3xl"></div>
             
-            {/* Animated Gradient Background */}
-            <motion.div
-              animate={{ rotate: [0, 360], scale: [1, 1.2, 1] }}
-              transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-              className="absolute -inset-20 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 blur-3xl -z-10"
-            ></motion.div>
+       
 
             <AnimatePresence mode="wait">
               {isSubmitted ? (

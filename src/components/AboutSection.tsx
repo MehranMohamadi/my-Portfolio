@@ -18,7 +18,7 @@ export const AboutSection: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
+          <h2 className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
             {t('aboutTitle')}
           </h2>
           <p className="text-gray-600 dark:text-gray-400">

@@ -113,110 +113,7 @@ export const IntroSection: React.FC = () => {
                 {t('contactMe')}
               </motion.button>
             </motion.div>
-
-            {/* Decorative Creative Orbit Element */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              className="pt-8 flex justify-center"
-            >
-              <div className="relative">
-                <div className="relative w-32 h-32 sm:w-40 sm:h-40">
-                  {/* Center Core */}
-                  <motion.div
-                    animate={{
-                      rotate: 360,
-                      scale: [1, 1.1, 1],
-                    }}
-                    transition={{
-                      rotate: { duration: 10, repeat: Infinity, ease: "linear" },
-                      scale: { duration: 2, repeat: Infinity, ease: "easeInOut" },
-                    }}
-                    className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 shadow-2xl"
-                  >
-                    <motion.div
-                      animate={{ rotate: -360 }}
-                      transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                      className="absolute inset-2 rounded-xl bg-white/30 backdrop-blur-sm flex items-center justify-center"
-                    >
-                      <Code className="w-6 h-6 text-white" />
-                    </motion.div>
-                  </motion.div>
-
-                  {[Code, Zap, Sparkles].map((Icon, index) => (
-                    <motion.div
-                      key={index}
-                      animate={{ rotate: 360 }}
-                      transition={{
-                        duration: 8 - index,
-                        repeat: Infinity,
-                        ease: "linear",
-                        delay: index * 0.5,
-                      }}
-                      className="absolute top-1/2 left-1/2 w-full h-full"
-                      style={{ transformOrigin: "center" }}
-                    >
-                      <motion.div
-                        animate={{
-                          scale: [1, 1.3, 1],
-                          rotate: -360,
-                        }}
-                        transition={{
-                          scale: { duration: 2, repeat: Infinity, ease: "easeInOut" },
-                          rotate: { duration: 8 - index, repeat: Infinity, ease: "linear" },
-                        }}
-                        className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 shadow-xl flex items-center justify-center backdrop-blur-xl bg-white/20 border-2 border-white/40"
-                      >
-                        <Icon className="w-5 h-5 text-white" />
-                      </motion.div>
-                    </motion.div>
-                  ))}
-
-                  {[...Array(12)].map((_, i) => (
-                    <motion.div
-                      key={i}
-                      animate={{ rotate: 360, opacity: [0, 1, 0] }}
-                      transition={{
-                        duration: 4,
-                        repeat: Infinity,
-                        ease: "linear",
-                        delay: i * 0.3,
-                      }}
-                      className="absolute top-1/2 left-1/2 w-full h-full"
-                    >
-                      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-blue-500"></div>
-                    </motion.div>
-                  ))}
-
-                  <motion.div
-                    animate={{
-                      scale: [1, 1.5, 1],
-                      opacity: [0.5, 0, 0.5],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                    className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full rounded-full border-2 border-blue-500"
-                  ></motion.div>
-                  <motion.div
-                    animate={{
-                      scale: [1, 1.5, 1],
-                      opacity: [0.5, 0, 0.5],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: 1,
-                    }}
-                    className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full rounded-full border-2 border-purple-500"
-                  ></motion.div>
-                </div>
-              </div>
-            </motion.div>
+    
           </motion.div>
 
           {/* Profile Card */}
@@ -227,18 +124,9 @@ export const IntroSection: React.FC = () => {
             className="flex justify-center order-1 lg:order-2"
           >
             <div className="relative group w-full max-w-sm ">
-              <motion.div
-                animate={{
-                  scale: [1, 1.2, 1],
-                  rotate: [0, 90, 0],
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
+              <div
                 className="absolute inset-0 origin-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-3xl opacity-30 blur-2xl group-hover:opacity-40"
-              ></motion.div>
+              ></div>
               
               <motion.div
                 whileHover={{ y: -10 }}

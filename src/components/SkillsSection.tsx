@@ -113,20 +113,7 @@ export const SkillsSection: React.FC = () => {
                 whileHover={{ scale: 1.05, y: -10 }}
                 className={`group relative backdrop-blur-xl flex flex-col items-center justify-center bg-white/50 dark:bg-gray-800/50 p-6 sm:p-8 rounded-3xl border border-white/30 dark:border-gray-600/30 hover:border-white/60 dark:hover:border-gray-500/60 transition-all duration-500 hover:shadow-2xl hover:${skill.shadowColor}`}
               >
-                {/* Animated Background Gradient */}
-                <motion.div
-                  animate={{
-                    rotate: [0, 360],
-                    scale: [1, 1.2, 1],
-                  }}
-                  transition={{
-                    duration: 8,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                  className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${skill.color} opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-500`}
-                ></motion.div>
-
+            
                 {/* Glass Shine Effect */}
                 <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/20 to-transparent rounded-t-3xl pointer-events-none"></div>
 
@@ -138,19 +125,7 @@ export const SkillsSection: React.FC = () => {
                 >
                   <Icon className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                   
-                  {/* Icon Glow */}
-                  <motion.div
-                    animate={{
-                      scale: [1, 1.5, 1],
-                      opacity: [0.5, 0, 0.5],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                    className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${skill.color} blur-md`}
-                  ></motion.div>
+      
                 </motion.div>
 
                 {/* Content */}

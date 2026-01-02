@@ -74,20 +74,7 @@ export const Timeline: React.FC<TimelineProps> = ({ items }) => {
                   }`}
                   style={{ transformStyle: 'preserve-3d' }}
                 >
-                  {/* Animated Background Gradient */}
-                  <motion.div
-                    animate={{
-                      rotate: [0, 360],
-                      scale: [1, 1.5, 1],
-                    }}
-                    transition={{
-                      duration: 10,
-                      repeat: Infinity,
-                      ease: "linear",
-                    }}
-                    className={`absolute -inset-10 bg-gradient-to-br ${colors[index % 4]} opacity-0 group-hover:opacity-20 blur-2xl`}
-                  ></motion.div>
-
+             
                   {/* Glass Shine Effect */}
                   <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-white/30 dark:from-white/10 to-transparent pointer-events-none rounded-t-3xl"></div>
                   
@@ -156,79 +143,26 @@ export const Timeline: React.FC<TimelineProps> = ({ items }) => {
               </div>
 
               {/* Enhanced Center Marker */}
-              <div className="absolute start-4 sm:start-8 md:left-1/2 transform md:-translate-x-1/2 flex items-center justify-center z-20">
-                <motion.div
-                  initial={{ scale: 0, rotate: -180 }}
-                  whileInView={{ scale: 1, rotate: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1, type: "spring", stiffness: 200 }}
+              <div className="absolute left-4 sm:start-8 md:left-1/2 transform md:-translate-x-1/2 flex items-center justify-center z-20">
+                <div
                   className="relative"
                 >
-                  {/* Outer Glow Ring */}
-                  <motion.div
-                    animate={{
-                      scale: [1, 1.8, 1],
-                      opacity: [0.6, 0, 0.6],
-                      rotate: [0, 180, 360],
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                    className={`absolute -inset-2 rounded-full ${bgColors[index % 4]} opacity-30`}
-                  ></motion.div>
-
-                  {/* Pulsing Glow */}
-                  {item.active && (
-                    <motion.div
-                      animate={{
-                        scale: [1, 2, 1],
-                        opacity: [0.5, 0, 0.5],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                      className={`absolute inset-0 ${bgColors[index % 4]} rounded-full blur-xl`}
-                    ></motion.div>
-                  )}
+          
                   
                   {/* Main Marker Circle */}
-                  <motion.div
-                    whileHover={{ scale: 1.3, rotate: 180 }}
-                    className={`relative w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 rounded-full border-3 sm:border-4 border-white dark:border-gray-900 ${
+                  <div
+                    className={`relative w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 rounded-full border-3 ${
                       bgColors[index % 4]
-                    } shadow-2xl ${item.active ? 'scale-125' : ''} transition-all duration-300 z-10 cursor-pointer`}
+                    } transition-all duration-300 z-10 cursor-pointer`}
                   >
                     {/* Inner Sparkle */}
-                    <motion.div
-                      animate={{
-                        rotate: [0, 360],
-                        scale: [1, 1.2, 1],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                      }}
+                    <div
                       className="absolute inset-1 rounded-full bg-white/50"
-                    ></motion.div>
-                    
-                    {item.active && (
-                      <motion.div
-                        animate={{ 
-                          scale: [1, 1.5, 1],
-                          opacity: [1, 0.5, 1],
-                        }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                        className={`absolute inset-0 rounded-full ${bgColors[index % 4]} opacity-50 blur-sm`}
-                      ></motion.div>
-                    )}
-                  </motion.div>
+                    ></div>
+                  </div>
 
     
-                </motion.div>
+                </div>
               </div>
 
               {/* Connecting Line to Marker (Mobile only) */}

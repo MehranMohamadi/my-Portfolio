@@ -22,30 +22,6 @@ export const Footer: React.FC = () => {
       {/* Glass Shine Effect */}
       <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/30 dark:from-white/5 to-transparent pointer-events-none"></div>
       
-      {/* Animated Background Particles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(10)].map((_, i) => (
-          <motion.div
-            key={i}
-            animate={{
-              y: [0, -100, 0],
-              x: [0, Math.random() * 50 - 25, 0],
-              opacity: [0, 0.5, 0],
-            }}
-            transition={{
-              duration: Math.random() * 5 + 5,
-              repeat: Infinity,
-              delay: Math.random() * 5,
-            }}
-            className="absolute w-1 h-1 bg-blue-500/30 rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              bottom: `${Math.random() * 100}%`,
-            }}
-          ></motion.div>
-        ))}
-      </div>
-
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Social Links */}
         <div className="flex flex-wrap justify-center gap-4 mb-8">
@@ -67,17 +43,7 @@ export const Footer: React.FC = () => {
                 <motion.div
                   className={`absolute inset-0 bg-gradient-to-br ${social.color} opacity-0 group-hover:opacity-20 transition-opacity duration-300`}
                 ></motion.div>
-                <motion.div
-                  animate={{
-                    scale: [1, 1.5, 1],
-                    opacity: [0, 0.3, 0],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                  }}
-                  className={`absolute inset-0 bg-gradient-to-br ${social.color} blur-xl opacity-0 group-hover:opacity-100`}
-                ></motion.div>
+            
                 <Icon className="relative w-6 h-6 text-gray-600 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
               </motion.a>
             );
@@ -87,17 +53,9 @@ export const Footer: React.FC = () => {
         {/* Animated Divider */}
         <div className="relative h-px mb-8 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-700 to-transparent"></div>
-          <motion.div
-            animate={{
-              x: ['-100%', '100%'],
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "linear",
-            }}
+          <div
             className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-50"
-          ></motion.div>
+          ></div>
         </div>
 
         {/* Footer Text */}
@@ -114,24 +72,17 @@ export const Footer: React.FC = () => {
             {t('footerText')}
           </motion.p>
           
-          <motion.p
+          <p
             className="text-gray-600 dark:text-gray-400 flex items-center justify-center gap-2 flex-wrap text-sm"
-            whileHover={{ scale: 1.02 }}
           >
             <span>{t('footerMade').split('❤️')[0]}</span>
-            <motion.span
-              animate={{
-                scale: [1, 1.2, 1],
-              }}
-              transition={{
-                duration: 1,
-                repeat: Infinity,
-              }}
+            <span
+            
             >
               <Heart className="w-4 h-4 text-red-500 fill-current inline" />
-            </motion.span>
+            </span>
             <span>{t('footerMade').split('❤️')[1]}</span>
-          </motion.p>
+          </p>
 
        
         </motion.div>
