@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import { useApp } from '../contexts/AppContext';
 import { Github, Linkedin, Twitter, Mail, Heart } from 'lucide-react';
 import { useTranslations } from 'next-intl';
@@ -28,24 +27,18 @@ export const Footer: React.FC = () => {
           {socialLinks.map((social, index) => {
             const Icon = social.icon;
             return (
-              <motion.a
+              <a
                 key={index}
                 href={social.href}
                 aria-label={social.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -5, scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
                 className="group relative p-4 rounded-2xl backdrop-blur-xl bg-white/70 dark:bg-gray-800/70 border-2 border-white/40 dark:border-gray-700/40 hover:border-white/60 dark:hover:border-gray-600/60 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
               >
-                <motion.div
+                <div
                   className={`absolute inset-0 bg-gradient-to-br ${social.color} opacity-0 group-hover:opacity-20 transition-opacity duration-300`}
-                ></motion.div>
+                ></div>
             
                 <Icon className="relative w-6 h-6 text-gray-600 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
-              </motion.a>
+              </a>
             );
           })}
         </div>
@@ -59,18 +52,14 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Footer Text */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+        <div
           className="text-center space-y-3"
         >
-          <motion.p
+          <p
             className="text-gray-700 dark:text-gray-300 font-medium text-sm sm:text-base"
-            whileHover={{ scale: 1.02 }}
           >
             {t('footerText')}
-          </motion.p>
+          </p>
           
           <p
             className="text-gray-600 dark:text-gray-400 flex items-center justify-center gap-2 flex-wrap text-sm"
@@ -85,7 +74,7 @@ export const Footer: React.FC = () => {
           </p>
 
        
-        </motion.div>
+        </div>
       </div>
 
       <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-blue-500/10 to-transparent pointer-events-none"></div>
