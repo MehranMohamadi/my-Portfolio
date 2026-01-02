@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   description:
     "Frontend developer specialized in Nuxt, Vue, and modern web technologies.",
   alternates: {
-    canonical: "https://www.mehranmohammadifrd.ir",
+    canonical: "https://www.mehranmohammadifrd.ir/fa",
   },
   robots: {
     index: true,
