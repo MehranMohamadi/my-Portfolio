@@ -110,13 +110,9 @@ export const ProjectsSection: React.FC = () => {
               key={index}
               className="group relative overflow-hidden rounded-3xl"
             >
-              <div className="relative backdrop-blur-2xl bg-white/70 dark:bg-gray-800/70 rounded-3xl border-2 border-white/40 dark:border-gray-600/40 overflow-hidden hover:shadow-2xl hover:shadow-blue-500/30 transition-all duration-500">
+              <div className="relative bg-white/70 dark:bg-gray-800/70 rounded-3xl border-2 border-white/40 dark:border-gray-600/40 overflow-hidden hover:shadow-2xl hover:shadow-blue-500/30 transition-all duration-500">
                 
-                {/* Animated Gradient Background */}
-                <div
-                  className="absolute -inset-20 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 blur-3xl transition-opacity duration-500"
-                ></div>
-
+  
                 {/* Top Glass Reflection */}
                 <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-white/40 dark:from-white/10 to-transparent pointer-events-none z-10"></div>
                 
@@ -141,7 +137,7 @@ export const ProjectsSection: React.FC = () => {
                 </div>
 
                 {/* Project Info */}
-                <div className="relative p-4 sm:p-6 backdrop-blur-sm bg-gradient-to-b from-white/50 to-white/70 dark:from-gray-800/50 dark:to-gray-800/70">
+                <div className="relative p-4 sm:p-6  bg-gradient-to-b from-white/50 to-white/70 dark:from-gray-800/50 dark:to-gray-800/70">
                   <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-purple-500/10 dark:from-white/5 dark:to-purple-500/5 pointer-events-none"></div>
                   
                   <div className="relative z-10">
