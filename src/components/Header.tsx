@@ -204,7 +204,7 @@ const changeLanguage = (lang: string) => {
                   <button
                     key={section}
                     onClick={() => scrollToSection(section)}
-                    className="block w-full text-left px-4 py-2 rounded-lg hover:bg-linear-to-r hover:from-blue-500/20 hover:to-purple-500/20 transition-all duration-300"
+                    className="block w-full text-start px-4 py-2 rounded-lg hover:bg-linear-to-r hover:from-blue-500/20 hover:to-purple-500/20 transition-all duration-300"
                   >
                     {t(section)}
                   </button>
@@ -217,7 +217,7 @@ const changeLanguage = (lang: string) => {
                   <button
                     key={lang.code}
                     onClick={() => changeLanguage(lang.code)}
-                    className="block w-full text-left px-4 py-2 rounded-lg transition-all duration-300"
+                    className="block w-full text-start px-4 py-2 rounded-lg transition-all duration-300"
                   >
                     {lang.name}
                   </button>

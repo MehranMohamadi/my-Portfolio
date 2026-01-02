@@ -31,19 +31,6 @@ export const ContactSection: React.FC = () => {
   return (
     <section id="contact" className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50/50 dark:bg-gray-800/30 relative overflow-hidden">
       
-      {/* Animated Background Particles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-2 h-2 bg-blue-500/30 rounded-full blur-sm"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-          ></div>
-        ))}
-      </div>
 
       <div className="max-w-4xl mx-auto relative z-10">
         {/* Section Header */}

@@ -18,19 +18,6 @@ export const IntroSection: React.FC = () => {
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20 pt-24 relative overflow-hidden">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(30)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-blue-500/30 rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              bottom: '-10px',
-            }}
-          ></div>
-        ))}
-      </div>
 
       <div className="max-w-6xl mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
