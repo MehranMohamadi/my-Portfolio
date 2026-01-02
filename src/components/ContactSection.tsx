@@ -211,7 +211,7 @@ export const ContactSection: React.FC = () => {
                   </div>
                 </form>
               )}
-s
+
             {/* Bottom Corner Accents */}
             <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-blue-500/20 to-transparent rounded-bl-3xl pointer-events-none"></div>
             <div className="absolute bottom-0 right-0 w-24 h-24 bg-gradient-to-tl from-purple-500/20 to-transparent rounded-br-3xl pointer-events-none"></div>
