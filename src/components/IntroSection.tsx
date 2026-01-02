@@ -5,6 +5,12 @@ import { motion } from 'framer-motion';
 import { useApp } from '../contexts/AppContext';
 import { ArrowRight, Mail, Code, Zap, Sparkles } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import dynamic from 'next/dynamic'
+
+const MotionDiv = dynamic(
+  () => import('framer-motion').then(m => m.motion.div),
+  { ssr: false }
+)
 
 export const IntroSection: React.FC = () => {
   const { locale } = useApp();
@@ -22,7 +28,7 @@ export const IntroSection: React.FC = () => {
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(30)].map((_, i) => (
-          <motion.div
+          <MotionDiv
             key={i}
             animate={{
               y: [0, -1000],
@@ -39,14 +45,14 @@ export const IntroSection: React.FC = () => {
               left: `${Math.random() * 100}%`,
               bottom: '-10px',
             }}
-          ></motion.div>
+          ></MotionDiv>
         ))}
       </div>
 
       <div className="max-w-6xl mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
           {/* Text Content */}
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -88,7 +94,7 @@ export const IntroSection: React.FC = () => {
               {t('introDescription')}
             </motion.p>
 
-            <motion.div
+            <MotionDiv
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
@@ -112,12 +118,12 @@ export const IntroSection: React.FC = () => {
                 <Mail className="w-4 h-4" />
                 {t('contactMe')}
               </motion.button>
-            </motion.div>
+            </MotionDiv>
     
-          </motion.div>
+          </MotionDiv>
 
           {/* Profile Card */}
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
@@ -128,13 +134,13 @@ export const IntroSection: React.FC = () => {
                 className="absolute inset-0 origin-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-3xl opacity-30 blur-2xl group-hover:opacity-40"
               ></div>
               
-              <motion.div
+              <MotionDiv
                 whileHover={{ y: -10 }}
                 transition={{ duration: 0.3 }}
                 className="relative backdrop-blur-xl bg-white/40 dark:bg-gray-800/40 p-6 sm:p-8 rounded-3xl border border-white/20 dark:border-gray-600/20 shadow-2xl"
               >
                 <div className="relative">
-                  <motion.div
+                  <MotionDiv
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.3 }}
                     className="w-48 h-48 sm:w-64 sm:h-64 mx-auto rounded-2xl overflow-hidden ring-4 ring-white/50 dark:ring-gray-600/50 shadow-xl"
@@ -144,22 +150,22 @@ export const IntroSection: React.FC = () => {
                       alt="Profile"
                       className="w-full h-full object-cover"
                     />
-                  </motion.div>
+                  </MotionDiv>
                   
-                  <motion.div
+                  <MotionDiv
                     animate={{ rotate: 360 }}
                     transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                     className="absolute -top-2 -right-2 w-16 sm:w-20 h-16 sm:h-20 bg-gradient-to-br from-blue-500 to-purple-500 rounded-2xl opacity-60 blur-xl"
-                  ></motion.div>
-                  <motion.div
+                  ></MotionDiv>
+                  <MotionDiv
                     animate={{ rotate: -360 }}
                     transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
                     className="absolute -bottom-2 -left-2 w-12 sm:w-16 h-12 sm:h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl opacity-60 blur-xl"
-                  ></motion.div>
+                  ></MotionDiv>
                 </div>
-              </motion.div>
+              </MotionDiv>
             </div>
-          </motion.div>
+          </MotionDiv>
         </div>
       </div>
     </section>
