@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import { useApp } from '../contexts/AppContext';
 import { ExternalLink } from 'lucide-react';
 import { Timeline } from './Timeline';
@@ -81,11 +80,7 @@ export const ProjectsSection: React.FC = () => {
       <div className="max-w-6xl mx-auto">
         
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+        <div
           className="text-center mb-8 sm:mb-12"
         >
           <h2 className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2 text-2xl sm:text-3xl lg:text-4xl">
@@ -94,44 +89,33 @@ export const ProjectsSection: React.FC = () => {
           <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base">
             {t('projectsSubtitle')}
           </p>
-        </motion.div>
+        </div>
 
         {/* Timeline */}
         <div className="mb-12 sm:mb-16">
-          <motion.h3
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+          <h3
             className="text-center mb-6 sm:mb-8 text-gray-800 dark:text-gray-200 text-xl sm:text-2xl"
           >
             {t('timelineTitle')}
-          </motion.h3>
+          </h3>
           <Timeline items={timelineItems} />
         </div>
 
         {/* Projects Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+        <div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
         >
           {projects.map((project, index) => (
-            <motion.div
+            <div
               key={index}
-              variants={itemVariants}
-              whileHover={{ y: -10 }}
               className="group relative overflow-hidden rounded-3xl"
             >
               <div className="relative backdrop-blur-2xl bg-white/70 dark:bg-gray-800/70 rounded-3xl border-2 border-white/40 dark:border-gray-600/40 overflow-hidden hover:shadow-2xl hover:shadow-blue-500/30 transition-all duration-500">
                 
                 {/* Animated Gradient Background */}
-                <motion.div
-                  animate={{ rotate: [0, 360], scale: [1, 1.5, 1] }}
-                  transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                <div
                   className="absolute -inset-20 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 blur-3xl transition-opacity duration-500"
-                ></motion.div>
+                ></div>
 
                 {/* Top Glass Reflection */}
                 <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-white/40 dark:from-white/10 to-transparent pointer-events-none z-10"></div>
@@ -142,22 +126,18 @@ export const ProjectsSection: React.FC = () => {
 
                 {/* Project Image */}
                 <div className="relative h-40 sm:h-48 overflow-hidden">
-                  <motion.img
-                    whileHover={{ scale: 1.15 }}
-                    transition={{ duration: 0.6 }}
+                  <img
                     src={project.image}
                     alt={t(project.titleKey)}
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
                   
-                  <motion.div
-                    initial={{ scale: 0, opacity: 0 }}
-                    whileHover={{ scale: 1, opacity: 1 }}
+                  <div
                     className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-white/30 dark:bg-white/10 backdrop-blur-xl border border-white/50 flex items-center justify-center"
                   >
                     <ExternalLink className="w-8 h-8 text-white" />
-                  </motion.div>
+                  </div>
                 </div>
 
                 {/* Project Info */}
@@ -177,13 +157,12 @@ export const ProjectsSection: React.FC = () => {
                       {t(project.descKey)}
                     </p>
 
-                    <motion.button
-                      whileHover={{ x: 5 }}
+                    <button
                       className="group/btn flex items-center gap-2 px-4 py-2 rounded-xl backdrop-blur-md bg-white/60 dark:bg-gray-700/60 border border-white/40 dark:border-gray-600/40 hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 hover:text-white transition-all duration-300 text-blue-600 dark:text-blue-400 hover:border-transparent text-sm sm:text-base shadow-lg"
                     >
                       {t('viewDetails')}
                       <ExternalLink className="w-4 h-4 group-hover/btn:rotate-45 transition-transform duration-300" />
-                    </motion.button>
+                    </button>
                   </div>
                 </div>
 
@@ -192,9 +171,9 @@ export const ProjectsSection: React.FC = () => {
                 <div className="absolute top-0 left-0 w-16 h-16 bg-gradient-to-br from-white/40 to-transparent dark:from-white/10 rounded-tl-3xl pointer-events-none"></div>
                 <div className="absolute bottom-0 right-0 w-16 h-16 bg-gradient-to-tl from-white/40 to-transparent dark:from-white/10 rounded-br-3xl pointer-events-none"></div>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
