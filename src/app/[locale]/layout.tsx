@@ -13,8 +13,8 @@ export const metadata: Metadata = {
     "JavaScript",
   ],
   title: {
-    default: "Mehrann Mohammadi | Frontend Developer | Virasty | Gap Massenger",
-    template: "%s | Mehrann Mohammadi",
+    default: "Mehran Mohammadi | Frontend Developer | Virasty | Gap Massenger",
+    template: "%s | Mehran Mohammadi",
   },
   description:
     "Frontend developer specialized in Nuxt, Vue, and modern web technologies.",
@@ -26,11 +26,11 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
-    title: "Mehrann Mohammadi | Frontend Developer",
+    title: "Mehran Mohammadi | Frontend Developer",
     description:
       "Frontend developer specialized in Nuxt, Vue, and modern web technologies.",
     url: "https://www.mehranmohammadifrd.ir",
-    siteName: "Mehrann Mohammadi",
+    siteName: "Mehran Mohammadi",
     locale: "en_US",
     type: "website",
     images: [
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
         url: `https://www.mehranmohammadifrd.ir/og-image.jpg`,
         width: 1200,
         height: 630,
-        alt: "Mehrann Mohammadi - Frontend Developer",
+        alt: "Mehran Mohammadi - Frontend Developer",
       },
     ],
   },
