@@ -4,6 +4,7 @@ import React from 'react';
 import { useApp } from '../contexts/AppContext';
 import { ArrowRight, Mail, Code, Zap, Sparkles } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import Image from "next/image";
 
 export const IntroSection: React.FC = () => {
   const { locale } = useApp();
@@ -80,17 +81,21 @@ export const IntroSection: React.FC = () => {
               ></div>
               
               <div
-                className="relative backdrop-blur-xl bg-white/40 dark:bg-gray-800/40 p-6 sm:p-8 rounded-3xl border border-white/20 dark:border-gray-600/20 shadow-2xl"
+                className="relative bg-white/40 dark:bg-gray-800/40 p-6 sm:p-8 rounded-3xl border border-white/20 dark:border-gray-600/20 shadow-2xl"
               >
                 <div className="relative">
                   <div
                     className="w-48 h-48 sm:w-64 sm:h-64 mx-auto rounded-2xl overflow-hidden ring-4 ring-white/50 dark:ring-gray-600/50 shadow-xl"
                   >
-                    <img
-                      src="../img/profile.png"
-                      alt="Profile"
-                      className="w-full h-full object-cover"
-                    />
+                 <Image
+  src="/img/profile.png"
+  alt="Profile"
+  width={256}
+  height={256}
+  priority
+  fetchPriority="high"
+  className="w-full h-full object-cover"
+/>
                   </div>
                   
                   <div
