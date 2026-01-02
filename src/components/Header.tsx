@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Sun, Moon, Globe, Menu, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
@@ -15,14 +15,43 @@ export const Header: React.FC = () => {
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [langMenuOpen, setLangMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
+  const sections = ["home", "skills", "projects", "about", "contact"];
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setMobileMenuOpen(false);
+
+useEffect(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    },
+    {
+      root: null,
+      rootMargin: "-50% 0px -50% 0px",
+      threshold: 0,
     }
-  };
+  );
+
+  sections.forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+
+  return () => observer.disconnect();
+}, []);
+
+
+ const scrollToSection = (id: string) => {
+  const element = document.getElementById(id);
+  if (element) {
+    element.scrollIntoView({ behavior: "smooth" });
+    setActiveSection(id);
+    setMobileMenuOpen(false);
+  }
+};
 
   const handleThemeToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -56,22 +85,31 @@ const changeLanguage = (lang: string) => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-6 lg:gap-8">
-            {["home", "skills", "projects", "about", "contact"].map(
-              (section, index) => (
-                <button
-                  key={section}
-                  onClick={() => scrollToSection(section)}
-                  className="relative px-3 py-2 text-gray-700 dark:text-gray-200 hover:text-transparent hover:bg-linear-to-r hover:from-blue-600 hover:to-purple-600 hover:bg-clip-text transition-all duration-300 font-medium"
-                >
-                  {t(section)}
-                  <div
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-linear-to-r from-blue-600 to-purple-600 origin-left"
-                  ></div>
-                </button>
-              )
-            )}
-          </div>
+         <div className="hidden md:flex items-center gap-6 lg:gap-8">
+  {["home", "skills", "projects", "about", "contact"].map((section) => (
+    <button
+      key={section}
+      onClick={() => scrollToSection(section)}
+      className="relative px-3 py-2 font-medium transition-all duration-300
+        text-gray-700 dark:text-gray-200
+        hover:text-transparent hover:bg-linear-to-r hover:from-blue-600 hover:to-purple-600 hover:bg-clip-text"
+    >
+      {t(section)}
+
+      {/* underline */}
+      <div
+        className={`absolute bottom-0 left-0 right-0 h-0.5 
+        bg-linear-to-r from-blue-600 to-purple-600
+        transition-transform duration-300 origin-left
+        ${
+          activeSection === section
+            ? "scale-x-100"
+            : "scale-x-0"
+        }`}
+      />
+    </button>
+  ))}
+</div>
 
           {/* Theme & Language */}
           <div className="hidden md:flex items-center gap-3">
@@ -88,7 +126,7 @@ const changeLanguage = (lang: string) => {
 
                 {langMenuOpen && (
                   <div
-                    className="absolute top-full mt-2 right-0 backdrop-blur-xl bg-white/90 dark:bg-gray-800/90 rounded-2xl shadow-2xl border-2 border-white/40 dark:border-gray-700/40 overflow-hidden min-w-[140px]"
+                    className="absolute top-full mt-2 end-0 backdrop-blur-xl bg-white/90 dark:bg-gray-800/90 rounded-2xl shadow-2xl border-2 border-white/40 dark:border-gray-700/40 overflow-hidden min-w-[140px]"
                   >
                     {languages.map((lang) => (
                       <button
