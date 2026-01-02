@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { useApp } from '../contexts/AppContext';
 import { Send, CheckCircle, Mail, User, MessageSquare, Sparkles, Rocket } from 'lucide-react';
 import { useTranslations } from 'next-intl';
@@ -35,34 +34,20 @@ export const ContactSection: React.FC = () => {
       {/* Animated Background Particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(20)].map((_, i) => (
-          <motion.div
+          <div
             key={i}
-            animate={{
-              y: [0, -100, 0],
-              x: [0, Math.random() * 100 - 50, 0],
-              opacity: [0, 1, 0],
-            }}
-            transition={{
-              duration: Math.random() * 5 + 5,
-              repeat: Infinity,
-              delay: Math.random() * 5,
-            }}
             className="absolute w-2 h-2 bg-blue-500/30 rounded-full blur-sm"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
             }}
-          ></motion.div>
+          ></div>
         ))}
       </div>
 
       <div className="max-w-4xl mx-auto relative z-10">
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+        <div
           className="text-center mb-8 sm:mb-12"
         >
           <div
@@ -78,14 +63,10 @@ export const ContactSection: React.FC = () => {
           <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base">
             {t('contactSubtitle')}
           </p>
-        </motion.div>
+        </div>
 
         {/* Contact Form */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+        <div
           className="relative"
         >
           <div className="relative backdrop-blur-2xl bg-white/80 dark:bg-gray-800/80 p-6 sm:p-8 md:p-10 rounded-3xl border-2 border-white/40 dark:border-gray-600/40 shadow-2xl">
@@ -95,79 +76,55 @@ export const ContactSection: React.FC = () => {
             
        
 
-            <AnimatePresence mode="wait">
               {isSubmitted ? (
                 /* Success Message */
-                <motion.div
+                <div
                   key="success"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
                   className="text-center py-12 relative z-10"
                 >
-                  <motion.div
-                    initial={{ scale: 0, rotate: -180 }}
-                    animate={{ scale: 1, rotate: 0 }}
-                    transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                  <div
                     className="relative inline-flex p-6 rounded-full bg-gradient-to-br from-green-500/30 to-emerald-500/30 mb-6"
                   >
-                    <motion.div
-                      animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
-                      transition={{ duration: 2, repeat: Infinity }}
+                    <div
                       className="absolute inset-0 bg-green-500 rounded-full blur-xl"
-                    ></motion.div>
+                    ></div>
                     <CheckCircle className="w-16 h-16 text-green-600 dark:text-green-400 relative z-10" />
-                  </motion.div>
+                  </div>
                   <h3 className="text-green-600 dark:text-green-400 mb-2 text-xl sm:text-2xl">
                     {t('contactSuccess')}
                   </h3>
                   <p className="text-gray-600 dark:text-gray-400">
                     {t('contactSuccessMessage')}
                   </p>
-                </motion.div>
+                </div>
               ) : (
                 /* Form Fields */
-                <motion.form
+                <form
                   key="form"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
                   onSubmit={handleSubmit}
                   className="space-y-6 relative z-10"
                 >
                   {/* Submit Button */}
-                  <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4 }}
+                  <div
                     className="flex justify-center mb-8"
                   >
-                    <motion.button
-                      whileHover={{ scale: 1.05, y: -2 }}
-                      whileTap={{ scale: 0.95 }}
+                    <button
                       type="submit"
                       className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white rounded-2xl shadow-2xl overflow-hidden"
                     >
-                      <motion.div
-                        animate={{ x: [-200, 200] }}
-                        transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                      <div
                         className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12"
-                      ></motion.div>
+                      ></div>
                       <span className="relative flex items-center gap-2 text-base sm:text-lg font-semibold">
                         <Rocket className="w-5 h-5 group-hover:rotate-45 transition-transform duration-300" />
                         {t('contactSubmit')}
                         <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                       </span>
-                    </motion.button>
-                  </motion.div>
+                    </button>
+                  </div>
 
                   {/* Name Input */}
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: 0.1 }}
+                  <div
                     className="relative group"
                   >
                     <label htmlFor="name" className="block mb-2 text-gray-700 dark:text-gray-300 flex items-center gap-2">
@@ -175,8 +132,7 @@ export const ContactSection: React.FC = () => {
                       {t('contactName')}
                     </label>
                     <div className="relative">
-                      <motion.input
-                        whileFocus={{ scale: 1.01 }}
+                      <input
                         onFocus={() => setFocusedField('name')}
                         onBlur={() => setFocusedField(null)}
                         type="text"
@@ -189,23 +145,15 @@ export const ContactSection: React.FC = () => {
                         className="w-full px-5 py-4 rounded-2xl backdrop-blur-md bg-white/70 dark:bg-gray-700/70 border-2 border-gray-200/50 dark:border-gray-600/50 focus:border-blue-500 dark:focus:border-blue-400 focus:outline-none transition-all duration-300 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
                       />
                       {focusedField === 'name' && (
-                        <motion.div
-                          layoutId="inputGlow"
+                        <div
                           className="absolute inset-0 rounded-2xl bg-blue-500/20 blur-xl -z-10"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          exit={{ opacity: 0 }}
-                        ></motion.div>
+                        ></div>
                       )}
                     </div>
-                  </motion.div>
+                  </div>
 
                   {/* Email Input */}
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: 0.2 }}
+                  <div
                     className="relative group"
                   >
                     <label htmlFor="email" className="block mb-2 text-gray-700 dark:text-gray-300 flex items-center gap-2">
@@ -213,8 +161,7 @@ export const ContactSection: React.FC = () => {
                       {t('contactEmail')}
                     </label>
                     <div className="relative">
-                      <motion.input
-                        whileFocus={{ scale: 1.01 }}
+                      <input
                         onFocus={() => setFocusedField('email')}
                         onBlur={() => setFocusedField(null)}
                         type="email"
@@ -227,23 +174,15 @@ export const ContactSection: React.FC = () => {
                         className="w-full px-5 py-4 rounded-2xl backdrop-blur-md bg-white/70 dark:bg-gray-700/70 border-2 border-gray-200/50 dark:border-gray-600/50 focus:border-purple-500 dark:focus:border-purple-400 focus:outline-none transition-all duration-300 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
                       />
                       {focusedField === 'email' && (
-                        <motion.div
-                          layoutId="inputGlow"
+                        <div
                           className="absolute inset-0 rounded-2xl bg-purple-500/20 blur-xl -z-10"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          exit={{ opacity: 0 }}
-                        ></motion.div>
+                        ></div>
                       )}
                     </div>
-                  </motion.div>
+                  </div>
 
                   {/* Message Input */}
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: 0.3 }}
+                  <div
                     className="relative group"
                   >
                     <label htmlFor="message" className="block mb-2 text-gray-700 dark:text-gray-300 flex items-center gap-2">
@@ -251,8 +190,7 @@ export const ContactSection: React.FC = () => {
                       {t('contactMessage')}
                     </label>
                     <div className="relative">
-                      <motion.textarea
-                        whileFocus={{ scale: 1.01 }}
+                      <textarea
                         onFocus={() => setFocusedField('message')}
                         onBlur={() => setFocusedField(null)}
                         id="message"
@@ -265,25 +203,20 @@ export const ContactSection: React.FC = () => {
                         className="w-full px-5 py-4 rounded-2xl backdrop-blur-md bg-white/70 dark:bg-gray-700/70 border-2 border-gray-200/50 dark:border-gray-600/50 focus:border-pink-500 dark:focus:border-pink-400 focus:outline-none transition-all duration-300 resize-none text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
                       />
                       {focusedField === 'message' && (
-                        <motion.div
-                          layoutId="inputGlow"
+                        <div
                           className="absolute inset-0 rounded-2xl bg-pink-500/20 blur-xl -z-10"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          exit={{ opacity: 0 }}
-                        ></motion.div>
+                        ></div>
                       )}
                     </div>
-                  </motion.div>
-                </motion.form>
+                  </div>
+                </form>
               )}
-            </AnimatePresence>
-
+s
             {/* Bottom Corner Accents */}
             <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-blue-500/20 to-transparent rounded-bl-3xl pointer-events-none"></div>
             <div className="absolute bottom-0 right-0 w-24 h-24 bg-gradient-to-tl from-purple-500/20 to-transparent rounded-br-3xl pointer-events-none"></div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
