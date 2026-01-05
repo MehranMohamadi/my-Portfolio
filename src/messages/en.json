@@ -47,5 +47,8 @@
   "completed": "Completed",
   "project": "Projects",
   "consumed": "Consumed",
-  "coffee": "Coffee"
+  "coffee": "Coffee",
+  "showMore": "more",
+  "showLess": "less",
+  "blog": "Blog"
 }

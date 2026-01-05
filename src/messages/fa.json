@@ -47,5 +47,8 @@
   "completed": "تکمیل شد",
   "project": "پروژه",
   "consumed": "مصرف شده است",
-  "coffee": "قهوه"
+  "coffee": "قهوه",
+  "showMore": "بیشتر",
+  "showLess": "کمتر",
+  "blog": "بلاگ"
 }

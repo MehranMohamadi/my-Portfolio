@@ -16,7 +16,7 @@ export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [langMenuOpen, setLangMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-  const sections = ["home", "skills", "projects", "about", "contact"];
+  const sections = ["home", "skills", "projects","blog", "about", "contact"];
 
 
 useEffect(() => {
@@ -86,7 +86,7 @@ const changeLanguage = (lang: string) => {
 
           {/* Desktop Navigation */}
          <div className="hidden md:flex items-center gap-6 lg:gap-8">
-  {["home", "skills", "projects", "about", "contact"].map((section) => (
+  {["home", "skills", "projects","blog", "about", "contact"].map((section) => (
     <button
       key={section}
       onClick={() => scrollToSection(section)}

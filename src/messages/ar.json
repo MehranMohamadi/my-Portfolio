@@ -47,5 +47,9 @@
   "completed": "مكتمل",
   "project": "المشاريع",
   "consumed": "مستهلكة",
-  "coffee": "قهوة"
+  "coffee": "قهوة",
+  "showMore": "المزيد",
+  "showLess": "أقل",
+  "blog": "مدونة"
+
 }
