@@ -73,7 +73,7 @@ export const ContactSection: React.FC = () => {
                     className="relative inline-flex p-6 rounded-full bg-gradient-to-br from-green-500/30 to-emerald-500/30 mb-6"
                   >
                     <div
-                      className="absolute inset-0 bg-green-500 rounded-full blur-xl"
+                      className="absolute inset-0 bg-green-500 rounded-full"
                     ></div>
                     <CheckCircle className="w-16 h-16 text-green-600 dark:text-green-400 relative z-10" />
                   </div>
@@ -133,7 +133,7 @@ export const ContactSection: React.FC = () => {
                       />
                       {focusedField === 'name' && (
                         <div
-                          className="absolute inset-0 rounded-2xl bg-blue-500/20 blur-xl -z-10"
+                          className="absolute inset-0 rounded-2xl bg-blue-500/20 -z-10"
                         ></div>
                       )}
                     </div>
@@ -162,7 +162,7 @@ export const ContactSection: React.FC = () => {
                       />
                       {focusedField === 'email' && (
                         <div
-                          className="absolute inset-0 rounded-2xl bg-purple-500/20 blur-xl -z-10"
+                          className="absolute inset-0 rounded-2xl bg-purple-500/20 -z-10"
                         ></div>
                       )}
                     </div>
@@ -191,7 +191,7 @@ export const ContactSection: React.FC = () => {
                       />
                       {focusedField === 'message' && (
                         <div
-                          className="absolute inset-0 rounded-2xl bg-pink-500/20 blur-xl -z-10"
+                          className="absolute inset-0 rounded-2xl bg-pink-500/20 -z-10"
                         ></div>
                       )}
                     </div>

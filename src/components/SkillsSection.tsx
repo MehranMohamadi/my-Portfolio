@@ -78,7 +78,7 @@ export const SkillsSection: React.FC = () => {
             return (
               <div
                 key={index}
-                className={`group relative backdrop-blur-xl flex flex-col items-center justify-center bg-white/50 dark:bg-gray-800/50 p-6 sm:p-8 rounded-3xl border border-white/30 dark:border-gray-600/30 hover:border-white/60 dark:hover:border-gray-500/60 transition-all duration-500 hover:shadow-2xl hover:${skill.shadowColor}`}
+                className={`group relative  flex flex-col items-center justify-center bg-white/50 dark:bg-gray-800/50 p-6 sm:p-8 rounded-3xl border border-white/30 dark:border-gray-600/30 hover:border-white/60 dark:hover:border-gray-500/60 transition-all duration-500 hover:shadow-2xl hover:${skill.shadowColor}`}
               >
             
                 {/* Glass Shine Effect */}
