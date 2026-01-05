@@ -9,6 +9,7 @@ import { AboutSection } from "../../components/AboutSection";
 import { ContactSection } from "../../components/ContactSection";
 import { Footer } from "../../components/Footer";
 import dynamic from "next/dynamic";
+import { BlogSection } from "@/components/BlogSection";
 
 export default function HomePage() {
   return (
@@ -18,6 +19,7 @@ export default function HomePage() {
         <IntroSection />
         <SkillsSection />
         <ProjectsSection />
+        <BlogSection/>
         <AboutSection />
         <ContactSection />
       </main>
