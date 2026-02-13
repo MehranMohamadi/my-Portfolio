@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import { Calendar, Clock, ArrowRight, Tag } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { Calendar, Clock, ArrowRight, Tag, X } from 'lucide-react';
 import { useApp } from '../contexts/AppContext';
 import { useTranslations } from 'next-intl';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 interface BlogPost {
   id: number;
   title: string;
@@ -13,84 +14,28 @@ interface BlogPost {
   category: string;
   image: string;
   tags: string[];
+  comingSoon?: boolean;   
 }
 
 export const BlogSection: React.FC = () => {
+  const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
+
   const { locale } = useApp();
   const t = useTranslations(); 
   const [hoveredPost, setHoveredPost] = useState<number | null>(null);
+const [markdownContent, setMarkdownContent] = useState("");
+
+useEffect(() => {
+  if (selectedPost?.id === 6) { // آی‌دی مقاله debounce
+    fetch("/blog/debounce_throttle_blog.md")
+      .then((res) => res.text())
+      .then((text) => setMarkdownContent(text));
+  }
+}, [selectedPost]);
+
+    const [content, setContent] = useState("");
 
   const blogPosts: BlogPost[] = [
-    {
-      id: 1,
-      title: locale === 'en' ? 'Building Modern Web Apps with Vue.js' : locale === 'fa' ? 'ساخت برنامه‌های وب مدرن با Vue.js' : 'بناء تطبيقات ويب حديثة باستخدام Vue.js',
-      excerpt: locale === 'en' 
-        ? 'Learn how to build scalable and performant web applications using Vue.js and modern development practices.' 
-        : locale === 'fa'
-        ? 'یاد بگیرید چگونه برنامه‌های وب مقیاس‌پذیر و کارآمد با Vue.js و شیوه‌های توسعه مدرن بسازید.'
-        : 'تعلم كيفية بناء تطبيقات ويب قابلة للتطوير وذات أداء عالي باستخدام Vue.js وممارسات التطوير الحديثة.',
-      date: locale === 'en' ? 'Dec 15, 2024' : locale === 'fa' ? '۲۴ آذر ۱۴۰۳' : '١٥ ديسمبر ٢٠٢٤',
-      readTime: locale === 'en' ? '8 min read' : locale === 'fa' ? '۸ دقیقه' : '٨ دقائق',
-      category: locale === 'en' ? 'Tutorial' : locale === 'fa' ? 'آموزش' : 'درس',
-      image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&q=80',
-      tags: ['Vue.js', 'JavaScript', locale === 'en' ? 'Frontend' : locale === 'fa' ? 'فرانت‌اند' : 'الواجهة الأمامية'],
-    },
-    {
-      id: 2,
-      title: locale === 'en' ? 'Mastering Tailwind CSS' : locale === 'fa' ? 'تسلط بر Tailwind CSS' : 'إتقان Tailwind CSS',
-      excerpt: locale === 'en'
-        ? 'Discover advanced techniques and best practices for building beautiful UIs with Tailwind CSS.'
-        : locale === 'fa'
-        ? 'تکنیک‌های پیشرفته و بهترین شیوه‌ها برای ساخت رابط‌های کاربری زیبا با Tailwind CSS را کشف کنید.'
-        : 'اكتشف التقنيات المتقدمة وأفضل الممارسات لبناء واجهات مستخدم جميلة باستخدام Tailwind CSS.',
-      date: locale === 'en' ? 'Nov 28, 2024' : locale === 'fa' ? '۸ آذر ۱۴۰۳' : '٢٨ نوفمبر ٢٠٢٤',
-      readTime: locale === 'en' ? '6 min read' : locale === 'fa' ? '۶ دقیقه' : '٦ دقائق',
-      category: locale === 'en' ? 'Design' : locale === 'fa' ? 'طراحی' : 'تصميم',
-      image: 'https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?w=800&q=80',
-      tags: ['Tailwind', 'CSS', locale === 'en' ? 'Design' : locale === 'fa' ? 'طراحی' : 'تصميم'],
-    },
-    {
-      id: 3,
-      title: locale === 'en' ? 'Performance Optimization Tips' : locale === 'fa' ? 'نکات بهینه‌سازی عملکرد' : 'نصائح تحسين الأداء',
-      excerpt: locale === 'en'
-        ? 'Essential techniques to make your web applications faster and more efficient.'
-        : locale === 'fa'
-        ? 'تکنیک‌های ضروری برای سریع‌تر و کارآمدتر کردن برنامه‌های وب شما.'
-        : 'تقنيات أساسية لجعل تطبيقات الويب الخاصة بك أسرع وأكثر كفاءة.',
-      date: locale === 'en' ? 'Nov 10, 2024' : locale === 'fa' ? '۲۰ آبان ۱۴۰۳' : '١٠ نوفمبر ٢٠٢٤',
-      readTime: locale === 'en' ? '10 min read' : locale === 'fa' ? '۱۰ دقیقه' : '١٠ دقائق',
-      category: locale === 'en' ? 'Performance' : locale === 'fa' ? 'عملکرد' : 'الأداء',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
-      tags: [locale === 'en' ? 'Performance' : locale === 'fa' ? 'عملکرد' : 'الأداء', locale === 'en' ? 'Optimization' : locale === 'fa' ? 'بهینه‌سازی' : 'التحسين', 'Web'],
-    },
-    {
-      id: 4,
-      title: locale === 'en' ? 'Nuxt.js: The Complete Guide' : locale === 'fa' ? 'Nuxt.js: راهنمای کامل' : 'Nuxt.js: الدليل الكامل',
-      excerpt: locale === 'en'
-        ? 'Everything you need to know about building SSR applications with Nuxt.js.'
-        : locale === 'fa'
-        ? 'همه چیزی که باید درباره ساخت برنامه‌های SSR با Nuxt.js بدانید.'
-        : 'كل ما تحتاج إلى معرفته حول بناء تطبيقات SSR باستخدام Nuxt.js.',
-      date: locale === 'en' ? 'Oct 22, 2024' : locale === 'fa' ? '۱ آبان ۱۴۰۳' : '٢٢ أكتوبر ٢٠٢٤',
-      readTime: locale === 'en' ? '12 min read' : locale === 'fa' ? '۱۲ دقیقه' : '١٢ دقيقة',
-      category: locale === 'en' ? 'Framework' : locale === 'fa' ? 'فریمورک' : 'إطار العمل',
-      image: 'https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=800&q=80',
-      tags: ['Nuxt.js', 'Vue.js', 'SSR'],
-    },
-    {
-      id: 5,
-      title: locale === 'en' ? 'Modern CSS Techniques' : locale === 'fa' ? 'تکنیک‌های مدرن CSS' : 'تقنيات CSS الحديثة',
-      excerpt: locale === 'en'
-        ? 'Explore the latest CSS features including Grid, Flexbox, and custom properties.'
-        : locale === 'fa'
-        ? 'ویژگی‌های جدید CSS شامل Grid، Flexbox و ویژگی‌های سفارشی را کاوش کنید.'
-        : 'استكشف أحدث ميزات CSS بما في ذلك Grid و Flexbox والخصائص المخصصة.',
-      date: locale === 'en' ? 'Oct 5, 2024' : locale === 'fa' ? '۱۴ مهر ۱۴۰۳' : '٥ أكتوبر ٢٠٢٤',
-      readTime: locale === 'en' ? '7 min read' : locale === 'fa' ? '۷ دقیقه' : '٧ دقائق',
-      category: locale === 'en' ? 'CSS' : 'CSS',
-      image: 'https://images.unsplash.com/photo-1523437113738-bbd3cc89fb19?w=800&q=80',
-      tags: ['CSS', 'Grid', 'Flexbox'],
-    },
     {
       id: 6,
       title: locale === 'en' ? 'JavaScript Best Practices 2024' : locale === 'fa' ? 'بهترین شیوه‌های JavaScript 2024' : 'أفضل ممارسات JavaScript 2024',
@@ -105,6 +50,22 @@ export const BlogSection: React.FC = () => {
       image: 'https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=800&q=80',
       tags: ['JavaScript', locale === 'en' ? 'Best Practices' : locale === 'fa' ? 'بهترین شیوه‌ها' : 'أفضل الممارسات', 'ES2024'],
     },
+    {
+  id: 7,
+  title: locale === 'en' ? 'AI + Frontend Integration' : locale === 'fa' ? 'ادغام AI با فرانت‌اند' : 'دمج الذكاء الاصطناعي مع الواجهة الأمامية',
+  excerpt: locale === 'en'
+    ? 'A deep dive into integrating AI APIs into modern frontend apps.'
+    : locale === 'fa'
+    ? 'بررسی عمیق ادغام APIهای هوش مصنوعی در اپلیکیشن‌های مدرن فرانت‌اند.'
+    : 'نظرة عميقة حول دمج واجهات برمجة الذكاء الاصطناعي في تطبيقات الويب الحديثة.',
+  date: '-',
+  readTime: '-',
+  category: locale === 'en' ? 'AI' : locale === 'fa' ? 'هوش مصنوعی' : 'الذكاء الاصطناعي',
+  image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80',
+  tags: ['AI', 'Frontend'],
+  comingSoon: true, // 👈 مهم
+},
+
   ];
 
   return (
@@ -113,29 +74,39 @@ export const BlogSection: React.FC = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
-            blogTitle
+            {t('blog')}   
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            blogSubtitle
-          </p>
+      
         </div>
 
         {/* Blog Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {blogPosts.map((post) => (
             <div
+            onClick={() => !post.comingSoon && setSelectedPost(post)}
               key={post.id}
-              className="group backdrop-blur-xl bg-white/60 dark:bg-gray-900/60 rounded-2xl border-2 border-white/40 dark:border-gray-700/40 shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105"
-              onMouseEnter={() => setHoveredPost(post.id)}
+className={`group backdrop-blur-xl bg-white/60 dark:bg-gray-900/60 rounded-2xl border-2 border-white/40 dark:border-gray-700/40 shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105 ${
+  post.comingSoon ? 'opacity-70 hover:scale-100 cursor-not-allowed' : ''
+}`}              onMouseEnter={() => setHoveredPost(post.id)}
               onMouseLeave={() => setHoveredPost(null)}
             >
               {/* Image */}
               <div className="relative h-48 overflow-hidden">
-                <ImageWithFallback
-                  src={post.image}
-                  alt={post.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
+             <ImageWithFallback
+  src={post.image}
+  alt={post.title}
+  className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 ${
+    post.comingSoon ? 'blur-sm group-hover:scale-100' : ''
+  }`}
+/>
+{post.comingSoon && (
+  <div 
+ className="absolute inset-0 flex items-center justify-center bg-black/40">
+    <span className="px-4 py-2 bg-white text-black rounded-xl font-bold text-sm">
+      {locale === 'en' ? 'Coming Soon' : locale === 'fa' ? 'به‌زودی' : 'قريباً'}
+    </span>
+  </div>
+)}
                 {/* Category Badge */}
                 <div className="absolute top-4 left-4">
                   <span className="px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-md bg-white/90 dark:bg-gray-900/90 text-gray-900 dark:text-white border border-white/40">
@@ -182,15 +153,84 @@ export const BlogSection: React.FC = () => {
                 </div>
 
                 {/* Read More */}
-                <button className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold text-sm group-hover:gap-3 transition-all">
-                  readMore
-                  <ArrowRight className="w-4 h-4" />
-                </button>
+               <button
+  disabled={post.comingSoon}
+  className={`inline-flex items-center gap-2 font-semibold text-sm transition-all ${
+    post.comingSoon
+      ? 'text-gray-400 cursor-not-allowed'
+      : 'text-blue-600 dark:text-blue-400 group-hover:gap-3'
+  }`}
+>
+  {post.comingSoon
+      ? t('commingSoon')
+      : t('readMore')
+      }
+  {!post.comingSoon && <ArrowRight className="w-4 h-4" />}
+</button>
               </div>
             </div>
           ))}
         </div>
       </div>
+      {selectedPost && (
+  <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center">
+    
+    <div className="relative w-full  h-full overflow-y-auto bg-white dark:bg-gray-900 shadow-2xl pt-18 p-8 animate-fadeIn">
+
+      {/* Close Button */}
+      <button
+        onClick={() => setSelectedPost(null)}
+        className=" top-10 fixed bg-gray-300 rounded-full p-1 h-8 w-8 flex items-center justify-center right-10 text-gray-800 hover:text-black dark:hover:text-white text-2xl"
+      >
+                             <X className="w-3 h-3" />
+
+      </button>
+
+      {/* Image */}
+      <div className="h-52 rounded-2xl overflow-hidden mb-6">
+        <ImageWithFallback
+          src={selectedPost.image}
+          alt={selectedPost.title}
+          className="w-full h-full object-cover"
+        />
+      </div>
+
+      {/* Category */}
+      <span className="inline-block mb-4 px-4 py-1 rounded-full text-sm bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300">
+        {selectedPost.category}
+      </span>
+
+      {/* Title */}
+      <h2 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">
+        {selectedPost.title}
+      </h2>
+
+      {/* Meta */}
+      <div className="flex items-center gap-6 text-sm text-gray-500 mb-6">
+        <div className="flex items-center gap-2">
+          <Calendar className="w-4 h-4" />
+          {selectedPost.date}
+        </div>
+        <div className="flex items-center gap-2">
+          <Clock className="w-4 h-4" />
+          {selectedPost.readTime}
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="text-gray-700 dark:text-gray-300 leading-8">
+        {selectedPost.excerpt}
+       <div className="prose dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 leading-8">
+<ReactMarkdown remarkPlugins={[remarkGfm]}>
+  {markdownContent}
+</ReactMarkdown>
+</div>
+
+      </div>
+    </div>
+  </div>
+)}
     </section>
+    
   );
 };

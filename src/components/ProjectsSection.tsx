@@ -7,26 +7,26 @@ import { Timeline } from './Timeline';
 import { useTranslations } from 'next-intl';
 
 const projects = [
-  { image: '', titleKey: 'project1Title', descKey: 'project1Desc', year: '2025' },
-  { image: '', titleKey: 'project2Title', descKey: 'project2Desc', year: '2024' },
-  { image: '', titleKey: 'project3Title', descKey: 'project3Desc', year: '2024' },
-  { image: '', titleKey: 'project4Title', descKey: 'project4Desc', year: '2023' },
-  { image: '', titleKey: 'project5Title', descKey: 'project5Desc', year: '2023' },
-  { image: '', titleKey: 'project6Title', descKey: 'project6Desc', year: '2022' },
+  { image: '/img/farsnews.avif', titleKey: 'fars', descKey: 'project1Desc', year: '2025' },
+  { image: '/img/virasty.avif', titleKey: 'virasty', descKey: 'project2Desc', year: '2024' },
+  { image: '/img/msgway.avif', titleKey: 'msgway', descKey: 'project3Desc', year: '2024' },
+  { image: '/img/gap.avif', titleKey: 'gap', descKey: 'project4Desc', year: '2023' },
+  { image: '/img/bimehyar.avif', titleKey: 'bimehyar', descKey: 'project5Desc', year: '2023' },
+  { image: '/img/nasimrezvan.avif', titleKey: 'nasimrezvan', descKey: 'project6Desc', year: '2022' },
 ];
 
 export const ProjectsSection: React.FC = () => {
   const t = useTranslations();
 
-  const timelineItems = useMemo(
-    () => [
-      { year: '2022', title: t(projects[5].titleKey) },
-      { year: '2023', title: t(projects[4].titleKey) },
-      { year: '2024', title: t(projects[2].titleKey) },
-      { year: '2025', title: t(projects[0].titleKey), active: true },
-    ],
-    [t]
-  );
+  // const timelineItems = useMemo(
+  //   () => [
+  //     { year: '2022', title: t(projects[5].titleKey) },
+  //     { year: '2023', title: t(projects[4].titleKey) },
+  //     { year: '2024', title: t(projects[2].titleKey) },
+  //     { year: '2025', title: t(projects[0].titleKey), active: true },
+  //   ],
+  //   [t]
+  // );
 
   return (
     <section
@@ -46,12 +46,12 @@ export const ProjectsSection: React.FC = () => {
         </div>
 
         {/* Timeline */}
-        <div className="mb-16">
+        {/* <div className="mb-16">
           <h3 className="text-center mb-8 text-gray-800 dark:text-gray-200 text-xl sm:text-2xl">
             {t('timelineTitle')}
           </h3>
           <Timeline items={timelineItems} />
-        </div>
+        </div> */}
 
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -93,10 +93,10 @@ export const ProjectsSection: React.FC = () => {
                       {project.year}
                     </span>
                   </div>
-
+{/* 
                   <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm">
                     {t(project.descKey)}
-                  </p>
+                  </p> */}
 
                   <button className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/60 dark:bg-gray-700/60 border border-white/40 dark:border-gray-600/40 text-blue-600 dark:text-blue-400 hover:bg-linear-to-r hover:from-blue-600 hover:to-purple-600 hover:text-white transition-all text-sm">
                     {t('viewDetails')}

@@ -12,7 +12,7 @@
   "contactMe": "تماس با من",
   "skillsTitle": "مهارت‌های من",
   "skillsSubtitle": "فناوری‌ها و ابزارهایی که با آن‌ها کار می‌کنم",
-  "projectsTitle": "پروژه‌های برجسته",
+  "projectsTitle": "پروژه‌ها ",
   "projectsSubtitle": "نمایشی از کارهای اخیر من",
   "timelineTitle": "جدول زمانی پروژه‌ها",
   "viewDetails": "مشاهده جزئیات",
@@ -50,5 +50,13 @@
   "coffee": "قهوه",
   "showMore": "بیشتر",
   "showLess": "کمتر",
-  "blog": "بلاگ"
+  "blog": "وبلاگ",
+  "readMore": "بیشتر",
+  "commingSoon": "به زودی",
+  "nasimrezvan": "نسیم رضوان",
+  "bimehyar": "بیمه یار",
+  "gap": "پیامرسان گپ",
+  "msgway": "راه پیام",
+  "virasty": "ویراستی",
+  "fars": "خبرگزاری فارس"
 }
