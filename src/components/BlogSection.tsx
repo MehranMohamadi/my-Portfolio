@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+
 interface BlogPost {
   id: number;
   title: string;
@@ -14,59 +15,100 @@ interface BlogPost {
   category: string;
   image: string;
   tags: string[];
-  comingSoon?: boolean;   
+  comingSoon?: boolean;
+  markdownPath?: string; // مسیر فایل مارکداون
 }
 
 export const BlogSection: React.FC = () => {
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
+  const [markdownContent, setMarkdownContent] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const { locale } = useApp();
   const t = useTranslations(); 
   const [hoveredPost, setHoveredPost] = useState<number | null>(null);
-const [markdownContent, setMarkdownContent] = useState("");
-
-useEffect(() => {
-  if (selectedPost?.id === 6) { // آی‌دی مقاله debounce
-    fetch("/blog/debounce_throttle_blog.md")
-      .then((res) => res.text())
-      .then((text) => setMarkdownContent(text));
-  }
-}, [selectedPost]);
-
-    const [content, setContent] = useState("");
 
   const blogPosts: BlogPost[] = [
+    // {
+    //   id: 5, // تغییر id به 5 برای مقاله debounce
+    //   title: locale === 'en' ? 'Debounce vs Throttle in JavaScript' : locale === 'fa' ? 'Debounce و Throttle در جاوااسکریپت' : 'Debounce vs Throttle في JavaScript',
+    //   excerpt: locale === 'en'
+    //     ? 'Master event handling optimization techniques for better performance'
+    //     : locale === 'fa'
+    //     ? 'تکنیک‌های بهینه‌سازی مدیریت رویدادها برای عملکرد بهتر'
+    //     : 'تقنيات تحسين معالجة الأحداث لأداء أفضل',
+    //   date: locale === 'en' ? 'Oct 15, 2024' : locale === 'fa' ? '۲۴ مهر ۱۴۰۳' : '١٥ أكتوبر ٢٠٢٤',
+    //   readTime: locale === 'en' ? '8 min read' : locale === 'fa' ? '۸ دقیقه' : '٨ دقائق',
+    //   category: locale === 'en' ? 'JavaScript' : 'JavaScript',
+    //   image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80',
+    //   tags: ['JavaScript', 'Performance', locale === 'en' ? 'Optimization' : locale === 'fa' ? 'بهینه‌سازی' : 'تحسين'],
+    //   markdownPath: '/blog/debounce_throttle_blog.md',
+    // },
+    // {
+    //   id: 6,
+    //   title: locale === 'en' ? 'JavaScript Best Practices 2024' : locale === 'fa' ? 'بهترین شیوه‌های JavaScript 2024' : 'أفضل ممارسات JavaScript 2024',
+    //   excerpt: locale === 'en'
+    //     ? 'Stay up-to-date with modern JavaScript patterns and coding standards.'
+    //     : locale === 'fa'
+    //     ? 'با الگوها و استانداردهای کدنویسی مدرن JavaScript به‌روز بمانید.'
+    //     : 'ابق على اطلاع بأنماط JavaScript الحديثة ومعايير الترميز.',
+    //   date: locale === 'en' ? 'Sep 18, 2024' : locale === 'fa' ? '۲۸ شهریور ۱۴۰۳' : '١٨ سبتمبر ٢٠٢٤',
+    //   readTime: locale === 'en' ? '9 min read' : locale === 'fa' ? '۹ دقیقه' : '٩ دقائق',
+    //   category: locale === 'en' ? 'JavaScript' : 'JavaScript',
+    //   image: 'https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=800&q=80',
+    //   tags: ['JavaScript', locale === 'en' ? 'Best Practices' : locale === 'fa' ? 'بهترین شیوه‌ها' : 'أفضل الممارسات', 'ES2024'],
+    // },
     {
-      id: 6,
-      title: locale === 'en' ? 'JavaScript Best Practices 2024' : locale === 'fa' ? 'بهترین شیوه‌های JavaScript 2024' : 'أفضل ممارسات JavaScript 2024',
+      id: 7,
+      title: locale === 'en' ? 'AI + Frontend Integration' : locale === 'fa' ? 'ادغام AI با فرانت‌اند' : 'دمج الذكاء الاصطناعي مع الواجهة الأمامية',
       excerpt: locale === 'en'
-        ? 'Stay up-to-date with modern JavaScript patterns and coding standards.'
+        ? 'A deep dive into integrating AI APIs into modern frontend apps.'
         : locale === 'fa'
-        ? 'با الگوها و استانداردهای کدنویسی مدرن JavaScript به‌روز بمانید.'
-        : 'ابق على اطلاع بأنماط JavaScript الحديثة ومعايير الترميز.',
-      date: locale === 'en' ? 'Sep 18, 2024' : locale === 'fa' ? '۲۸ شهریور ۱۴۰۳' : '١٨ سبتمبر ٢٠٢٤',
-      readTime: locale === 'en' ? '9 min read' : locale === 'fa' ? '۹ دقیقه' : '٩ دقائق',
-      category: locale === 'en' ? 'JavaScript' : 'JavaScript',
-      image: 'https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=800&q=80',
-      tags: ['JavaScript', locale === 'en' ? 'Best Practices' : locale === 'fa' ? 'بهترین شیوه‌ها' : 'أفضل الممارسات', 'ES2024'],
+        ? 'بررسی عمیق ادغام APIهای هوش مصنوعی در اپلیکیشن‌های مدرن فرانت‌اند.'
+        : 'نظرة عميقة حول دمج واجهات برمجة الذكاء الاصطناعي في تطبيقات الويب الحديثة.',
+      date: '-',
+      readTime: '-',
+      category: locale === 'en' ? 'AI' : locale === 'fa' ? 'هوش مصنوعی' : 'الذكاء الاصطناعي',
+      image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80',
+      tags: ['AI', 'Frontend'],
+      comingSoon: true,
     },
-    {
-  id: 7,
-  title: locale === 'en' ? 'AI + Frontend Integration' : locale === 'fa' ? 'ادغام AI با فرانت‌اند' : 'دمج الذكاء الاصطناعي مع الواجهة الأمامية',
-  excerpt: locale === 'en'
-    ? 'A deep dive into integrating AI APIs into modern frontend apps.'
-    : locale === 'fa'
-    ? 'بررسی عمیق ادغام APIهای هوش مصنوعی در اپلیکیشن‌های مدرن فرانت‌اند.'
-    : 'نظرة عميقة حول دمج واجهات برمجة الذكاء الاصطناعي في تطبيقات الويب الحديثة.',
-  date: '-',
-  readTime: '-',
-  category: locale === 'en' ? 'AI' : locale === 'fa' ? 'هوش مصنوعی' : 'الذكاء الاصطناعي',
-  image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80',
-  tags: ['AI', 'Frontend'],
-  comingSoon: true, // 👈 مهم
-},
-
   ];
+
+  // بارگذاری محتوای مارکداون وقتی مقاله انتخاب می‌شود
+  useEffect(() => {
+    if (selectedPost?.markdownPath) {
+      setIsLoading(true);
+      fetch(selectedPost.markdownPath)
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error('Failed to load content');
+          }
+          return res.text();
+        })
+        .then((text) => {
+          setMarkdownContent(text);
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          console.error('Error loading markdown:', error);
+          setMarkdownContent(locale === 'fa' 
+            ? 'خطا در بارگذاری محتوا' 
+            : locale === 'en' 
+            ? 'Error loading content' 
+            : 'خطأ في تحميل المحتوى');
+          setIsLoading(false);
+        });
+    } else {
+      setMarkdownContent("");
+    }
+  }, [selectedPost, locale]);
+
+  // پاکسازی محتوا هنگام بسته شدن مودال
+  const handleCloseModal = () => {
+    setSelectedPost(null);
+    setMarkdownContent("");
+  };
 
   return (
     <section id="blog" className="py-20 px-4 sm:px-6 lg:px-8">
@@ -76,37 +118,36 @@ useEffect(() => {
           <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
             {t('blog')}   
           </h2>
-      
         </div>
 
         {/* Blog Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {blogPosts.map((post) => (
             <div
-            onClick={() => !post.comingSoon && setSelectedPost(post)}
+              onClick={() => !post.comingSoon && setSelectedPost(post)}
               key={post.id}
-className={`group backdrop-blur-xl bg-white/60 dark:bg-gray-900/60 rounded-2xl border-2 border-white/40 dark:border-gray-700/40 shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105 ${
-  post.comingSoon ? 'opacity-70 hover:scale-100 cursor-not-allowed' : ''
-}`}              onMouseEnter={() => setHoveredPost(post.id)}
+              className={`group backdrop-blur-xl bg-white/60 dark:bg-gray-900/60 rounded-2xl border-2 border-white/40 dark:border-gray-700/40 shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105 ${
+                post.comingSoon ? 'opacity-70 hover:scale-100 cursor-not-allowed' : 'cursor-pointer'
+              }`}
+              onMouseEnter={() => setHoveredPost(post.id)}
               onMouseLeave={() => setHoveredPost(null)}
             >
               {/* Image */}
               <div className="relative h-48 overflow-hidden">
-             <ImageWithFallback
-  src={post.image}
-  alt={post.title}
-  className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 ${
-    post.comingSoon ? 'blur-sm group-hover:scale-100' : ''
-  }`}
-/>
-{post.comingSoon && (
-  <div 
- className="absolute inset-0 flex items-center justify-center bg-black/40">
-    <span className="px-4 py-2 bg-white text-black rounded-xl font-bold text-sm">
-      {locale === 'en' ? 'Coming Soon' : locale === 'fa' ? 'به‌زودی' : 'قريباً'}
-    </span>
-  </div>
-)}
+                <ImageWithFallback
+                  src={post.image}
+                  alt={post.title}
+                  className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 ${
+                    post.comingSoon ? 'blur-sm group-hover:scale-100' : ''
+                  }`}
+                />
+                {post.comingSoon && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/40">
+                    <span className="px-4 py-2 bg-white text-black rounded-xl font-bold text-sm">
+                      {locale === 'en' ? 'Coming Soon' : locale === 'fa' ? 'به‌زودی' : 'قريباً'}
+                    </span>
+                  </div>
+                )}
                 {/* Category Badge */}
                 <div className="absolute top-4 left-4">
                   <span className="px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-md bg-white/90 dark:bg-gray-900/90 text-gray-900 dark:text-white border border-white/40">
@@ -153,84 +194,91 @@ className={`group backdrop-blur-xl bg-white/60 dark:bg-gray-900/60 rounded-2xl b
                 </div>
 
                 {/* Read More */}
-               <button
-  disabled={post.comingSoon}
-  className={`inline-flex items-center gap-2 font-semibold text-sm transition-all ${
-    post.comingSoon
-      ? 'text-gray-400 cursor-not-allowed'
-      : 'text-blue-600 dark:text-blue-400 group-hover:gap-3'
-  }`}
->
-  {post.comingSoon
-      ? t('commingSoon')
-      : t('readMore')
-      }
-  {!post.comingSoon && <ArrowRight className="w-4 h-4" />}
-</button>
+                <button
+                  disabled={post.comingSoon}
+                  className={`inline-flex items-center gap-2 font-semibold text-sm transition-all ${
+                    post.comingSoon
+                      ? 'text-gray-400 cursor-not-allowed'
+                      : 'text-blue-600 dark:text-blue-400 group-hover:gap-3'
+                  }`}
+                >
+                  {post.comingSoon
+                      ? t('commingSoon')
+                      : t('readMore')
+                  }
+                  {!post.comingSoon && <ArrowRight className="w-4 h-4" />}
+                </button>
               </div>
             </div>
           ))}
         </div>
       </div>
+
+      {/* Modal */}
       {selectedPost && (
   <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center">
     
     <div className="relative w-full  h-full overflow-y-auto bg-white dark:bg-gray-900 shadow-2xl pt-18 p-8 animate-fadeIn">
-
-      {/* Close Button */}
-      <button
-        onClick={() => setSelectedPost(null)}
+            
+            {/* Close Button */}
+            <button
+        onClick={handleCloseModal}
         className=" top-10 fixed bg-gray-300 rounded-full p-1 h-8 w-8 flex items-center justify-center right-10 text-gray-800 hover:text-black dark:hover:text-white text-2xl"
-      >
+            >
                              <X className="w-3 h-3" />
 
-      </button>
+            </button>
 
-      {/* Image */}
+              {/* Image */}
       <div className="h-52 rounded-2xl overflow-hidden mb-6">
-        <ImageWithFallback
-          src={selectedPost.image}
-          alt={selectedPost.title}
-          className="w-full h-full object-cover"
-        />
-      </div>
+                <ImageWithFallback
+                  src={selectedPost.image}
+                  alt={selectedPost.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
 
-      {/* Category */}
-      <span className="inline-block mb-4 px-4 py-1 rounded-full text-sm bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300">
-        {selectedPost.category}
-      </span>
+              {/* Category */}
+              <span className="inline-block mb-4 px-4 py-1 rounded-full text-sm bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300">
+                {selectedPost.category}
+              </span>
 
-      {/* Title */}
-      <h2 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">
-        {selectedPost.title}
-      </h2>
+              {/* Title */}
+              <h2 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">
+                {selectedPost.title}
+              </h2>
 
-      {/* Meta */}
-      <div className="flex items-center gap-6 text-sm text-gray-500 mb-6">
-        <div className="flex items-center gap-2">
-          <Calendar className="w-4 h-4" />
-          {selectedPost.date}
-        </div>
-        <div className="flex items-center gap-2">
-          <Clock className="w-4 h-4" />
-          {selectedPost.readTime}
-        </div>
-      </div>
+              {/* Meta */}
+              <div className="flex items-center gap-6 text-sm text-gray-500 mb-6">
+                <div className="flex items-center gap-2">
+                  <Calendar className="w-4 h-4" />
+                  {selectedPost.date}
+                </div>
+                <div className="flex items-center gap-2">
+                  <Clock className="w-4 h-4" />
+                  {selectedPost.readTime}
+                </div>
+              </div>
 
-      {/* Content */}
-      <div className="text-gray-700 dark:text-gray-300 leading-8">
-        {selectedPost.excerpt}
-       <div className="prose dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 leading-8">
-<ReactMarkdown remarkPlugins={[remarkGfm]}>
-  {markdownContent}
-</ReactMarkdown>
-</div>
-
-      </div>
-    </div>
-  </div>
-)}
+              {/* Content */}
+              <div className="text-gray-700 dark:text-gray-300 leading-8">
+                {!selectedPost.markdownPath ? (
+                  <p>{selectedPost.excerpt}</p>
+                ) : isLoading ? (
+                  <div className="flex justify-center py-8">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                  </div>
+                ) : (
+                  <div className="prose dark:prose-invert max-w-none">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                      {markdownContent}
+                    </ReactMarkdown>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+      )}
     </section>
-    
   );
 };

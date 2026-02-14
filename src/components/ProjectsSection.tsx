@@ -1,32 +1,22 @@
 'use client';
 
-import React, { useMemo } from 'react';
+import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { ExternalLink } from 'lucide-react';
-import { Timeline } from './Timeline';
 import { useTranslations } from 'next-intl';
 
 const projects = [
-  { image: '/img/farsnews.avif', titleKey: 'fars', descKey: 'project1Desc', year: '2025' },
-  { image: '/img/virasty.avif', titleKey: 'virasty', descKey: 'project2Desc', year: '2024' },
-  { image: '/img/msgway.avif', titleKey: 'msgway', descKey: 'project3Desc', year: '2024' },
-  { image: '/img/gap.avif', titleKey: 'gap', descKey: 'project4Desc', year: '2023' },
-  { image: '/img/bimehyar.avif', titleKey: 'bimehyar', descKey: 'project5Desc', year: '2023' },
-  { image: '/img/nasimrezvan.avif', titleKey: 'nasimrezvan', descKey: 'project6Desc', year: '2022' },
+  { image: '/img/farsnews.avif', titleKey: 'fars', descKey: 'project1Desc', year: '2025', link: 'https://farsnews.ir/' },
+  { image: '/img/virasty.avif', titleKey: 'virasty', descKey: 'project2Desc', year: '2024', link: 'https://virasty.com/' },
+  { image: '/img/msgway.avif', titleKey: 'msgway', descKey: 'project3Desc', year: '2024', link: 'https://msgway.com/' },
+  { image: '/img/gap.avif', titleKey: 'gap', descKey: 'project4Desc', year: '2023', link: 'https://gap.im/' },
+  { image: '/img/bimehyar.avif', titleKey: 'bimehyar', descKey: 'project5Desc', year: '2023', link: 'https://bimehyar.com' },
+  { image: '/img/nasimrezvan.avif', titleKey: 'nasimrezvan', descKey: 'project6Desc', year: '2022', link: 'https://app.nasimrezvan.com/' },
 ];
 
 export const ProjectsSection: React.FC = () => {
   const t = useTranslations();
-
-  // const timelineItems = useMemo(
-  //   () => [
-  //     { year: '2022', title: t(projects[5].titleKey) },
-  //     { year: '2023', title: t(projects[4].titleKey) },
-  //     { year: '2024', title: t(projects[2].titleKey) },
-  //     { year: '2025', title: t(projects[0].titleKey), active: true },
-  //   ],
-  //   [t]
-  // );
 
   return (
     <section
@@ -45,14 +35,6 @@ export const ProjectsSection: React.FC = () => {
           </p>
         </div>
 
-        {/* Timeline */}
-        {/* <div className="mb-16">
-          <h3 className="text-center mb-8 text-gray-800 dark:text-gray-200 text-xl sm:text-2xl">
-            {t('timelineTitle')}
-          </h3>
-          <Timeline items={timelineItems} />
-        </div> */}
-
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project) => (
@@ -62,15 +44,20 @@ export const ProjectsSection: React.FC = () => {
             >
               <div className="relative bg-white/70 dark:bg-gray-800/70 rounded-3xl border border-white/40 dark:border-gray-600/40 overflow-hidden transition-all duration-500 hover:shadow-xl hover:shadow-blue-500/20">
 
-                {/* Image */}
-                <div className="relative h-40 sm:h-48 overflow-hidden">
+                {/* Image with link */}
+                <Link 
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative block h-40 sm:h-48 overflow-hidden cursor-pointer"
+                >
                   {project.image && (
                     <Image
                       src={project.image}
                       alt={t(project.titleKey)}
                       fill
                       sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-cover"
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                   )}
 
@@ -81,7 +68,7 @@ export const ProjectsSection: React.FC = () => {
                       <ExternalLink className="w-7 h-7 text-white" />
                     </div>
                   </div>
-                </div>
+                </Link>
 
                 {/* Content */}
                 <div className="relative p-5 bg-linear-to-b from-white/60 to-white/80 dark:from-gray-800/60 dark:to-gray-800/80">
@@ -89,19 +76,24 @@ export const ProjectsSection: React.FC = () => {
                     <h3 className="text-gray-900 dark:text-white text-base sm:text-lg font-semibold">
                       {t(project.titleKey)}
                     </h3>
-                    <span className="ml-2 px-3 py-1 text-xs rounded-full bg-linear-to-r from-blue-600 to-purple-600 text-white">
+                    <span className="ml-2 px-3 py-1 text-xs rounded-full bg-linear-to-r from-blue-600 to-purple-600 text-white whitespace-nowrap">
                       {project.year}
                     </span>
                   </div>
-{/* 
-                  <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm">
+
+                  {/* <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm">
                     {t(project.descKey)}
                   </p> */}
 
-                  <button className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/60 dark:bg-gray-700/60 border border-white/40 dark:border-gray-600/40 text-blue-600 dark:text-blue-400 hover:bg-linear-to-r hover:from-blue-600 hover:to-purple-600 hover:text-white transition-all text-sm">
+                  <Link
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/60 dark:bg-gray-700/60 border border-white/40 dark:border-gray-600/40 text-blue-600 dark:text-blue-400 hover:bg-linear-to-r hover:from-blue-600 hover:to-purple-600 hover:text-white transition-all text-sm group/button"
+                  >
                     {t('viewDetails')}
-                    <ExternalLink className="w-4 h-4 transition-transform group-hover:rotate-45" />
-                  </button>
+                    <ExternalLink className="w-4 h-4 transition-transform group-hover/button:rotate-45" />
+                  </Link>
                 </div>
 
                 {/* Hover accent */}

@@ -10,10 +10,10 @@ export const Footer: React.FC = () => {
   const t = useTranslations(); // تابع برای گرفتن متن‌ها
 
   const socialLinks = [
-    { icon: Github, href: '#', label: 'GitHub', color: 'from-gray-700 to-gray-900' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn', color: 'from-blue-600 to-blue-800' },
-    { icon: Twitter, href: '#', label: 'Twitter', color: 'from-sky-500 to-blue-600' },
-    { icon: Mail, href: '#', label: 'Email', color: 'from-purple-600 to-pink-600' },
+    { icon: Github, href: 'https://github.com/MehranMohamadi', label: 'GitHub', color: 'from-gray-700 to-gray-900' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/mehran-mohammadi-far/', label: 'LinkedIn', color: 'from-blue-600 to-blue-800' },
+    // { icon: Twitter, href: '#', label: 'Twitter', color: 'from-sky-500 to-blue-600' },
+    { icon: Mail, href: 'mehran.mohammadi.frd@gmail.com', label: 'Email', color: 'from-purple-600 to-pink-600' },
   ];
 
   return (

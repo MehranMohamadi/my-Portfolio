@@ -80,7 +80,7 @@ const changeLanguage = (lang: string) => {
           {/* Logo */}
           <div className="shrink-0">
             <span className="text-xl sm:text-2xl font-bold bg-linear-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-              Portfolio
+              Mehran Mohamadi
             </span>
           </div>
 
