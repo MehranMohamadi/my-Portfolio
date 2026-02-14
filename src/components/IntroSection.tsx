@@ -18,7 +18,7 @@ export const IntroSection: React.FC = () => {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20 pt-24 relative overflow-hidden">
+    <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pb-5 pt-24 relative overflow-hidden">
 
       <div className="max-w-6xl mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">

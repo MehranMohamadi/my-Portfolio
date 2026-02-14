@@ -64,7 +64,7 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50/50 dark:bg-gray-800/30 relative overflow-hidden">
+    <section id="contact" className="py-12 sm:py-16 lg:py-10 px-4 sm:px-6 lg:px-8 bg-gray-50/50 dark:bg-gray-800/30 relative overflow-hidden">
       <div className="max-w-4xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center mb-8 sm:mb-12">
