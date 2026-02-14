@@ -7,8 +7,8 @@ import { ExternalLink } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 const projects = [
-  { image: '/img/farsnews.avif', titleKey: 'fars', descKey: 'project1Desc', year: '2025', link: 'https://farsnews.ir/' },
-  { image: '/img/virasty.avif', titleKey: 'virasty', descKey: 'project2Desc', year: '2024', link: 'https://virasty.com/' },
+  { image: '/img/farsnews.avif', titleKey: 'fars', descKey: 'project1Desc', year: '2023', link: 'https://farsnews.ir/' },
+  { image: '/img/virasty.avif', titleKey: 'virasty', descKey: 'project2Desc', year: '2023', link: 'https://virasty.com/' },
   { image: '/img/msgway.avif', titleKey: 'msgway', descKey: 'project3Desc', year: '2024', link: 'https://msgway.com/' },
   { image: '/img/gap.avif', titleKey: 'gap', descKey: 'project4Desc', year: '2023', link: 'https://gap.im/' },
   { image: '/img/bimehyar.avif', titleKey: 'bimehyar', descKey: 'project5Desc', year: '2023', link: 'https://bimehyar.com' },
@@ -42,7 +42,7 @@ export const ProjectsSection: React.FC = () => {
               key={project.titleKey}
               className="group relative overflow-hidden rounded-3xl"
             >
-              <div className="relative bg-white/70 dark:bg-gray-800/70 rounded-3xl border border-white/40 dark:border-gray-600/40 overflow-hidden transition-all duration-500 hover:shadow-xl hover:shadow-blue-500/20">
+              <div className="relative bg-gray-300/70 dark:bg-gray-800/70 rounded-3xl border border-white/40 dark:border-gray-600/40 overflow-hidden transition-all duration-500 hover:shadow-xl hover:shadow-blue-500/20">
 
                 {/* Image with link */}
                 <Link 
@@ -57,7 +57,7 @@ export const ProjectsSection: React.FC = () => {
                       alt={t(project.titleKey)}
                       fill
                       sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-fill transition-transform duration-500 group-hover:scale-110"
+                      className="object-contain transition-transform duration-500 group-hover:scale-110"
                     />
                   )}
 
@@ -76,9 +76,9 @@ export const ProjectsSection: React.FC = () => {
                     <h3 className="text-gray-900 dark:text-white text-base sm:text-lg font-semibold">
                       {t(project.titleKey)}
                     </h3>
-                    <span className="ml-2 px-3 py-1 text-xs rounded-full bg-linear-to-r from-blue-600 to-purple-600 text-white whitespace-nowrap">
+                    {/* <span className="ml-2 px-3 py-1 text-xs rounded-full bg-linear-to-r from-blue-600 to-purple-600 text-white whitespace-nowrap">
                       {project.year}
-                    </span>
+                    </span> */}
                   </div>
 
                   {/* <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm">

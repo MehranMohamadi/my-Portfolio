@@ -25,7 +25,7 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const locale = useLocale();
-  const [theme, setTheme] = useState<Theme>('light');
+  const [theme, setTheme] = useState<Theme>('dark');
   const [ripples, setRipples] = useState<RippleEffect[]>([]);
 
   const isRTL = locale === 'fa' || locale === 'ar';
