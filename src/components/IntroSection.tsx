@@ -87,11 +87,12 @@ export const IntroSection: React.FC = () => {
                   <div
                     className="w-48 h-48 sm:w-64 sm:h-64 mx-auto rounded-2xl overflow-hidden ring-4 ring-white/50 dark:ring-gray-600/50 shadow-xl"
                   >
-                 <Image
+      <Image
   src="/img/profile.png"
   alt="Profile"
   width={256}
   height={256}
+  sizes="192px"
   priority
   fetchPriority="high"
   className="w-full h-full object-cover"
