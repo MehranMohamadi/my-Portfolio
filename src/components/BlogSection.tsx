@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw"; // اضافه کردن این import
 
 interface BlogPost {
   id: number;
@@ -16,7 +17,11 @@ interface BlogPost {
   image: string;
   tags: string[];
   comingSoon?: boolean;
-  markdownPath?: string; // مسیر فایل مارکداون
+ markdownPath?: {
+    en?: string;
+    fa?: string;
+    ar?: string;
+  };
 }
 
 export const BlogSection: React.FC = () => {
@@ -29,21 +34,25 @@ export const BlogSection: React.FC = () => {
   const [hoveredPost, setHoveredPost] = useState<number | null>(null);
 
   const blogPosts: BlogPost[] = [
-    // {
-    //   id: 5, // تغییر id به 5 برای مقاله debounce
-    //   title: locale === 'en' ? 'Debounce vs Throttle in JavaScript' : locale === 'fa' ? 'Debounce و Throttle در جاوااسکریپت' : 'Debounce vs Throttle في JavaScript',
-    //   excerpt: locale === 'en'
-    //     ? 'Master event handling optimization techniques for better performance'
-    //     : locale === 'fa'
-    //     ? 'تکنیک‌های بهینه‌سازی مدیریت رویدادها برای عملکرد بهتر'
-    //     : 'تقنيات تحسين معالجة الأحداث لأداء أفضل',
-    //   date: locale === 'en' ? 'Oct 15, 2024' : locale === 'fa' ? '۲۴ مهر ۱۴۰۳' : '١٥ أكتوبر ٢٠٢٤',
-    //   readTime: locale === 'en' ? '8 min read' : locale === 'fa' ? '۸ دقیقه' : '٨ دقائق',
-    //   category: locale === 'en' ? 'JavaScript' : 'JavaScript',
-    //   image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80',
-    //   tags: ['JavaScript', 'Performance', locale === 'en' ? 'Optimization' : locale === 'fa' ? 'بهینه‌سازی' : 'تحسين'],
-    //   markdownPath: '/blog/debounce_throttle_blog.md',
-    // },
+    {
+      id: 5, // تغییر id به 5 برای مقاله debounce
+      title: locale === 'en' ? 'Debounce vs Throttle in JavaScript' : locale === 'fa' ? 'Debounce و Throttle در جاوااسکریپت' : 'Debounce vs Throttle في JavaScript',
+      excerpt: locale === 'en'
+        ? 'Master event handling optimization techniques for better performance'
+        : locale === 'fa'
+        ? 'تکنیک‌های بهینه‌سازی مدیریت رویدادها برای عملکرد بهتر'
+        : 'تقنيات تحسين معالجة الأحداث لأداء أفضل',
+      date: locale === 'en' ? 'Oct 15, 2024' : locale === 'fa' ? '۲۴ مهر ۱۴۰۳' : '١٥ أكتوبر ٢٠٢٤',
+      readTime: locale === 'en' ? '8 min read' : locale === 'fa' ? '۸ دقیقه' : '٨ دقائق',
+      category: locale === 'en' ? 'JavaScript' : 'JavaScript',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwZCnG7gOeMC3na7dUIEzr0MNrHjWhAWygKA&s',
+      tags: ['JavaScript', 'Performance', locale === 'en' ? 'Optimization' : locale === 'fa' ? 'بهینه‌سازی' : 'تحسين'],
+      markdownPath: {
+  en: '/blog/debounce_throttle_blog_en.md',
+  fa: '/blog/debounce_throttle_blog_fa.md',
+  ar: '/blog/debounce_throttle_blog_en.md',
+},
+    },
     // {
     //   id: 6,
     //   title: locale === 'en' ? 'JavaScript Best Practices 2024' : locale === 'fa' ? 'بهترین شیوه‌های JavaScript 2024' : 'أفضل ممارسات JavaScript 2024',
@@ -76,33 +85,35 @@ export const BlogSection: React.FC = () => {
   ];
 
   // بارگذاری محتوای مارکداون وقتی مقاله انتخاب می‌شود
-  useEffect(() => {
-    if (selectedPost?.markdownPath) {
-      setIsLoading(true);
-      fetch(selectedPost.markdownPath)
-        .then((res) => {
-          if (!res.ok) {
-            throw new Error('Failed to load content');
-          }
-          return res.text();
-        })
-        .then((text) => {
-          setMarkdownContent(text);
-          setIsLoading(false);
-        })
-        .catch((error) => {
-          console.error('Error loading markdown:', error);
-          setMarkdownContent(locale === 'fa' 
-            ? 'خطا در بارگذاری محتوا' 
-            : locale === 'en' 
-            ? 'Error loading content' 
-            : 'خطأ في تحميل المحتوى');
-          setIsLoading(false);
-        });
-    } else {
-      setMarkdownContent("");
+useEffect(() => {
+  if (selectedPost?.markdownPath) {
+    const path = selectedPost.markdownPath[locale];
+
+    if (!path) {
+      setMarkdownContent(locale === 'fa' ? 'محتوا موجود نیست' : 'Content not available');
+      return;
     }
-  }, [selectedPost, locale]);
+
+    setIsLoading(true);
+
+    fetch(path)
+      .then((res) => {
+        if (!res.ok) throw new Error('Failed to load content');
+        return res.text();
+      })
+      .then((text) => {
+        setMarkdownContent(text);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error loading markdown:', error);
+        setMarkdownContent(locale === 'fa' ? 'خطا در بارگذاری محتوا' : 'Error loading content');
+        setIsLoading(false);
+      });
+  } else {
+    setMarkdownContent('');
+  }
+}, [selectedPost, locale]);
 
   // پاکسازی محتوا هنگام بسته شدن مودال
   const handleCloseModal = () => {
@@ -234,7 +245,7 @@ export const BlogSection: React.FC = () => {
                 <ImageWithFallback
                   src={selectedPost.image}
                   alt={selectedPost.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-fill"
                 />
               </div>
 
@@ -270,9 +281,12 @@ export const BlogSection: React.FC = () => {
                   </div>
                 ) : (
                   <div className="prose dark:prose-invert max-w-none">
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                      {markdownContent}
-                    </ReactMarkdown>
+                <ReactMarkdown 
+    remarkPlugins={[remarkGfm]}
+    rehypePlugins={[rehypeRaw]} // اضافه کردن این خط
+  >
+    {markdownContent}
+  </ReactMarkdown>
                   </div>
                 )}
               </div>
