@@ -280,7 +280,7 @@ useEffect(() => {
                     <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
                   </div>
                 ) : (
-                  <div className="prose dark:prose-invert max-w-none">
+                  <div className="prose dark:prose-invert max-w-none w-full">
                 <ReactMarkdown 
     remarkPlugins={[remarkGfm]}
     rehypePlugins={[rehypeRaw]} // اضافه کردن این خط
