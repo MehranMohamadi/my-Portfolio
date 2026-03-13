@@ -67,7 +67,7 @@ const blogPostDefinitions: BlogPostDefinition[] = [
       fa: 'JavaScript',
       ar: 'JavaScript',
     },
-    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwZCnG7gOeMC3na7dUIEzr0MNrHjWhAWygKA&s',
+    image: '/img/debounce-throttle-cover.svg',
     tags: {
       en: ['JavaScript', 'Performance', 'Optimization'],
       fa: ['JavaScript', 'Performance', 'بهینه‌سازی'],
@@ -77,6 +77,48 @@ const blogPostDefinitions: BlogPostDefinition[] = [
       en: '/blog/debounce_throttle_blog_en.md',
       fa: '/blog/debounce_throttle_blog_fa.md',
       ar: '/blog/debounce_throttle_blog_en.md',
+    },
+  },
+  {
+    id: 6,
+    slug: 'vue-next-tick-guide',
+    title: {
+      en: 'Vue nextTick Guide',
+      fa: 'راهنمای nextTick در Vue',
+      ar: 'دليل nextTick في Vue',
+    },
+    excerpt: {
+      en: 'Learn when and how to use nextTick to run logic after DOM updates in Vue.',
+      fa: 'یاد بگیر چگونه و چه زمانی از nextTick برای اجرای کد بعد از آپدیت DOM در Vue استفاده کنی.',
+      ar: 'تعلّم متى وكيف تستخدم nextTick لتشغيل المنطق بعد تحديث DOM في Vue.',
+    },
+    date: {
+      en: 'Feb 10, 2025',
+      fa: '۲۲ بهمن ۱۴۰۳',
+      ar: '١٠ فبراير ٢٠٢٥',
+    },
+    publishedAt: '2025-02-10T00:00:00.000Z',
+    updatedAt: '2025-02-10T00:00:00.000Z',
+    readTime: {
+      en: '7 min read',
+      fa: '۷ دقیقه',
+      ar: '٧ دقائق',
+    },
+    category: {
+      en: 'Vue.js',
+      fa: 'Vue.js',
+      ar: 'Vue.js',
+    },
+    image: '/img/vue-nexttick-cover.svg',
+    tags: {
+      en: ['Vue', 'nextTick', 'DOM'],
+      fa: ['Vue', 'nextTick', 'DOM'],
+      ar: ['Vue', 'nextTick', 'DOM'],
+    },
+    markdownPath: {
+      en: '/blog/vue_next_tick_blog_en.md',
+      fa: '/blog/vue_next_tick_blog_fa.md',
+      ar: '/blog/vue_next_tick_blog_en.md',
     },
   },
   {
