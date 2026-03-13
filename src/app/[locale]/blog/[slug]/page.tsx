@@ -150,7 +150,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         <article className="max-w-4xl mx-auto">
           <Link
             href={`/${locale}#blog`}
-            className="inline-flex items-center gap-2 mb-8 text-sm font-medium text-blue-600 dark:text-blue-400 hover:gap-3 transition-all"
+            className="inline-flex items-center gap-2 mb-8 text-sm font-medium text-blue-600 dark:text-blue-400 hover:gap-3 transition-[color,gap] duration-300"
           >
             <ArrowLeft className="w-4 h-4" />
             {locale === 'fa' ? 'بازگشت به وبلاگ' : locale === 'ar' ? 'العودة إلى المدونة' : 'Back to blog'}

@@ -26,7 +26,7 @@ export const BlogSection: React.FC = () => {
           {blogPosts.map((post) => (
             <article
               key={post.id}
-              className={`group backdrop-blur-xl bg-white/60 dark:bg-gray-900/60 rounded-2xl border-2 border-white/40 dark:border-gray-700/40 shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105 ${
+              className={`group backdrop-blur-xl bg-white/60 dark:bg-gray-900/60 rounded-2xl border-2 border-white/40 dark:border-gray-700/40 shadow-xl overflow-hidden transition-[transform,box-shadow,border-color,opacity] duration-300 hover:shadow-2xl hover:scale-[1.02] ${
                 post.comingSoon ? 'opacity-70 hover:scale-100 cursor-not-allowed' : 'cursor-pointer'
               }`}
             >
@@ -116,7 +116,7 @@ function BlogCardContent({
         </div>
 
         <div
-          className={`inline-flex items-center gap-2 font-semibold text-sm transition-all ${
+          className={`inline-flex items-center gap-2 font-semibold text-sm transition-[color,gap] ${
             post.comingSoon
               ? 'text-gray-400 cursor-not-allowed'
               : 'text-blue-600 dark:text-blue-400 group-hover:gap-3'

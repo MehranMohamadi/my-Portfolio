@@ -42,7 +42,7 @@ export const ProjectsSection: React.FC = () => {
               key={project.titleKey}
               className="group relative overflow-hidden rounded-3xl"
             >
-              <div className="relative bg-gray-300/70 dark:bg-gray-800/70 rounded-3xl border border-white/40 dark:border-gray-600/40 overflow-hidden transition-all duration-500 hover:shadow-xl hover:shadow-blue-500/20">
+              <div className="relative bg-gray-300/70 dark:bg-gray-800/70 rounded-3xl border border-white/40 dark:border-gray-600/40 overflow-hidden transition-[box-shadow,border-color] duration-500 hover:shadow-xl hover:shadow-blue-500/20">
 
                 {/* Image with link */}
                 <Link 
@@ -89,7 +89,7 @@ export const ProjectsSection: React.FC = () => {
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/60 dark:bg-gray-700/60 border border-white/40 dark:border-gray-600/40 text-blue-600 dark:text-blue-400 hover:bg-linear-to-r hover:from-blue-600 hover:to-purple-600 hover:text-white transition-all text-sm group/button"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/60 dark:bg-gray-700/60 border border-white/40 dark:border-gray-600/40 text-blue-600 dark:text-blue-400 hover:bg-linear-to-r hover:from-blue-600 hover:to-purple-600 hover:text-white transition-[color,background-color,border-color] text-sm group/button"
                   >
                     {t('viewDetails')}
                     <ExternalLink className="w-4 h-4 transition-transform group-hover/button:rotate-45" />

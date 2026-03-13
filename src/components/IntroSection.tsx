@@ -55,14 +55,14 @@ export const IntroSection: React.FC = () => {
             >
               <button
                 onClick={() => scrollToSection('projects')}
-                className="group px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 flex items-center justify-center gap-2 text-sm sm:text-base"
+                className="group px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:shadow-lg hover:shadow-blue-500/50 transition-[transform,box-shadow] duration-300 flex items-center justify-center gap-2 text-sm sm:text-base"
               >
                 {t('viewWork')}
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
               <button
                 onClick={() => scrollToSection('contact')}
-                className="px-6 py-3 backdrop-blur-sm bg-white/70 dark:bg-gray-800/70 border border-gray-200 dark:border-gray-700 rounded-xl hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 text-sm sm:text-base"
+                className="px-6 py-3 backdrop-blur-sm bg-white/70 dark:bg-gray-800/70 border border-gray-200 dark:border-gray-700 rounded-xl hover:shadow-lg transition-[box-shadow,background-color] duration-300 flex items-center justify-center gap-2 text-sm sm:text-base"
               >
                 <Mail className="w-4 h-4" />
                 {t('contactMe')}

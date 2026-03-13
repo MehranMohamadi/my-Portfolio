@@ -1,15 +1,25 @@
-'use client'
-
-import { useApp } from "../../contexts/AppContext";
 import { Header } from "../../components/Header";
 import { IntroSection } from "../../components/IntroSection";
-import { SkillsSection } from "../../components/SkillsSection";
-import { ProjectsSection } from "../../components/ProjectsSection";
-import { AboutSection } from "../../components/AboutSection";
-import { ContactSection } from "../../components/ContactSection";
-import { Footer } from "../../components/Footer";
 import dynamic from "next/dynamic";
-import { BlogSection } from "@/components/BlogSection";
+
+const SkillsSection = dynamic(() =>
+  import("../../components/SkillsSection").then((module) => module.SkillsSection)
+);
+const ProjectsSection = dynamic(() =>
+  import("../../components/ProjectsSection").then((module) => module.ProjectsSection)
+);
+const BlogSection = dynamic(() =>
+  import("../../components/BlogSection").then((module) => module.BlogSection)
+);
+const AboutSection = dynamic(() =>
+  import("../../components/AboutSection").then((module) => module.AboutSection)
+);
+const ContactSection = dynamic(() =>
+  import("../../components/ContactSection").then((module) => module.ContactSection)
+);
+const Footer = dynamic(() =>
+  import("../../components/Footer").then((module) => module.Footer)
+);
 
 export default function HomePage() {
   return (

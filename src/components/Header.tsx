@@ -104,7 +104,7 @@ const changeLanguage = (lang: string) => {
     <button
       key={section}
       onClick={() => scrollToSection(section)}
-      className="relative px-3 py-2 font-medium transition-all duration-300
+      className="relative px-3 py-2 font-medium transition-colors duration-300
         text-gray-700 dark:text-gray-200
         hover:text-transparent hover:bg-linear-to-r hover:from-blue-600 hover:to-purple-600 hover:bg-clip-text"
     >
@@ -131,7 +131,7 @@ const changeLanguage = (lang: string) => {
             <div className="relative">
               <button
                 onClick={() => setLangMenuOpen(!langMenuOpen)}
-                className="p-2.5 rounded-xl backdrop-blur-md bg-white/60 dark:bg-gray-800/60 hover:bg-white/80 dark:hover:bg-gray-700/80 border border-white/40 dark:border-gray-600/40 transition-all duration-300 shadow-lg"
+                className="p-2.5 rounded-xl backdrop-blur-md bg-white/60 dark:bg-gray-800/60 hover:bg-white/80 dark:hover:bg-gray-700/80 border border-white/40 dark:border-gray-600/40 transition-[background-color,border-color] duration-300 shadow-lg"
                 aria-label="Change language"
               >
                 <Globe className="w-5 h-5 text-blue-600 dark:text-blue-400" />
@@ -146,7 +146,7 @@ const changeLanguage = (lang: string) => {
                       <button
                         key={lang.code}
                         onClick={() => changeLanguage(lang.code)}
-                        className="block w-full text-left px-4 py-3 hover:bg-linear-to-r hover:from-blue-500/20 hover:to-purple-500/20 transition-all duration-300"
+                        className="block w-full text-left px-4 py-3 hover:bg-linear-to-r hover:from-blue-500/20 hover:to-purple-500/20 transition-colors duration-300"
                       >
                         {lang.name}
                       </button>
@@ -158,7 +158,7 @@ const changeLanguage = (lang: string) => {
             {/* Theme Toggle */}
             <button
               onClick={handleThemeToggle}
-              className="relative p-2.5 rounded-xl backdrop-blur-md bg-white/60 dark:bg-gray-800/60 hover:bg-white/80 dark:hover:bg-gray-700/80 border border-white/40 dark:border-gray-600/40 transition-all duration-300 shadow-lg overflow-hidden"
+              className="relative p-2.5 rounded-xl backdrop-blur-md bg-white/60 dark:bg-gray-800/60 hover:bg-white/80 dark:hover:bg-gray-700/80 border border-white/40 dark:border-gray-600/40 transition-[background-color,border-color] duration-300 shadow-lg overflow-hidden"
               aria-label="Toggle theme"
             >
                 {theme === "light" ? (
@@ -218,7 +218,7 @@ const changeLanguage = (lang: string) => {
                   <button
                     key={section}
                     onClick={() => scrollToSection(section)}
-                    className="block w-full text-start px-4 py-2 rounded-lg hover:bg-linear-to-r hover:from-blue-500/20 hover:to-purple-500/20 transition-all duration-300"
+                    className="block w-full text-start px-4 py-2 rounded-lg hover:bg-linear-to-r hover:from-blue-500/20 hover:to-purple-500/20 transition-colors duration-300"
                   >
                     {t(section)}
                   </button>
@@ -231,7 +231,7 @@ const changeLanguage = (lang: string) => {
                   <button
                     key={lang.code}
                     onClick={() => changeLanguage(lang.code)}
-                    className="block w-full text-start px-4 py-2 rounded-lg transition-all duration-300"
+                    className="block w-full text-start px-4 py-2 rounded-lg transition-colors duration-300"
                   >
                     {lang.name}
                   </button>
