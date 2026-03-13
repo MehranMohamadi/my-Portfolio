@@ -10,6 +10,7 @@ import remarkGfm from 'remark-gfm';
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
 import { getBlogPostBySlug, getPublishedBlogSlugs } from '@/data/blogPosts';
+import { getAbsoluteUrl, getLanguageAlternates, localeMetadata, normalizeLocale, siteConfig } from '@/lib/seo';
 
 type PageProps = {
   params: Promise<{
@@ -62,9 +63,42 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return {};
   }
 
+  const safeLocale = normalizeLocale(locale);
+  const pathname = `/blog/${slug}`;
+  const canonical = getAbsoluteUrl(safeLocale, pathname);
+
   return {
     title: post.title,
     description: post.excerpt,
+    alternates: {
+      canonical,
+      languages: {
+        ...getLanguageAlternates(pathname),
+        'x-default': getAbsoluteUrl(siteConfig.defaultLocale, pathname),
+      },
+    },
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      url: canonical,
+      siteName: siteConfig.name,
+      locale: localeMetadata[safeLocale].ogLocale,
+      type: 'article',
+      publishedTime: post.publishedAt,
+      modifiedTime: post.updatedAt ?? post.publishedAt,
+      images: [
+        {
+          url: post.image,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt,
+      images: [post.image],
+    },
   };
 }
 
@@ -77,11 +111,40 @@ export default async function BlogPostPage({ params }: PageProps) {
   }
 
   const { post, content } = result;
+  const safeLocale = normalizeLocale(locale);
+  const articleUrl = getAbsoluteUrl(safeLocale, `/blog/${slug}`);
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.excerpt,
+    image: [post.image],
+    inLanguage: safeLocale,
+    mainEntityOfPage: articleUrl,
+    author: {
+      '@type': 'Person',
+      name: siteConfig.name,
+      url: siteConfig.siteUrl,
+    },
+    publisher: {
+      '@type': 'Person',
+      name: siteConfig.name,
+      url: siteConfig.siteUrl,
+    },
+    datePublished: post.publishedAt,
+    dateModified: post.updatedAt ?? post.publishedAt,
+    articleSection: post.category,
+    keywords: post.tags.join(', '),
+  };
 
   return (
     <div className="min-h-screen relative">
       <Header />
       <main className="overflow-x-hidden bg-background pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+        />
         <article className="max-w-4xl mx-auto">
           <Link
             href={`/${locale}#blog`}

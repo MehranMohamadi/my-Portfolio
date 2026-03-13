@@ -10,6 +10,8 @@ interface BlogPostDefinition {
   title: LocalizedString;
   excerpt: LocalizedString;
   date: LocalizedString;
+  publishedAt?: string;
+  updatedAt?: string;
   readTime: LocalizedString;
   category: LocalizedString;
   image: string;
@@ -24,6 +26,8 @@ export interface BlogPost {
   title: string;
   excerpt: string;
   date: string;
+  publishedAt?: string;
+  updatedAt?: string;
   readTime: string;
   category: string;
   image: string;
@@ -51,6 +55,8 @@ const blogPostDefinitions: BlogPostDefinition[] = [
       fa: '۲۴ مهر ۱۴۰۳',
       ar: '١٥ أكتوبر ٢٠٢٤',
     },
+    publishedAt: '2024-10-15T00:00:00.000Z',
+    updatedAt: '2024-10-15T00:00:00.000Z',
     readTime: {
       en: '8 min read',
       fa: '۸ دقیقه',
@@ -91,6 +97,7 @@ const blogPostDefinitions: BlogPostDefinition[] = [
       fa: '-',
       ar: '-',
     },
+    updatedAt: '2026-03-13T00:00:00.000Z',
     readTime: {
       en: '-',
       fa: '-',
@@ -128,6 +135,8 @@ function localizePost(definition: BlogPostDefinition, locale: string): BlogPost 
     title: definition.title[safeLocale],
     excerpt: definition.excerpt[safeLocale],
     date: definition.date[safeLocale],
+    publishedAt: definition.publishedAt,
+    updatedAt: definition.updatedAt,
     readTime: definition.readTime[safeLocale],
     category: definition.category[safeLocale],
     image: definition.image,
@@ -155,4 +164,10 @@ export function getPublishedBlogSlugs(): string[] {
   return blogPostDefinitions
     .filter((post) => !post.comingSoon)
     .map((post) => post.slug);
+}
+
+export function getPublishedBlogPosts(locale: string): BlogPost[] {
+  return blogPostDefinitions
+    .filter((post) => !post.comingSoon)
+    .map((post) => localizePost(post, locale));
 }

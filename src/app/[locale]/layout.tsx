@@ -2,47 +2,78 @@ import '../../styles/global.css';
 import { Providers } from '../../components/Provider';
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
+import { getAbsoluteUrl, getLanguageAlternates, localeMetadata, normalizeLocale, siteConfig } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  keywords: [
-    "Frontend Developer",
-    "Nuxt",
-    "Vue",
-    "Next.js",
-    "Web Developer",
-    "JavaScript",
-  ],
-  title: {
-    default: "Mehran Mohammadi | Frontend Developer | Virasty | Gap Massenger",
-    template: "%s | Mehran Mohammadi",
-  },
-  description:
-    "Frontend developer specialized in Nuxt, Vue, and modern web technologies.",
-  alternates: {
-    canonical: "https://www.mehranmohammadifrd.ir/fa",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-  openGraph: {
-    title: "Mehran Mohammadi | Frontend Developer",
-    description:
-      "Frontend developer specialized in Nuxt, Vue, and modern web technologies.",
-    url: "https://www.mehranmohammadifrd.ir",
-    siteName: "Mehran Mohammadi",
-    locale: "en_US",
-    type: "website",
-    images: [
-      {
-        url: `https://www.mehranmohammadifrd.ir/og-image.jpg`,
-        width: 1200,
-        height: 630,
-        alt: "Mehran Mohammadi - Frontend Developer",
-      },
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const safeLocale = normalizeLocale(locale);
+  const metadata = localeMetadata[safeLocale];
+  const canonical = getAbsoluteUrl(safeLocale);
+
+  return {
+    metadataBase: new URL(siteConfig.siteUrl),
+    title: {
+      default: metadata.title,
+      template: `%s | ${siteConfig.name}`,
+    },
+    description: metadata.description,
+    keywords: [
+      'Frontend Developer',
+      'Nuxt',
+      'Vue',
+      'Next.js',
+      'Web Developer',
+      'JavaScript',
+      'Portfolio',
+      'Mehran Mohammadi',
     ],
-  },
-};
+    alternates: {
+      canonical,
+      languages: {
+        ...getLanguageAlternates(),
+        'x-default': getAbsoluteUrl(siteConfig.defaultLocale),
+      },
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+        'max-video-preview': -1,
+      },
+    },
+    openGraph: {
+      title: metadata.title,
+      description: metadata.description,
+      url: canonical,
+      siteName: siteConfig.name,
+      locale: metadata.ogLocale,
+      type: 'website',
+      images: [
+        {
+          url: siteConfig.ogImage,
+          width: 1200,
+          height: 630,
+          alt: `${siteConfig.name} - Frontend Developer`,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: metadata.title,
+      description: metadata.description,
+      images: [siteConfig.ogImage],
+    },
+    category: 'technology',
+  };
+}
 
 export default async function LocaleLayout({
   children,
