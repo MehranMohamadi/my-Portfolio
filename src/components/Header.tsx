@@ -20,6 +20,12 @@ export const Header: React.FC = () => {
 
 
 useEffect(() => {
+  const homePath = `/${locale}`;
+
+  if (pathname !== homePath) {
+    return;
+  }
+
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -41,7 +47,7 @@ useEffect(() => {
   });
 
   return () => observer.disconnect();
-}, []);
+}, [locale, pathname]);
 
 
  const scrollToSection = (id: string) => {

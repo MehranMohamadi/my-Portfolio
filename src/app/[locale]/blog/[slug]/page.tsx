@@ -1,5 +1,6 @@
 import { promises as fs } from 'fs';
 import path from 'path';
+import { cache } from 'react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
@@ -9,6 +10,7 @@ import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
+import { ImageWithFallback } from '@/components/figma/ImageWithFallback';
 import { getBlogPostBySlug, getPublishedBlogSlugs } from '@/data/blogPosts';
 import { getAbsoluteUrl, getLanguageAlternates, localeMetadata, normalizeLocale, siteConfig } from '@/lib/seo';
 
@@ -19,7 +21,7 @@ type PageProps = {
   }>;
 };
 
-async function getPostContent(locale: string, slug: string) {
+const getPostContent = cache(async (locale: string, slug: string) => {
   const post = getBlogPostBySlug(locale, slug);
 
   if (!post) {
@@ -42,7 +44,7 @@ async function getPostContent(locale: string, slug: string) {
     post,
     content,
   };
-}
+});
 
 export async function generateStaticParams() {
   const locales = ['en', 'fa', 'ar'];
@@ -155,8 +157,14 @@ export default async function BlogPostPage({ params }: PageProps) {
           </Link>
 
           <div className="overflow-hidden rounded-3xl border border-white/20 bg-white/60 dark:bg-gray-900/60 backdrop-blur-xl shadow-2xl">
-            <div className="h-64 sm:h-80">
-              <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
+            <div className="relative h-64 sm:h-80">
+              <ImageWithFallback
+                src={post.image}
+                alt={post.title}
+                priority
+                sizes="(max-width: 1024px) 100vw, 1024px"
+                className="object-cover"
+              />
             </div>
 
             <div className="p-6 sm:p-10">
