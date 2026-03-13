@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl';
 
 export const ContactSection: React.FC = () => {
   const { locale } = useApp();
-  const t = useTranslations(); 
+  const t = useTranslations();
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -37,16 +37,14 @@ export const ContactSection: React.FC = () => {
 
       setSubmitStatus('success');
       setFormData({ name: '', email: '', message: '' });
-      
-      // Reset success message after 5 seconds
+
       setTimeout(() => {
         setSubmitStatus('idle');
       }, 5000);
     } catch (error) {
       setSubmitStatus('error');
       setErrorMessage(error instanceof Error ? error.message : 'Something went wrong. Please try again.');
-      
-      // Reset error message after 5 seconds
+
       setTimeout(() => {
         setSubmitStatus('idle');
         setErrorMessage('');
@@ -66,30 +64,44 @@ export const ContactSection: React.FC = () => {
   return (
     <section id="contact" className="py-12 sm:py-16 lg:py-10 px-4 sm:px-6 lg:px-8 bg-gray-50/50 dark:bg-gray-800/30 relative overflow-hidden">
       <div className="max-w-4xl mx-auto relative z-10">
-        {/* Section Header */}
         <div className="text-center mb-8 sm:mb-12">
           <div className="inline-flex p-4 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 mb-4">
             <Sparkles className="w-8 h-8 text-blue-600 dark:text-blue-400" />
           </div>
-          
+
           <h2 className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2 text-2xl sm:text-3xl lg:text-4xl">
             {t('contactTitle')}
           </h2>
-          
+
           <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base">
             {t('contactSubtitle')}
           </p>
+
+          <div className="flex flex-wrap items-center justify-center gap-3 mt-5">
+            <a
+              href="mailto:mehran.mohammadi.frd@gmail.com"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 dark:bg-gray-800/70 border border-white/40 dark:border-gray-700/40 text-sm text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            >
+              <Mail className="w-4 h-4" />
+              mehran.mohammadi.frd@gmail.com
+            </a>
+            <a
+              href="https://t.me/Mehran_ll"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 dark:bg-gray-800/70 border border-white/40 dark:border-gray-700/40 text-sm text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            >
+              <Send className="w-4 h-4" />
+              @Mehran_ll
+            </a>
+          </div>
         </div>
 
-        {/* Contact Form */}
         <div className="relative">
           <div className="relative backdrop-blur-2xl bg-white/80 dark:bg-gray-800/80 p-6 sm:p-8 md:p-10 rounded-3xl border-2 border-white/40 dark:border-gray-600/40 shadow-2xl">
-            
-            {/* Top Glass Reflection */}
             <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-white/50 dark:from-white/10 to-transparent pointer-events-none rounded-t-3xl"></div>
-            
+
             {submitStatus === 'success' ? (
-              /* Success Message */
               <div className="text-center py-12 relative z-10">
                 <div className="relative inline-flex p-6 rounded-full bg-gradient-to-br from-green-500/30 to-emerald-500/30 mb-6">
                   <div className="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-20"></div>
@@ -103,7 +115,6 @@ export const ContactSection: React.FC = () => {
                 </p>
               </div>
             ) : submitStatus === 'error' ? (
-              /* Error Message */
               <div className="text-center py-12 relative z-10">
                 <div className="relative inline-flex p-6 rounded-full bg-gradient-to-br from-red-500/30 to-orange-500/30 mb-6">
                   <AlertCircle className="w-16 h-16 text-red-600 dark:text-red-400 relative z-10" />
@@ -116,9 +127,7 @@ export const ContactSection: React.FC = () => {
                 </p>
               </div>
             ) : (
-              /* Form Fields */
               <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
-                {/* Name Input */}
                 <div className="relative group">
                   <label htmlFor="name" className="block mb-2 text-gray-700 dark:text-gray-300 flex items-center gap-2">
                     <User className="w-4 h-4 text-blue-600 dark:text-blue-400" />
@@ -135,7 +144,7 @@ export const ContactSection: React.FC = () => {
                       onChange={handleChange}
                       required
                       disabled={isSubmitting}
-                      placeholder={ t('contactName')}
+                      placeholder={t('contactName')}
                       className="w-full px-5 py-4 rounded-2xl backdrop-blur-md bg-white/70 dark:bg-gray-700/70 border-2 border-gray-200/50 dark:border-gray-600/50 focus:border-blue-500 dark:focus:border-blue-400 focus:outline-none transition-all duration-300 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 disabled:opacity-50 disabled:cursor-not-allowed"
                     />
                     {focusedField === 'name' && (
@@ -144,7 +153,6 @@ export const ContactSection: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Email Input */}
                 <div className="relative group">
                   <label htmlFor="email" className="block mb-2 text-gray-700 dark:text-gray-300 flex items-center gap-2">
                     <Mail className="w-4 h-4 text-purple-600 dark:text-purple-400" />
@@ -170,7 +178,6 @@ export const ContactSection: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Message Input */}
                 <div className="relative group">
                   <label htmlFor="message" className="block mb-2 text-gray-700 dark:text-gray-300 flex items-center gap-2">
                     <MessageSquare className="w-4 h-4 text-pink-600 dark:text-pink-400" />
@@ -196,7 +203,6 @@ export const ContactSection: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Submit Button */}
                 <div className="flex justify-center pt-4">
                   <button
                     type="submit"
@@ -223,7 +229,6 @@ export const ContactSection: React.FC = () => {
               </form>
             )}
 
-            {/* Bottom Corner Accents */}
             <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-blue-500/20 to-transparent rounded-bl-3xl pointer-events-none"></div>
             <div className="absolute bottom-0 right-0 w-24 h-24 bg-gradient-to-tl from-purple-500/20 to-transparent rounded-br-3xl pointer-events-none"></div>
           </div>
