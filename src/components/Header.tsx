@@ -11,7 +11,7 @@ export const Header: React.FC = () => {
   const router = useRouter();
   const pathname = usePathname();
 
-  const { theme, setTheme, setThemeWithRipple } = useApp();
+  const { locale, theme, setTheme, setThemeWithRipple } = useApp();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [langMenuOpen, setLangMenuOpen] = useState(false);
@@ -45,6 +45,14 @@ useEffect(() => {
 
 
  const scrollToSection = (id: string) => {
+  const homePath = `/${locale}`;
+
+  if (pathname !== homePath) {
+    router.push(`${homePath}#${id}`);
+    setMobileMenuOpen(false);
+    return;
+  }
+
   const element = document.getElementById(id);
   if (element) {
     element.scrollIntoView({ behavior: "smooth" });
@@ -199,8 +207,8 @@ const changeLanguage = (lang: string) => {
             <div
               className="md:hidden py-4 space-y-2 backdrop-blur-xl bg-white/50 dark:bg-gray-900/50 rounded-2xl my-2 border border-white/30 dark:border-gray-700/30"
             >
-              {["home", "skills", "projects", "about", "contact"].map(
-                (section, index) => (
+              {["home", "skills", "projects", "blog", "about", "contact"].map(
+                (section) => (
                   <button
                     key={section}
                     onClick={() => scrollToSection(section)}
