@@ -1,11 +1,13 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 import { cache } from 'react';
+import type { ReactNode } from 'react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Calendar, Clock, ArrowLeft } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
+import type { Components } from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
 import { Footer } from '@/components/Footer';
@@ -114,7 +116,86 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   const { post, content } = result;
   const safeLocale = normalizeLocale(locale);
+  const isRtl = safeLocale === 'fa' || safeLocale === 'ar';
   const articleUrl = getAbsoluteUrl(safeLocale, `/blog/${slug}`);
+  const markdownComponents: Components = {
+    h2: ({ children, ...props }) => (
+      <h2 className="mt-12 mb-4 text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-white" {...props}>
+        {children}
+      </h2>
+    ),
+    h3: ({ children, ...props }) => (
+      <h3 className="mt-8 mb-3 text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white" {...props}>
+        {children}
+      </h3>
+    ),
+    p: ({ children, ...props }) => (
+      <p className="my-5 leading-8 text-gray-700 dark:text-gray-300" {...props}>
+        {children}
+      </p>
+    ),
+    ul: ({ children, ...props }) => (
+      <ul className="my-4 list-disc space-y-2 ps-6 text-gray-700 dark:text-gray-300" {...props}>
+        {children}
+      </ul>
+    ),
+    ol: ({ children, ...props }) => (
+      <ol className="my-4 list-decimal space-y-2 ps-6 text-gray-700 dark:text-gray-300" {...props}>
+        {children}
+      </ol>
+    ),
+    blockquote: ({ children, ...props }) => (
+      <blockquote
+        className="my-8 rounded-2xl border-s-4 border-blue-500/70 bg-blue-50/80 dark:bg-blue-950/30 px-5 py-4 text-gray-700 dark:text-gray-300"
+        {...props}
+      >
+        {children}
+      </blockquote>
+    ),
+    table: ({ children, ...props }) => (
+      <div className="my-8 overflow-x-auto rounded-2xl border border-gray-200/80 dark:border-gray-700/80">
+        <table className="min-w-full border-collapse text-sm sm:text-base" {...props}>
+          {children}
+        </table>
+      </div>
+    ),
+    th: ({ children, ...props }) => (
+      <th
+        className="bg-gray-100/90 dark:bg-gray-800/90 px-4 py-3 text-start font-semibold text-gray-900 dark:text-gray-100"
+        {...props}
+      >
+        {children}
+      </th>
+    ),
+    td: ({ children, ...props }) => (
+      <td className="border-t border-gray-200/70 dark:border-gray-700/70 px-4 py-3 text-gray-700 dark:text-gray-300" {...props}>
+        {children}
+      </td>
+    ),
+    hr: (props) => <hr className="my-10 border-gray-200 dark:border-gray-700" {...props} />,
+    pre: ({ children, ...props }) => (
+      <pre
+        className="my-6 overflow-x-auto rounded-2xl border border-gray-800/50 bg-[#0f172a] p-4 text-sm leading-6 text-slate-100 shadow-lg"
+        dir="ltr"
+        {...props}
+      >
+        {children}
+      </pre>
+    ),
+    code: ({ inline, children, ...props }: { inline?: boolean; children?: ReactNode }) =>
+      inline ? (
+        <code
+          className="rounded bg-gray-100 px-1.5 py-0.5 text-[0.9em] text-pink-700 dark:bg-gray-800 dark:text-pink-300"
+          {...props}
+        >
+          {children}
+        </code>
+      ) : (
+        <code className="font-mono text-sm text-slate-100" {...props}>
+          {children}
+        </code>
+      ),
+  };
   const articleJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -147,7 +228,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
         />
-        <article className="max-w-4xl mx-auto">
+        <article className="max-w-4xl mx-auto" dir={isRtl ? 'rtl' : 'ltr'}>
           <Link
             href={`/${locale}#blog`}
             className="inline-flex items-center gap-2 mb-8 text-sm font-medium text-blue-600 dark:text-blue-400 hover:gap-3 transition-[color,gap] duration-300"
@@ -202,8 +283,12 @@ export default async function BlogPostPage({ params }: PageProps) {
                 ))}
               </div>
 
-              <div className="prose prose-lg max-w-none dark:prose-invert">
-                <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
+              <div className="max-w-none">
+                <ReactMarkdown
+                  remarkPlugins={[remarkGfm]}
+                  rehypePlugins={[rehypeRaw]}
+                  components={markdownComponents}
+                >
                   {content}
                 </ReactMarkdown>
               </div>
