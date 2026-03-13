@@ -122,6 +122,48 @@ const blogPostDefinitions: BlogPostDefinition[] = [
     },
   },
   {
+    id: 8,
+    slug: 'event-loop-in-javascript',
+    title: {
+      en: 'Event Loop in JavaScript',
+      fa: 'Event Loop در جاوااسکریپت',
+      ar: 'Event Loop في JavaScript',
+    },
+    excerpt: {
+      en: 'Understand how call stack, microtasks, and macrotasks work together in JavaScript.',
+      fa: 'درک کامل از همکاری Call Stack، Microtask و Macrotask در اجرای async جاوااسکریپت.',
+      ar: 'افهم كيف يعمل Call Stack وMicrotasks وMacrotasks معًا في JavaScript.',
+    },
+    date: {
+      en: 'Mar 01, 2025',
+      fa: '۱۱ اسفند ۱۴۰۳',
+      ar: '١ مارس ٢٠٢٥',
+    },
+    publishedAt: '2025-03-01T00:00:00.000Z',
+    updatedAt: '2025-03-01T00:00:00.000Z',
+    readTime: {
+      en: '9 min read',
+      fa: '۹ دقیقه',
+      ar: '٩ دقائق',
+    },
+    category: {
+      en: 'JavaScript',
+      fa: 'JavaScript',
+      ar: 'JavaScript',
+    },
+    image: '/img/event-loop-cover.svg',
+    tags: {
+      en: ['JavaScript', 'Event Loop', 'Async'],
+      fa: ['JavaScript', 'Event Loop', 'Async'],
+      ar: ['JavaScript', 'Event Loop', 'Async'],
+    },
+    markdownPath: {
+      en: '/blog/event_loop_blog_en.md',
+      fa: '/blog/event_loop_blog_fa.md',
+      ar: '/blog/event_loop_blog_en.md',
+    },
+  },
+  {
     id: 7,
     slug: 'ai-frontend-integration',
     title: {
