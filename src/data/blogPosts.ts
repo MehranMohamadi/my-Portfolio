@@ -122,6 +122,48 @@ const blogPostDefinitions: BlogPostDefinition[] = [
     },
   },
   {
+    id: 9,
+    slug: 'javascript-context-and-scope',
+    title: {
+      en: 'Context and Scope in JavaScript',
+      fa: 'Context و Scope در JavaScript',
+      ar: 'Context and Scope في JavaScript',
+    },
+    excerpt: {
+      en: 'Learn the difference between scope and execution context, and how this affects this, closures, and debugging.',
+      fa: 'تفاوت Scope و Context را در جاوااسکریپت یاد بگیر و ببین این مفاهیم چه تاثیری روی this، closure و دیباگ کردن دارند.',
+      ar: 'تعرّف على الفرق بين Scope وContext في JavaScript وكيف يؤثران على this وclosures وتصحيح الأخطاء.',
+    },
+    date: {
+      en: 'Apr 02, 2026',
+      fa: '۱۳ فروردین ۱۴۰۵',
+      ar: '٢ أبريل ٢٠٢٦',
+    },
+    publishedAt: '2026-04-02T00:00:00.000Z',
+    updatedAt: '2026-04-02T00:00:00.000Z',
+    readTime: {
+      en: '8 min read',
+      fa: '۸ دقیقه',
+      ar: '٨ دقائق',
+    },
+    category: {
+      en: 'JavaScript',
+      fa: 'JavaScript',
+      ar: 'JavaScript',
+    },
+    image: '/img/context-scope-cover.svg',
+    tags: {
+      en: ['JavaScript', 'Scope', 'Context'],
+      fa: ['JavaScript', 'Scope', 'Context'],
+      ar: ['JavaScript', 'Scope', 'Context'],
+    },
+    markdownPath: {
+      en: '/blog/context_scope_blog_en.md',
+      fa: '/blog/context_scope_blog_fa.md',
+      ar: '/blog/context_scope_blog_en.md',
+    },
+  },
+  {
     id: 8,
     slug: 'event-loop-in-javascript',
     title: {
