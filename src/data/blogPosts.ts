@@ -164,6 +164,48 @@ const blogPostDefinitions: BlogPostDefinition[] = [
     },
   },
   {
+    id: 10,
+    slug: 'vue-context-and-scope-guide',
+    title: {
+      en: 'Context and Scope in Vue',
+      fa: 'Context و Scope در Vue',
+      ar: 'Context and Scope في Vue',
+    },
+    excerpt: {
+      en: 'Understand Vue scope and execution context, and learn why APIs like watch must run inside setup or a Vue composable.',
+      fa: 'بفهم که scope و context در Vue چه فرقی دارند و چرا APIهایی مثل watch باید داخل setup یا یک composable اجرا شوند.',
+      ar: 'افهم الفرق بين scope وcontext في Vue ولماذا يجب تشغيل watch داخل setup أو composable من Vue.',
+    },
+    date: {
+      en: 'Apr 02, 2026',
+      fa: '۱۳ فروردین ۱۴۰۵',
+      ar: '٢ أبريل ٢٠٢٦',
+    },
+    publishedAt: '2026-04-02T00:00:00.000Z',
+    updatedAt: '2026-04-02T00:00:00.000Z',
+    readTime: {
+      en: '8 min read',
+      fa: '۸ دقیقه',
+      ar: '٨ دقائق',
+    },
+    category: {
+      en: 'Vue.js',
+      fa: 'Vue.js',
+      ar: 'Vue.js',
+    },
+    image: '/img/vue-nexttick-cover.svg',
+    tags: {
+      en: ['Vue', 'watch', 'Composition API'],
+      fa: ['Vue', 'watch', 'Composition API'],
+      ar: ['Vue', 'watch', 'Composition API'],
+    },
+    markdownPath: {
+      en: '/blog/vue_context_scope_blog_en.md',
+      fa: '/blog/vue_context_scope_blog_fa.md',
+      ar: '/blog/vue_context_scope_blog_en.md',
+    },
+  },
+  {
     id: 8,
     slug: 'event-loop-in-javascript',
     title: {
