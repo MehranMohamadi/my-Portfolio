@@ -13,7 +13,7 @@ const projects = [
   { image: '/img/gap.avif', titleKey: 'gap', descKey: 'project4Desc', year: '2023', link: 'https://gap.im/' },
   { image: '/img/bimehyar.avif', titleKey: 'bimehyar', descKey: 'project5Desc', year: '2023', link: 'https://bimehyar.com' },
   { image: '/img/nasimrezvan.avif', titleKey: 'nasimrezvan', descKey: 'project6Desc', year: '2022', link: 'https://app.nasimrezvan.com/' },
-  { image: '/img/rpg-skill-tracker-cover.svg', titleKey: 'rpgSkillTracker', descKey: 'project7Desc', year: '2025', link: 'https://rpg-skill-tracker.vercel.app/dashboard' },
+  { image: '/img/rpg-skill-tracker-cover.svg', titleKey: 'rpgSkillTracker', descKey: 'project7Desc', year: '2025', link: 'https://rpg-skill-tracker.vercel.app/' },
 ];
 
 export const ProjectsSection: React.FC = () => {
