@@ -42,6 +42,7 @@
   "project5Desc": "منصة تتبع الطلبات في الوقت الفعلي واكتشاف المطاعم",
   "project6Title": "متتبع اللياقة",
   "project6Desc": "مراقبة الصحة الشخصية مع توصيات مدعومة بالذكاء الاصطناعي",
+  "project7Desc": "لوحة تحكم مُحفَّزة بأسلوب الألعاب لتتبع العادات والأهداف وتطور المهارات بروح ألعاب RPG",
   "years": "سنين",
   "experience": "خبرة",
   "completed": "مكتمل",
@@ -59,5 +60,6 @@
   "msgway": "Msg way",
   "virasty": "Virasty",
   "fars": "Fars news ",
+  "rpgSkillTracker": "RPG Skill Tracker",
   "contactSuccessMessage": "أرسلت"
 }

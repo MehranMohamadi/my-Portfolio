@@ -42,6 +42,7 @@
   "project5Desc": "Real-time order tracking and restaurant discovery platform",
   "project6Title": "Fitness Tracker",
   "project6Desc": "Personal health monitoring with AI-powered recommendations",
+  "project7Desc": "Gamified productivity dashboard for tracking habits, goals, and skill progression like an RPG",
   "years": "Years",
   "experience": "Experience",
   "completed": "Completed",
@@ -59,5 +60,6 @@
   "msgway": "Msg way",
   "virasty": "Virasty",
   "fars": "Fars news ",
+  "rpgSkillTracker": "RPG Skill Tracker",
   "contactSuccessMessage": "sended"
 }
