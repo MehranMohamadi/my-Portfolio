@@ -1,0 +1,103 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="80" x2="1480" y2="820" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0B1220" />
+      <stop offset="1" stop-color="#111827" />
+    </linearGradient>
+    <linearGradient id="nitroGradient" x1="210" y1="170" x2="1390" y2="520" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#DC2626" />
+      <stop offset="1" stop-color="#F87171" />
+    </linearGradient>
+    <filter id="shadow" x="170" y="130" width="1260" height="450" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+      <feOffset dy="16" />
+      <feGaussianBlur stdDeviation="16" />
+      <feComposite in2="hardAlpha" operator="out" />
+      <feColorMatrix type="matrix" values="0 0 0 0 0.02 0 0 0 0 0.06 0 0 0 0 0.16 0 0 0 0.42 0" />
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_1" />
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_1" result="shape" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1600" height="900" fill="url(#bg)" />
+  <circle cx="200" cy="100" r="220" fill="#7F1D1D" opacity="0.15" />
+  <circle cx="1450" cy="780" r="300" fill="#7F1D1D" opacity="0.15" />
+
+  <!-- Main Card -->
+  <g filter="url(#shadow)">
+    <rect x="210" y="170" width="1180" height="350" rx="28" fill="url(#nitroGradient)" />
+  </g>
+
+  <!-- Server Visualization -->
+  <!-- API Routes -->
+  <g>
+    <!-- GET Request -->
+    <rect x="280" y="240" width="100" height="70" rx="8" fill="#FCA5A5" opacity="0.8" />
+    <text x="330" y="280" fill="#FFFFFF" font-size="20" font-family="Arial, sans-serif" font-weight="700" text-anchor="middle">GET</text>
+
+    <!-- POST Request -->
+    <rect x="410" y="240" width="100" height="70" rx="8" fill="#FCA5A5" opacity="0.6" />
+    <text x="460" y="280" fill="#FFFFFF" font-size="20" font-family="Arial, sans-serif" font-weight="700" text-anchor="middle">POST</text>
+
+    <!-- PUT Request -->
+    <rect x="540" y="240" width="100" height="70" rx="8" fill="#FCA5A5" opacity="0.4" />
+    <text x="590" y="280" fill="#FFFFFF" font-size="20" font-family="Arial, sans-serif" font-weight="700" text-anchor="middle">PUT</text>
+
+    <!-- DELETE Request -->
+    <rect x="670" y="240" width="100" height="70" rx="8" fill="#FCA5A5" opacity="0.3" />
+    <text x="720" y="280" fill="#FFFFFF" font-size="20" font-family="Arial, sans-serif" font-weight="700" text-anchor="middle">DELETE</text>
+  </g>
+
+  <!-- Middleware Stack -->
+  <g>
+    <!-- Middleware boxes -->
+    <rect x="830" y="220" width="140" height="50" rx="8" fill="#FFFFFF" opacity="0.25" />
+    <text x="900" y="252" fill="#FFFFFF" font-size="16" font-family="Arial, sans-serif" text-anchor="middle" font-weight="600">Auth</text>
+
+    <rect x="830" y="290" width="140" height="50" rx="8" fill="#FFFFFF" opacity="0.20" />
+    <text x="900" y="322" fill="#FFFFFF" font-size="16" font-family="Arial, sans-serif" text-anchor="middle" font-weight="600">CORS</text>
+
+    <rect x="830" y="360" width="140" height="50" rx="8" fill="#FFFFFF" opacity="0.15" />
+    <text x="900" y="392" fill="#FFFFFF" font-size="16" font-family="Arial, sans-serif" text-anchor="middle" font-weight="600">Logging</text>
+  </g>
+
+  <!-- Arrow connecting to middleware -->
+  <line x1="770" y1="275" x2="830" y2="245" stroke="#FFFFFF" stroke-width="2" opacity="0.4" />
+  <line x1="770" y1="315" x2="830" y2="315" stroke="#FFFFFF" stroke-width="2" opacity="0.4" />
+  <line x1="770" y1="355" x2="830" y2="385" stroke="#FFFFFF" stroke-width="2" opacity="0.4" />
+
+  <!-- Features section -->
+  <g>
+    <!-- Feature 1 -->
+    <rect x="1020" y="220" width="320" height="80" rx="12" fill="#FFFFFF" opacity="0.1" stroke="#FFFFFF" stroke-width="1" stroke-opacity="0.2" />
+    <circle cx="1050" cy="250" r="8" fill="#FCA5A5" />
+    <text x="1070" y="255" fill="#FFFFFF" font-size="18" font-family="Arial, sans-serif" font-weight="600">File-based Routing</text>
+    <text x="1070" y="280" fill="#FEE2E2" font-size="14" font-family="Arial, sans-serif">Auto-generated routes</text>
+
+    <!-- Feature 2 -->
+    <rect x="1020" y="320" width="320" height="80" rx="12" fill="#FFFFFF" opacity="0.1" stroke="#FFFFFF" stroke-width="1" stroke-opacity="0.2" />
+    <circle cx="1050" cy="350" r="8" fill="#FCA5A5" />
+    <text x="1070" y="355" fill="#FFFFFF" font-size="18" font-family="Arial, sans-serif" font-weight="600">Type-safe APIs</text>
+    <text x="1070" y="380" fill="#FEE2E2" font-size="14" font-family="Arial, sans-serif">Full TypeScript support</text>
+  </g>
+
+  <!-- Main Title -->
+  <text x="230" y="650" fill="#F9FAFB" font-size="62" font-family="Arial, sans-serif" font-weight="800">
+    Nitro.js - The Fullstack HTTP Server
+  </text>
+  <text x="230" y="710" fill="#9CA3AF" font-size="28" font-family="Arial, sans-serif">
+    Build fast and scalable backend APIs with zero configuration
+  </text>
+
+  <!-- Tags -->
+  <rect x="230" y="760" width="200" height="56" rx="28" fill="#DC2626" />
+  <text x="330" y="797" fill="#FFFFFF" font-size="26" font-family="Arial, sans-serif" font-weight="700" text-anchor="middle">Backend</text>
+
+  <rect x="452" y="760" width="180" height="56" rx="28" fill="#7F1D1D" />
+  <text x="542" y="797" fill="#FFFFFF" font-size="26" font-family="Arial, sans-serif" font-weight="700" text-anchor="middle">Routing</text>
+
+  <rect x="654" y="760" width="200" height="56" rx="28" fill="#DC2626" />
+  <text x="754" y="797" fill="#FFFFFF" font-size="26" font-family="Arial, sans-serif" font-weight="700" text-anchor="middle">Fullstack</text>
+</svg>
