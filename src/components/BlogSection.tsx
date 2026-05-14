@@ -1,8 +1,8 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
-import { Calendar, Clock, ArrowRight, Tag } from 'lucide-react';
+import { Calendar, Clock, ArrowRight, Tag, X } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { getBlogPosts, type BlogPost } from '@/data/blogPosts';
 import { useApp } from '../contexts/AppContext';
@@ -12,6 +12,38 @@ export const BlogSection: React.FC = () => {
   const { locale } = useApp();
   const t = useTranslations();
   const blogPosts = getBlogPosts(locale);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+
+  // Extract all unique tags from blog posts
+  const allTags = useMemo(() => {
+    const tags = new Set<string>();
+    blogPosts.forEach((post) => {
+      post.tags.forEach((tag) => {
+        tags.add(tag);
+      });
+    });
+    return Array.from(tags);
+  }, [blogPosts]);
+
+  // Filter blog posts based on selected tags
+  const filteredPosts = useMemo(() => {
+    if (selectedTags.length === 0) {
+      return blogPosts;
+    }
+    return blogPosts.filter((post) =>
+      selectedTags.some((tag) => post.tags.includes(tag))
+    );
+  }, [blogPosts, selectedTags]);
+
+  const toggleTag = (tag: string) => {
+    setSelectedTags((prev) =>
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
+    );
+  };
+
+  const clearFilters = () => {
+    setSelectedTags([]);
+  };
 
   return (
     <section id="blog" className="py-20 px-4 sm:px-6 lg:px-8">
@@ -22,8 +54,46 @@ export const BlogSection: React.FC = () => {
           </h2>
         </div>
 
+        {/* Tags Filter Chips */}
+        <div className="mb-12 flex flex-wrap gap-3 items-center">
+          {allTags.map((tag) => (
+            <button
+              key={tag}
+              onClick={() => toggleTag(tag)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 flex items-center gap-2 ${
+                selectedTags.includes(tag)
+                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
+                  : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+              }`}
+            >
+              <Tag className="w-4 h-4" />
+              {tag}
+            </button>
+          ))}
+          {selectedTags.length > 0 && (
+            <button
+              onClick={clearFilters}
+              className="ml-auto px-4 py-2 rounded-full text-sm font-medium bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 hover:bg-red-200 dark:hover:bg-red-900/50 transition-all flex items-center gap-2"
+            >
+              <X className="w-4 h-4" />
+              {locale === 'en' ? 'Clear' : locale === 'fa' ? 'پاک کردن' : 'مسح'}
+            </button>
+          )}
+        </div>
+
+        {/* Results count */}
+        {selectedTags.length > 0 && (
+          <div className="mb-8 text-center text-gray-600 dark:text-gray-400 text-sm">
+            {locale === 'en'
+              ? `${filteredPosts.length} article${filteredPosts.length !== 1 ? 's' : ''} found`
+              : locale === 'fa'
+                ? `${filteredPosts.length} مقاله یافت شد`
+                : `تم العثور على ${filteredPosts.length} مقالة`}
+          </div>
+        )}
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogPosts.map((post) => (
+          {filteredPosts.map((post) => (
             <article
               key={post.id}
               className={`group backdrop-blur-xl bg-white/60 dark:bg-gray-900/60 rounded-2xl border-2 border-white/40 dark:border-gray-700/40 shadow-xl overflow-hidden transition-[transform,box-shadow,border-color,opacity] duration-300 hover:shadow-2xl hover:scale-[1.02] ${

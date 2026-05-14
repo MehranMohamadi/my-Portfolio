@@ -249,6 +249,48 @@ const blogPostDefinitions: BlogPostDefinition[] = [
   },
   {
     id: 7,
+    slug: 'nitro-js-guide',
+    title: {
+      en: 'Nitro.js - The Fullstack HTTP Server',
+      fa: 'Nitro.js - سرور HTTP کامل',
+      ar: 'Nitro.js - خادم HTTP الكامل',
+    },
+    excerpt: {
+      en: 'Learn how to build fast and scalable HTTP servers with Nitro.js',
+      fa: 'یاد بگیر چگونه با Nitro.js سرورهای سریع و مقیاس‌پذیر بسازی',
+      ar: 'تعلّم كيفية بناء خوادم HTTP سريعة وقابلة للتوسع باستخدام Nitro.js',
+    },
+    date: {
+      en: 'May 14, 2026',
+      fa: '۲۴ اردیبهشت ۱۴۰۵',
+      ar: '١٤ مايو ٢٠٢٦',
+    },
+    publishedAt: '2026-05-14T00:00:00.000Z',
+    updatedAt: '2026-05-14T00:00:00.000Z',
+    readTime: {
+      en: '10 min read',
+      fa: '۱۰ دقیقه',
+      ar: '١٠ دقائق',
+    },
+    category: {
+      en: 'Backend',
+      fa: 'بک‌اند',
+      ar: 'الواجهة الخلفية',
+    },
+    image: '/img/nitro-js-cover.svg',
+    tags: {
+      en: ['Nitro', 'Backend', 'JavaScript'],
+      fa: ['Nitro', 'بک‌اند', 'JavaScript'],
+      ar: ['Nitro', 'الواجهة الخلفية', 'JavaScript'],
+    },
+    markdownPath: {
+      en: '/blog/nitro_js_blog_en.md',
+      fa: '/blog/nitro_js_blog_fa.md',
+      ar: '/blog/nitro_js_blog_en.md',
+    },
+  },
+  {
+    id: 11,
     slug: 'ai-frontend-integration',
     title: {
       en: 'AI + Frontend Integration',
