@@ -43,6 +43,7 @@
   "project6Title": "Fitness Tracker",
   "project6Desc": "Personal health monitoring with AI-powered recommendations",
   "project7Desc": "Gamified productivity dashboard for tracking habits, goals, and skill progression like an RPG",
+  "project8Desc": "Tavan Sanat Shargh website for showcasing services and the 2026 exhibition presence",
   "years": "Years",
   "experience": "Experience",
   "completed": "Completed",
@@ -61,5 +62,6 @@
   "virasty": "Virasty",
   "fars": "Fars news ",
   "rpgSkillTracker": "RPG Skill Tracker",
+  "ipedco2026": "Tavan Sanat Shargh",
   "contactSuccessMessage": "sended"
 }

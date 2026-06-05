@@ -14,6 +14,7 @@ const projects = [
   { image: '/img/bimehyar.avif', titleKey: 'bimehyar', descKey: 'project5Desc', year: '2023', link: 'https://bimehyar.com' },
   { image: '/img/nasimrezvan.avif', titleKey: 'nasimrezvan', descKey: 'project6Desc', year: '2022', link: 'https://app.nasimrezvan.com/' },
   { image: '/img/rpg-skill-tracker-cover.svg', titleKey: 'rpgSkillTracker', descKey: 'project7Desc', year: '2025', link: 'https://rpg-skill-tracker.vercel.app/' },
+  { image: '/img/ipedco.webp', titleKey: 'ipedco2026', descKey: 'project8Desc', year: '2026', link: 'https://ipedco2026.vercel.app/' },
 ];
 
 export const ProjectsSection: React.FC = () => {
