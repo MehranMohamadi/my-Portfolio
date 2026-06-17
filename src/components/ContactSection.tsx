@@ -23,6 +23,25 @@ type ValidationMessageKey =
   | 'validationNameInvalidChars'
   | 'validationNameMultipleSpaces';
 
+const validationMessageKeys = new Set<string>([
+  'validationEmailRequired',
+  'validationEmailTooLong',
+  'validationEmailNoSpaces',
+  'validationEmailOneAt',
+  'validationEmailIncomplete',
+  'validationEmailLocalTooLong',
+  'validationEmailDots',
+  'validationEmailInvalidChars',
+  'validationEmailDomainInvalid',
+  'validationEmailDomainChars',
+  'validationEmailExtensionInvalid',
+  'validationNameRequired',
+  'validationNameTooShort',
+  'validationNameTooLong',
+  'validationNameInvalidChars',
+  'validationNameMultipleSpaces',
+]);
+
 function validateEmailAddress(value: string) {
   const email = value.trim();
 
@@ -124,6 +143,13 @@ export const ContactSection: React.FC = () => {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
   const [focusedField, setFocusedField] = useState<string | null>(null);
+  const getValidationMessage = (message: string, validKey: string) => {
+    if (!message) {
+      return t(validKey);
+    }
+
+    return validationMessageKeys.has(message) ? t(message) : message;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -306,7 +332,7 @@ export const ContactSection: React.FC = () => {
                     }`}
                     aria-live="polite"
                   >
-                    {nameError ? t(nameError) : t('validationNameValid')}
+                    {getValidationMessage(nameError, 'validationNameValid')}
                   </p>
                 </div>
 
@@ -350,7 +376,7 @@ export const ContactSection: React.FC = () => {
                     }`}
                     aria-live="polite"
                   >
-                    {emailError ? t(emailError) : t('validationEmailValid')}
+                    {getValidationMessage(emailError, 'validationEmailValid')}
                   </p>
                 </div>
 
