@@ -2,11 +2,27 @@ import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-const resendFromEmail = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
+const defaultFromEmail = 'onboarding@resend.dev';
+const resendFromEmail = process.env.RESEND_FROM_EMAIL || defaultFromEmail;
 const adminEmail = process.env.ADMIN_EMAIL || 'mehran.mohammadi.frd@gmail.com';
+const shouldSendAutoReply =
+  process.env.CONTACT_AUTO_REPLY === 'true' && resendFromEmail !== defaultFromEmail;
 
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+function formatMessage(value: string) {
+  return escapeHtml(value).replace(/\r?\n/g, '<br />');
 }
 
 export async function POST(request: Request) {
@@ -18,10 +34,21 @@ export async function POST(request: Request) {
       );
     }
 
-    const body = await request.json();
-    const name = String(body?.name || '').trim();
-    const email = String(body?.email || '').trim();
-    const message = String(body?.message || '').trim();
+    let body: unknown;
+
+    try {
+      body = await request.json();
+    } catch {
+      return NextResponse.json(
+        { error: 'Invalid request body.' },
+        { status: 400 }
+      );
+    }
+
+    const payload = body as Record<string, unknown>;
+    const name = String(payload?.name || '').trim();
+    const email = String(payload?.email || '').trim().toLowerCase();
+    const message = String(payload?.message || '').trim();
 
     if (!name || !email || !message) {
       return NextResponse.json(
@@ -44,32 +71,60 @@ export async function POST(request: Request) {
       );
     }
 
-    await Promise.all([
-      resend.emails.send({
-        from: `Portfolio Contact <${resendFromEmail}>`,
-        to: adminEmail,
-        replyTo: email,
-        subject: `New Contact Form Message from ${name}`,
-        html: `
+    if (name.length > 100 || email.length > 254 || message.length > 5000) {
+      return NextResponse.json(
+        { error: 'Your message is too long.' },
+        { status: 400 }
+      );
+    }
+
+    const safeName = escapeHtml(name);
+    const safeEmail = escapeHtml(email);
+    const safeMessage = formatMessage(message);
+
+    const adminResult = await resend.emails.send({
+      from: `Portfolio Contact <${resendFromEmail}>`,
+      to: adminEmail,
+      replyTo: email,
+      subject: `New Contact Form Message from ${name}`,
+      html: `
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
             <h2 style="color: #333; border-bottom: 2px solid #3b82f6; padding-bottom: 10px;">
               New Contact Form Submission
             </h2>
 
             <div style="background-color: #f3f4f6; padding: 20px; border-radius: 10px; margin: 20px 0;">
-              <p><strong style="color: #3b82f6;">Name:</strong> ${name}</p>
-              <p><strong style="color: #3b82f6;">Email:</strong> ${email}</p>
+              <p><strong style="color: #3b82f6;">Name:</strong> ${safeName}</p>
+              <p><strong style="color: #3b82f6;">Email:</strong> ${safeEmail}</p>
               <p><strong style="color: #3b82f6;">Message:</strong></p>
               <p style="background-color: white; padding: 15px; border-radius: 8px; border-left: 4px solid #3b82f6;">
-                ${message}
+                ${safeMessage}
               </p>
             </div>
 
             <p style="color: #666; font-size: 14px;">This message was sent from your portfolio contact form.</p>
           </div>
         `,
-      }),
-      resend.emails.send({
+      text: [
+        'New Contact Form Submission',
+        `Name: ${name}`,
+        `Email: ${email}`,
+        '',
+        message,
+      ].join('\n'),
+    });
+
+    if (adminResult.error) {
+      console.error('Resend admin email error:', adminResult.error);
+
+      return NextResponse.json(
+        { error: 'Failed to send email. Please try again later.' },
+        { status: 502 }
+      );
+    }
+
+    if (shouldSendAutoReply) {
+      const autoReplyResult = await resend.emails.send({
         from: `Mehran Mohammadi <${resendFromEmail}>`,
         to: email,
         subject: 'Thank you for contacting me!',
@@ -77,13 +132,13 @@ export async function POST(request: Request) {
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
             <h2 style="color: #333;">Thank you for reaching out!</h2>
 
-            <p>Hi ${name},</p>
+            <p>Hi ${safeName},</p>
 
             <p>Thanks for your message. I received it successfully and will get back to you as soon as possible.</p>
 
             <div style="background-color: #f3f4f6; padding: 20px; border-radius: 10px; margin: 20px 0;">
               <p style="margin: 0;"><strong>Your message:</strong></p>
-              <p style="background-color: white; padding: 15px; border-radius: 8px; margin-top: 10px;">${message}</p>
+              <p style="background-color: white; padding: 15px; border-radius: 8px; margin-top: 10px;">${safeMessage}</p>
             </div>
 
             <p>You can also reach me on Telegram: <a href="https://t.me/Mehran_ll" style="color: #3b82f6;">@Mehran_ll</a></p>
@@ -91,8 +146,25 @@ export async function POST(request: Request) {
             <p>Best regards,<br /><strong>Mehran Mohammadi</strong></p>
           </div>
         `,
-      }),
-    ]);
+        text: [
+          `Hi ${name},`,
+          '',
+          'Thanks for your message. I received it successfully and will get back to you as soon as possible.',
+          '',
+          'Your message:',
+          message,
+          '',
+          'Telegram: https://t.me/Mehran_ll',
+          '',
+          'Best regards,',
+          'Mehran Mohammadi',
+        ].join('\n'),
+      });
+
+      if (autoReplyResult.error) {
+        console.error('Resend auto-reply email error:', autoReplyResult.error);
+      }
+    }
 
     return NextResponse.json(
       { message: 'Email sent successfully' },
