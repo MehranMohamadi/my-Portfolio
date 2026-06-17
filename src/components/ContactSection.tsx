@@ -5,10 +5,121 @@ import { useApp } from '../contexts/AppContext';
 import { Send, CheckCircle, Mail, User, MessageSquare, Sparkles, Rocket, AlertCircle } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
+type ValidationMessageKey =
+  | 'validationEmailRequired'
+  | 'validationEmailTooLong'
+  | 'validationEmailNoSpaces'
+  | 'validationEmailOneAt'
+  | 'validationEmailIncomplete'
+  | 'validationEmailLocalTooLong'
+  | 'validationEmailDots'
+  | 'validationEmailInvalidChars'
+  | 'validationEmailDomainInvalid'
+  | 'validationEmailDomainChars'
+  | 'validationEmailExtensionInvalid'
+  | 'validationNameRequired'
+  | 'validationNameTooShort'
+  | 'validationNameTooLong'
+  | 'validationNameInvalidChars'
+  | 'validationNameMultipleSpaces';
+
+function validateEmailAddress(value: string) {
+  const email = value.trim();
+
+  if (!email) {
+    return 'validationEmailRequired';
+  }
+
+  if (email.length > 254) {
+    return 'validationEmailTooLong';
+  }
+
+  if (/\s/.test(email)) {
+    return 'validationEmailNoSpaces';
+  }
+
+  const parts = email.split('@');
+
+  if (parts.length !== 2) {
+    return 'validationEmailOneAt';
+  }
+
+  const [localPart, domain] = parts;
+
+  if (!localPart || !domain) {
+    return 'validationEmailIncomplete';
+  }
+
+  if (localPart.length > 64) {
+    return 'validationEmailLocalTooLong';
+  }
+
+  if (localPart.startsWith('.') || localPart.endsWith('.') || localPart.includes('..')) {
+    return 'validationEmailDots';
+  }
+
+  if (!/^[A-Z0-9.!#$%&'*+/=?^_`{|}~-]+$/i.test(localPart)) {
+    return 'validationEmailInvalidChars';
+  }
+
+  if (domain.length > 253 || domain.includes('..')) {
+    return 'validationEmailDomainInvalid';
+  }
+
+  const domainLabels = domain.split('.');
+
+  if (
+    domainLabels.length < 2 ||
+    domainLabels.some((label) => !label || label.length > 63 || label.startsWith('-') || label.endsWith('-'))
+  ) {
+    return 'validationEmailDomainInvalid';
+  }
+
+  if (!domainLabels.every((label) => /^[A-Z0-9-]+$/i.test(label))) {
+    return 'validationEmailDomainChars';
+  }
+
+  if (!/^[A-Z]{2,}$/i.test(domainLabels[domainLabels.length - 1])) {
+    return 'validationEmailExtensionInvalid';
+  }
+
+  return '';
+}
+
+function validateFullName(value: string) {
+  const name = value.trim();
+
+  if (!name) {
+    return 'validationNameRequired';
+  }
+
+  if (name.length < 2) {
+    return 'validationNameTooShort';
+  }
+
+  if (name.length > 80) {
+    return 'validationNameTooLong';
+  }
+
+  if (!/^[A-Z\u0600-\u06FF\s'.-]+$/i.test(name)) {
+    return 'validationNameInvalidChars';
+  }
+
+  if (/\s{2,}/.test(name)) {
+    return 'validationNameMultipleSpaces';
+  }
+
+  return '';
+}
+
 export const ContactSection: React.FC = () => {
   const { locale } = useApp();
   const t = useTranslations();
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [nameTouched, setNameTouched] = useState(false);
+  const [nameError, setNameError] = useState<ValidationMessageKey | ''>('');
+  const [emailTouched, setEmailTouched] = useState(false);
+  const [emailError, setEmailError] = useState<ValidationMessageKey | ''>('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
@@ -16,6 +127,18 @@ export const ContactSection: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const nextNameError = validateFullName(formData.name);
+    const nextEmailError = validateEmailAddress(formData.email);
+
+    setNameTouched(true);
+    setNameError(nextNameError);
+    setEmailTouched(true);
+    setEmailError(nextEmailError);
+
+    if (nextNameError || nextEmailError) {
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus('idle');
     setErrorMessage('');
@@ -37,6 +160,10 @@ export const ContactSection: React.FC = () => {
 
       setSubmitStatus('success');
       setFormData({ name: '', email: '', message: '' });
+      setNameTouched(false);
+      setNameError('');
+      setEmailTouched(false);
+      setEmailError('');
 
       setTimeout(() => {
         setSubmitStatus('idle');
@@ -55,10 +182,20 @@ export const ContactSection: React.FC = () => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
+    const nextFormData = {
       ...formData,
       [e.target.name]: e.target.value,
-    });
+    };
+
+    setFormData(nextFormData);
+
+    if (e.target.name === 'name' && nameTouched) {
+      setNameError(validateFullName(e.target.value));
+    }
+
+    if (e.target.name === 'email' && emailTouched) {
+      setEmailError(validateEmailAddress(e.target.value));
+    }
   };
 
   return (
@@ -127,7 +264,7 @@ export const ContactSection: React.FC = () => {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
+              <form onSubmit={handleSubmit} noValidate className="space-y-6 relative z-10">
                 <div className="relative group">
                   <label htmlFor="name" className="block mb-2 text-gray-700 dark:text-gray-300 flex items-center gap-2">
                     <User className="w-4 h-4 text-blue-600 dark:text-blue-400" />
@@ -136,21 +273,41 @@ export const ContactSection: React.FC = () => {
                   <div className="relative">
                     <input
                       onFocus={() => setFocusedField('name')}
-                      onBlur={() => setFocusedField(null)}
+                      onBlur={() => {
+                        setFocusedField(null);
+                        setNameTouched(true);
+                        setNameError(validateFullName(formData.name));
+                      }}
                       type="text"
                       id="name"
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
                       required
+                      maxLength={80}
+                      aria-invalid={Boolean(nameError)}
+                      aria-describedby="name-error"
                       disabled={isSubmitting}
                       placeholder={t('contactName')}
-                      className="w-full px-5 py-4 rounded-2xl backdrop-blur-md bg-white/70 dark:bg-gray-700/70 border-2 border-gray-200/50 dark:border-gray-600/50 focus:border-blue-500 dark:focus:border-blue-400 focus:outline-none transition-all duration-300 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className={`w-full px-5 py-4 rounded-2xl backdrop-blur-md bg-white/70 dark:bg-gray-700/70 border-2 focus:outline-none transition-all duration-300 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 disabled:opacity-50 disabled:cursor-not-allowed ${
+                        nameError
+                          ? 'border-red-400/70 dark:border-red-500/70 focus:border-red-500 dark:focus:border-red-400'
+                          : 'border-gray-200/50 dark:border-gray-600/50 focus:border-blue-500 dark:focus:border-blue-400'
+                      }`}
                     />
                     {focusedField === 'name' && (
                       <div className="absolute inset-0 rounded-2xl bg-blue-500/20 -z-10 blur-xl"></div>
                     )}
                   </div>
+                  <p
+                    id="name-error"
+                    className={`mt-2 min-h-[20px] text-sm leading-5 text-red-600 dark:text-red-400 transition-opacity duration-200 ${
+                      nameError ? 'opacity-100' : 'opacity-0'
+                    }`}
+                    aria-live="polite"
+                  >
+                    {nameError ? t(nameError) : t('validationNameValid')}
+                  </p>
                 </div>
 
                 <div className="relative group">
@@ -161,21 +318,40 @@ export const ContactSection: React.FC = () => {
                   <div className="relative">
                     <input
                       onFocus={() => setFocusedField('email')}
-                      onBlur={() => setFocusedField(null)}
+                      onBlur={() => {
+                        setFocusedField(null);
+                        setEmailTouched(true);
+                        setEmailError(validateEmailAddress(formData.email));
+                      }}
                       type="email"
                       id="email"
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
                       required
+                      aria-invalid={Boolean(emailError)}
+                      aria-describedby="email-error"
                       disabled={isSubmitting}
                       placeholder={t('contactEmail')}
-                      className="w-full px-5 py-4 rounded-2xl backdrop-blur-md bg-white/70 dark:bg-gray-700/70 border-2 border-gray-200/50 dark:border-gray-600/50 focus:border-purple-500 dark:focus:border-purple-400 focus:outline-none transition-all duration-300 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className={`w-full px-5 py-4 rounded-2xl backdrop-blur-md bg-white/70 dark:bg-gray-700/70 border-2 focus:outline-none transition-all duration-300 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 disabled:opacity-50 disabled:cursor-not-allowed ${
+                        emailError
+                          ? 'border-red-400/70 dark:border-red-500/70 focus:border-red-500 dark:focus:border-red-400'
+                          : 'border-gray-200/50 dark:border-gray-600/50 focus:border-purple-500 dark:focus:border-purple-400'
+                      }`}
                     />
                     {focusedField === 'email' && (
                       <div className="absolute inset-0 rounded-2xl bg-purple-500/20 -z-10 blur-xl"></div>
                     )}
                   </div>
+                  <p
+                    id="email-error"
+                    className={`mt-2 min-h-[20px] text-sm leading-5 text-red-600 dark:text-red-400 transition-opacity duration-200 ${
+                      emailError ? 'opacity-100' : 'opacity-0'
+                    }`}
+                    aria-live="polite"
+                  >
+                    {emailError ? t(emailError) : t('validationEmailValid')}
+                  </p>
                 </div>
 
                 <div className="relative group">
