@@ -14,7 +14,16 @@ import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
 import { ImageWithFallback } from '@/components/figma/ImageWithFallback';
 import { getBlogPostBySlug, getPublishedBlogSlugs } from '@/data/blogPosts';
-import { getAbsoluteUrl, getLanguageAlternates, localeMetadata, normalizeLocale, siteConfig } from '@/lib/seo';
+import {
+  getAbsoluteAssetUrl,
+  getAbsoluteUrl,
+  getLanguageAlternates,
+  getShareImageUrl,
+  getWebPageJsonLd,
+  localeMetadata,
+  normalizeLocale,
+  siteConfig,
+} from '@/lib/seo';
 
 type PageProps = {
   params: Promise<{
@@ -70,6 +79,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const safeLocale = normalizeLocale(locale);
   const pathname = `/blog/${slug}`;
   const canonical = getAbsoluteUrl(safeLocale, pathname);
+  const shareImage = getShareImageUrl(post.image);
 
   return {
     title: post.title,
@@ -92,7 +102,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       modifiedTime: post.updatedAt ?? post.publishedAt,
       images: [
         {
-          url: post.image,
+          url: shareImage,
+          width: 1200,
+          height: 630,
           alt: post.title,
         },
       ],
@@ -101,7 +113,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       card: 'summary_large_image',
       title: post.title,
       description: post.excerpt,
-      images: [post.image],
+      images: [shareImage],
     },
   };
 }
@@ -118,6 +130,7 @@ export default async function BlogPostPage({ params }: PageProps) {
   const safeLocale = normalizeLocale(locale);
   const isRtl = safeLocale === 'fa' || safeLocale === 'ar';
   const articleUrl = getAbsoluteUrl(safeLocale, `/blog/${slug}`);
+  const shareImage = getShareImageUrl(post.image);
   const markdownComponents: Components = {
     h2: ({ children, ...props }) => (
       <h2 className="mt-12 mb-4 text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-white" {...props}>
@@ -201,24 +214,32 @@ export default async function BlogPostPage({ params }: PageProps) {
     '@type': 'BlogPosting',
     headline: post.title,
     description: post.excerpt,
-    image: [post.image],
+    image: [shareImage],
     inLanguage: safeLocale,
     mainEntityOfPage: articleUrl,
     author: {
       '@type': 'Person',
       name: siteConfig.name,
       url: siteConfig.siteUrl,
+      image: getAbsoluteAssetUrl(siteConfig.profileImage),
     },
     publisher: {
       '@type': 'Person',
       name: siteConfig.name,
       url: siteConfig.siteUrl,
+      image: getAbsoluteAssetUrl(siteConfig.profileImage),
     },
     datePublished: post.publishedAt,
     dateModified: post.updatedAt ?? post.publishedAt,
     articleSection: post.category,
     keywords: post.tags.join(', '),
   };
+  const webPageJsonLd = getWebPageJsonLd({
+    locale: safeLocale,
+    pathname: `/blog/${slug}`,
+    title: post.title,
+    description: post.excerpt,
+  });
 
   return (
     <div className="min-h-screen relative">
@@ -226,7 +247,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       <main className="overflow-x-hidden bg-background pt-24 pb-16 px-4 sm:px-6 lg:px-8">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify([articleJsonLd, webPageJsonLd]) }}
         />
         <article className="max-w-4xl mx-auto" dir={isRtl ? 'rtl' : 'ltr'}>
           <Link
