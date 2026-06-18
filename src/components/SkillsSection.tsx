@@ -255,8 +255,6 @@ export const SkillsSection: React.FC = () => {
       clearTimerRef.current = null;
     }
     setHoveredIndex(index);
-    updateOverlaySize();
-    setLines(buildLines(index));
     setNetworkVisible(true);
   };
 
@@ -297,7 +295,7 @@ export const SkillsSection: React.FC = () => {
 
         <div ref={gridRef} className="relative grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4" onMouseLeave={onLeave}>
           <svg
-            className={`pointer-events-none absolute inset-0 z-10 h-full w-full overflow-visible transition-opacity duration-200 ${networkVisible ? 'opacity-100' : 'opacity-0'}`}
+            className={`pointer-events-none absolute inset-0 z-30 h-full w-full overflow-visible transition-opacity duration-200 ${networkVisible ? 'opacity-100' : 'opacity-0'}`}
             viewBox={`0 0 ${overlaySize.width} ${overlaySize.height}`}
             preserveAspectRatio="none"
           >
@@ -320,6 +318,7 @@ export const SkillsSection: React.FC = () => {
                 <path
                   id={line.id}
                   d={line.d}
+                  pathLength={1}
                   fill="none"
                   stroke="url(#skills-network-gradient)"
                   strokeWidth={1.8}
@@ -376,8 +375,8 @@ export const SkillsSection: React.FC = () => {
       </div>
       <style jsx>{`
         .skills-network-line {
-          stroke-dasharray: 420;
-          stroke-dashoffset: 420;
+          stroke-dasharray: 1;
+          stroke-dashoffset: 1;
           animation: drawLine 0.6s ease forwards, pulseLine 2.2s ease-in-out infinite 0.6s;
         }
 
