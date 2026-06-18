@@ -1,6 +1,7 @@
 import { Header } from "../../components/Header";
 import { IntroSection } from "../../components/IntroSection";
 import { AboutSection } from "@/components/AboutSection";
+import { DeferredSection } from "@/components/DeferredSection";
 import { Footer } from "@/components/Footer";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import dynamic from "next/dynamic";
@@ -136,14 +137,18 @@ export default async function HomePage({ params }: PageProps) {
       <Header />
       <main className="overflow-x-hidden bg-background">
         <IntroSection />
-        <SkillsSection />
+        <DeferredSection id="skills" minHeight={560}>
+          <SkillsSection />
+        </DeferredSection>
         <ProjectsSection
           title={t("projectsTitle")}
           subtitle={t("projectsSubtitle")}
           viewDetails={t("viewDetails")}
           projectTitles={projectTitles}
         />
-        <BlogSection/>
+        <DeferredSection id="blog" minHeight={640}>
+          <BlogSection />
+        </DeferredSection>
         <AboutSection
           title={t("aboutTitle")}
           subtitle={t("aboutSubtitle")}
@@ -157,7 +162,9 @@ export default async function HomePage({ params }: PageProps) {
           coffee={t("coffee")}
           consumed={t("consumed")}
         />
-        <ContactSection />
+        <DeferredSection id="contact" minHeight={720}>
+          <ContactSection />
+        </DeferredSection>
       </main>
       <Footer
         footerText={t("footerText")}

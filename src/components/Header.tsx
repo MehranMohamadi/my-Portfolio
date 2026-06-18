@@ -26,27 +26,50 @@ useEffect(() => {
     return;
   }
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
-      });
-    },
-    {
-      root: null,
-      rootMargin: "-50% 0px -50% 0px",
-      threshold: 0,
+  let observer: IntersectionObserver | null = null;
+  let timeoutId: ReturnType<typeof setTimeout> | null = null;
+  let idleId: number | null = null;
+
+  const startObserving = () => {
+    observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: "-50% 0px -50% 0px",
+        threshold: 0,
+      }
+    );
+
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer?.observe(el);
+    });
+  };
+
+  const requestIdle = window.requestIdleCallback?.bind(window);
+  const cancelIdle = window.cancelIdleCallback?.bind(window);
+
+  if (requestIdle) {
+    idleId = requestIdle(startObserving, { timeout: 1600 });
+  } else {
+    timeoutId = globalThis.setTimeout(startObserving, 900);
+  }
+
+  return () => {
+    if (idleId !== null && cancelIdle) {
+      cancelIdle(idleId);
     }
-  );
-
-  sections.forEach((id) => {
-    const el = document.getElementById(id);
-    if (el) observer.observe(el);
-  });
-
-  return () => observer.disconnect();
+    if (timeoutId !== null) {
+      globalThis.clearTimeout(timeoutId);
+    }
+    observer?.disconnect();
+  };
 }, [locale, pathname]);
 
 
