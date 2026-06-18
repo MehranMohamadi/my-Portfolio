@@ -45,7 +45,7 @@ export const IntroSection: React.FC = () => {
             </div>
             
             <p
-              className="text-gray-600 dark:text-gray-400 max-w-lg mx-auto lg:mx-0 text-sm sm:text-base text-start"
+              className="text-gray-700 dark:text-gray-300 max-w-lg mx-auto lg:mx-0 text-sm sm:text-base text-start"
             >
               {t('introDescription')}
             </p>
@@ -92,7 +92,7 @@ export const IntroSection: React.FC = () => {
   alt="Profile"
   width={256}
   height={256}
-  sizes="192px"
+  sizes="(max-width: 640px) 192px, 256px"
   priority
   fetchPriority="high"
   className="w-full h-full object-cover"

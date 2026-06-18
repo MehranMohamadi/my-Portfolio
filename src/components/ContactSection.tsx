@@ -236,7 +236,7 @@ export const ContactSection: React.FC = () => {
             {t('contactTitle')}
           </h2>
 
-          <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base">
+          <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base">
             {t('contactSubtitle')}
           </p>
 
@@ -273,7 +273,7 @@ export const ContactSection: React.FC = () => {
                 <h3 className="text-green-600 dark:text-green-400 mb-2 text-xl sm:text-2xl">
                   {t('contactSuccess')}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400">
+                <p className="text-gray-700 dark:text-gray-300">
                   {t('contactSuccessMessage')}
                 </p>
               </div>
@@ -285,7 +285,7 @@ export const ContactSection: React.FC = () => {
                 <h3 className="text-red-600 dark:text-red-400 mb-2 text-xl sm:text-2xl">
                   Oops! Something went wrong
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400">
+                <p className="text-gray-700 dark:text-gray-300">
                   {errorMessage || 'Please try again later.'}
                 </p>
               </div>

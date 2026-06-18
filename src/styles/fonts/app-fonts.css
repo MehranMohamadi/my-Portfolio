@@ -1,0 +1,23 @@
+@font-face {
+  font-display: swap;
+  font-family: 'Yekan Bakh';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./persian/yekanBakh/woff2/YekanBakh-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Yekan Bakh';
+  font-style: normal;
+  font-weight: 600;
+  src: url('./persian/yekanBakh/woff2/YekanBakh-SemiBold.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Yekan Bakh';
+  font-style: normal;
+  font-weight: 700;
+  src: url('./persian/yekanBakh/woff2/YekanBakh-Bold.woff2') format('woff2');
+}

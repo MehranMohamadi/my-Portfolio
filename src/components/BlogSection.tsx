@@ -83,7 +83,7 @@ export const BlogSection: React.FC = () => {
 
         {/* Results count */}
         {selectedTags.length > 0 && (
-          <div className="mb-8 text-center text-gray-600 dark:text-gray-400 text-sm">
+          <div className="mb-8 text-center text-gray-700 dark:text-gray-300 text-sm">
             {locale === 'en'
               ? `${filteredPosts.length} article${filteredPosts.length !== 1 ? 's' : ''} found`
               : locale === 'fa'
@@ -97,7 +97,7 @@ export const BlogSection: React.FC = () => {
             <article
               key={post.id}
               className={`group backdrop-blur-xl bg-white/60 dark:bg-gray-900/60 rounded-2xl border-2 border-white/40 dark:border-gray-700/40 shadow-xl overflow-hidden transition-[transform,box-shadow,border-color,opacity] duration-300 hover:shadow-2xl hover:scale-[1.02] ${
-                post.comingSoon ? 'opacity-70 hover:scale-100 cursor-not-allowed' : 'cursor-pointer'
+                post.comingSoon ? 'hover:scale-100 cursor-not-allowed' : 'cursor-pointer'
               }`}
             >
               {post.comingSoon ? (
@@ -154,7 +154,7 @@ function BlogCardContent({
       </div>
 
       <div className="p-6">
-        <div className="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400 mb-3">
+        <div className="flex items-center gap-4 text-xs text-gray-600 dark:text-gray-300 mb-3">
           <div className="flex items-center gap-1">
             <Calendar className="w-3 h-3" />
             <span>{post.date}</span>
@@ -169,7 +169,7 @@ function BlogCardContent({
           {post.title}
         </h3>
 
-        <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3">
+        <p className="text-gray-700 dark:text-gray-300 text-sm mb-4 line-clamp-3">
           {post.excerpt}
         </p>
 
@@ -188,7 +188,7 @@ function BlogCardContent({
         <div
           className={`inline-flex items-center gap-2 font-semibold text-sm transition-[color,gap] ${
             post.comingSoon
-              ? 'text-gray-400 cursor-not-allowed'
+              ? 'text-gray-700 dark:text-gray-300 cursor-not-allowed'
               : 'text-blue-600 dark:text-blue-400 group-hover:gap-3'
           }`}
         >

@@ -32,6 +32,29 @@ type PageProps = {
   }>;
 };
 
+type Messages = Record<string, string>;
+
+async function getMessages(locale: string): Promise<Messages> {
+  try {
+    return (await import(`../../../../messages/${locale}.json`)).default;
+  } catch {
+    return (await import("../../../../messages/en.json")).default;
+  }
+}
+
+function splitFooterMade(value: string) {
+  const separators = ["❤️", "❤", "Ã¢ÂÂ¤Ã¯Â¸Â", "â¤ï¸"];
+  const separator = separators.find((item) => value.includes(item));
+
+  if (!separator) {
+    return { before: value, after: "" };
+  }
+
+  const [before, ...after] = value.split(separator);
+
+  return { before, after: after.join(separator) };
+}
+
 const getPostContent = cache(async (locale: string, slug: string) => {
   const post = getBlogPostBySlug(locale, slug);
 
@@ -131,6 +154,9 @@ export default async function BlogPostPage({ params }: PageProps) {
   const isRtl = safeLocale === 'fa' || safeLocale === 'ar';
   const articleUrl = getAbsoluteUrl(safeLocale, `/blog/${slug}`);
   const shareImage = getShareImageUrl(post.image);
+  const messages = await getMessages(safeLocale);
+  const t = (key: string) => messages[key] ?? key;
+  const footerMade = splitFooterMade(t("footerMade"));
   const markdownComponents: Components = {
     h2: ({ children, ...props }) => (
       <h2 className="mt-12 mb-4 text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-white" {...props}>
@@ -278,11 +304,11 @@ export default async function BlogPostPage({ params }: PageProps) {
                 {post.title}
               </h1>
 
-              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 mb-6">
+              <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 mb-6">
                 {post.excerpt}
               </p>
 
-              <div className="flex flex-wrap items-center gap-6 text-sm text-gray-500 dark:text-gray-400 mb-8">
+              <div className="flex flex-wrap items-center gap-6 text-sm text-gray-600 dark:text-gray-300 mb-8">
                 <div className="inline-flex items-center gap-2">
                   <Calendar className="w-4 h-4" />
                   <span>{post.date}</span>
@@ -317,7 +343,11 @@ export default async function BlogPostPage({ params }: PageProps) {
           </div>
         </article>
       </main>
-      <Footer />
+      <Footer
+        footerText={t("footerText")}
+        footerMadeBefore={footerMade.before}
+        footerMadeAfter={footerMade.after}
+      />
     </div>
   );
 }

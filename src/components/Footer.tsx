@@ -1,14 +1,12 @@
-'use client';
+import { Github, Heart, Linkedin, Mail, Send } from 'lucide-react';
 
-import React from 'react';
-import { useApp } from '../contexts/AppContext';
-import { Github, Linkedin, Mail, Heart, Send } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+type FooterProps = {
+  footerText: string;
+  footerMadeBefore: string;
+  footerMadeAfter: string;
+};
 
-export const Footer: React.FC = () => {
-  const { locale } = useApp();
-  const t = useTranslations();
-
+export function Footer({ footerText, footerMadeBefore, footerMadeAfter }: FooterProps) {
   const socialLinks = [
     { icon: Github, href: 'https://github.com/MehranMohamadi', label: 'GitHub', color: 'from-gray-700 to-gray-900' },
     { icon: Linkedin, href: 'https://www.linkedin.com/in/mehran-mohammadi-far/', label: 'LinkedIn', color: 'from-blue-600 to-blue-800' },
@@ -22,12 +20,12 @@ export const Footer: React.FC = () => {
 
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="flex flex-wrap justify-center gap-4 mb-8">
-          {socialLinks.map((social, index) => {
+          {socialLinks.map((social) => {
             const Icon = social.icon;
 
             return (
               <a
-                key={index}
+                key={social.href}
                 href={social.href}
                 aria-label={social.label}
                 target={social.href.startsWith('http') ? '_blank' : undefined}
@@ -38,7 +36,7 @@ export const Footer: React.FC = () => {
                   className={`absolute inset-0 bg-gradient-to-br ${social.color} opacity-0 group-hover:opacity-20 transition-opacity duration-300`}
                 ></div>
 
-                <Icon className="relative w-6 h-6 text-gray-600 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
+                <Icon className="relative w-6 h-6 text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-300 transition-colors" />
               </a>
             );
           })}
@@ -51,15 +49,15 @@ export const Footer: React.FC = () => {
 
         <div className="text-center space-y-3">
           <p className="text-gray-700 dark:text-gray-300 font-medium text-sm sm:text-base">
-            {t('footerText')}
+            {footerText}
           </p>
 
-          <p className="text-gray-600 dark:text-gray-400 flex items-center justify-center gap-2 flex-wrap text-sm">
-            <span>{t('footerMade').split('â¤ï¸')[0]}</span>
+          <p className="text-gray-700 dark:text-gray-300 flex items-center justify-center gap-2 flex-wrap text-sm">
+            <span>{footerMadeBefore}</span>
             <span>
               <Heart className="w-4 h-4 text-red-500 fill-current inline" />
             </span>
-            <span>{t('footerMade').split('â¤ï¸')[1]}</span>
+            <span>{footerMadeAfter}</span>
           </p>
         </div>
       </div>
@@ -68,4 +66,4 @@ export const Footer: React.FC = () => {
       <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-purple-500/10 to-transparent pointer-events-none"></div>
     </footer>
   );
-};
+}

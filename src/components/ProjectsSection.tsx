@@ -1,10 +1,6 @@
-'use client';
-
-import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ExternalLink } from 'lucide-react';
-import { useTranslations } from 'next-intl';
 
 const projects = [
   { image: '/img/farsnews.avif', titleKey: 'fars', descKey: 'project1Desc', year: '2023', link: 'https://farsnews.ir/' },
@@ -12,14 +8,19 @@ const projects = [
   { image: '/img/msgway.avif', titleKey: 'msgway', descKey: 'project3Desc', year: '2024', link: 'https://msgway.com/' },
   { image: '/img/gap.avif', titleKey: 'gap', descKey: 'project4Desc', year: '2023', link: 'https://gap.im/' },
   { image: '/img/bimehyar.avif', titleKey: 'bimehyar', descKey: 'project5Desc', year: '2023', link: 'https://bimehyar.com' },
-  { image: '/img/nasimrezvan.avif', titleKey: 'nasimrezvan', descKey: 'project6Desc', year: '2022', link: 'https://app.nasimrezvan.com/' },
+  { image: '/img/nasimrezvan.avif', titleKey: 'nasimrezvan', descKey: 'project6Desc', year: '2022', link: 'https://app.nasimrezvan.com/', quality: 60 },
   { image: '/img/rpg-skill-tracker-cover.svg', titleKey: 'rpgSkillTracker', descKey: 'project7Desc', year: '2025', link: 'https://rpg-skill-tracker.vercel.app/' },
   { image: '/img/ipedco.webp', titleKey: 'ipedco2026', descKey: 'project8Desc', year: '2026', link: 'https://ipedco2026.vercel.app/' },
 ];
 
-export const ProjectsSection: React.FC = () => {
-  const t = useTranslations();
+type ProjectsSectionProps = {
+  title: string;
+  subtitle: string;
+  viewDetails: string;
+  projectTitles: Record<string, string>;
+};
 
+export function ProjectsSection({ title, subtitle, viewDetails, projectTitles }: ProjectsSectionProps) {
   return (
     <section
       id="projects"
@@ -30,10 +31,10 @@ export const ProjectsSection: React.FC = () => {
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2 text-2xl sm:text-3xl lg:text-4xl">
-            {t('projectsTitle')}
+            {title}
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base">
-            {t('projectsSubtitle')}
+          <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base">
+            {subtitle}
           </p>
         </div>
 
@@ -56,9 +57,10 @@ export const ProjectsSection: React.FC = () => {
                   {project.image && (
                     <Image
                       src={project.image}
-                      alt={t(project.titleKey)}
+                      alt={projectTitles[project.titleKey]}
                       fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 384px"
+                      quality={project.quality ?? 75}
                       className="object-contain transition-transform duration-500 group-hover:scale-110"
                     />
                   )}
@@ -76,7 +78,7 @@ export const ProjectsSection: React.FC = () => {
                 <div className="relative p-5 bg-linear-to-b from-white/60 to-white/80 dark:from-gray-800/60 dark:to-gray-800/80">
                   <div className="flex items-start justify-between mb-2">
                     <h3 className="text-gray-900 dark:text-white text-base sm:text-lg font-semibold">
-                      {t(project.titleKey)}
+                      {projectTitles[project.titleKey]}
                     </h3>
                     {/* <span className="ml-2 px-3 py-1 text-xs rounded-full bg-linear-to-r from-blue-600 to-purple-600 text-white whitespace-nowrap">
                       {project.year}
@@ -93,7 +95,7 @@ export const ProjectsSection: React.FC = () => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/60 dark:bg-gray-700/60 border border-white/40 dark:border-gray-600/40 text-blue-600 dark:text-blue-400 hover:bg-linear-to-r hover:from-blue-600 hover:to-purple-600 hover:text-white transition-[color,background-color,border-color] text-sm group/button"
                   >
-                    {t('viewDetails')}
+                    {viewDetails}
                     <ExternalLink className="w-4 h-4 transition-transform group-hover/button:rotate-45" />
                   </Link>
                 </div>
@@ -107,4 +109,4 @@ export const ProjectsSection: React.FC = () => {
       </div>
     </section>
   );
-};
+}

@@ -290,7 +290,7 @@ export const SkillsSection: React.FC = () => {
           <h2 className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2 text-2xl sm:text-3xl lg:text-4xl">
             {t('skillsTitle')}
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base">
+          <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base">
             {t('skillsSubtitle')}
           </p>
         </div>
@@ -355,7 +355,7 @@ export const SkillsSection: React.FC = () => {
                 <h3 className="mb-1 text-gray-900 dark:text-white text-sm font-semibold">
                   {skill.title[locale]}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400 text-[11px] text-center">
+                <p className="text-gray-700 dark:text-gray-300 text-[11px] text-center">
                   {skill.items[locale]}
                 </p>
               </div>

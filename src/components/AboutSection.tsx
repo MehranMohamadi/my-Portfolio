@@ -1,11 +1,32 @@
-'use client'
-import React from 'react';
-import { useTranslations } from 'next-intl';
 import { Heart, Code, Coffee } from 'lucide-react';
 
-export const AboutSection: React.FC = () => {
-  const t = useTranslations(); // hook برای گرفتن متن‌ها طبق locale
+type AboutSectionProps = {
+  title: string;
+  subtitle: string;
+  text1: string;
+  text2: string;
+  text3: string;
+  years: string;
+  experience: string;
+  project: string;
+  completed: string;
+  coffee: string;
+  consumed: string;
+};
 
+export function AboutSection({
+  title,
+  subtitle,
+  text1,
+  text2,
+  text3,
+  years,
+  experience,
+  project,
+  completed,
+  coffee,
+  consumed,
+}: AboutSectionProps) {
   return (
     <section id="about" className="py-20 px-4">
       <div className="max-w-4xl mx-auto">
@@ -14,10 +35,10 @@ export const AboutSection: React.FC = () => {
           className="text-center mb-12"
         >
           <h2 className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
-            {t('aboutTitle')}
+            {title}
           </h2>
-          <p className="text-gray-600 dark:text-gray-400">
-            {t('aboutSubtitle')}
+          <p className="text-gray-700 dark:text-gray-300">
+            {subtitle}
           </p>
         </div>
 
@@ -28,15 +49,15 @@ export const AboutSection: React.FC = () => {
           <div className="space-y-6 text-gray-700 dark:text-gray-300 leading-relaxed">
             <p
             >
-              {t('aboutText1')}
+              {text1}
             </p>
             <p
             >
-              {t('aboutText2')}
+              {text2}
             </p>
             <p
             >
-              {t('aboutText3')}
+              {text3}
             </p>
           </div>
 
@@ -50,8 +71,8 @@ export const AboutSection: React.FC = () => {
               >
                 <Code className="w-6 h-6 text-blue-600 dark:text-blue-400" />
               </div>
-              <p className="text-gray-900 dark:text-white">4+ {t('years')}</p>
-              <p className="text-gray-600 dark:text-gray-400">{t('experience')}</p>
+              <p className="text-gray-900 dark:text-white">4+ {years}</p>
+              <p className="text-gray-700 dark:text-gray-300">{experience}</p>
             </div>
             <div className="text-center group">
               <div
@@ -59,8 +80,8 @@ export const AboutSection: React.FC = () => {
               >
                 <Heart className="w-6 h-6 text-purple-600 dark:text-purple-400" />
               </div>
-              <p className="text-gray-900 dark:text-white">7+ {t('project')}</p>
-              <p className="text-gray-600 dark:text-gray-400">{t('completed')}</p>
+              <p className="text-gray-900 dark:text-white">7+ {project}</p>
+              <p className="text-gray-700 dark:text-gray-300">{completed}</p>
             </div>
             <div className="text-center group">
               <div
@@ -68,12 +89,12 @@ export const AboutSection: React.FC = () => {
               >
                 <Coffee className="w-6 h-6 text-pink-600 dark:text-pink-400" />
               </div>
-              <p className="text-gray-900 dark:text-white">∞ {t('coffee')}</p>
-              <p className="text-gray-600 dark:text-gray-400">{t('consumed')}</p>
+              <p className="text-gray-900 dark:text-white">∞ {coffee}</p>
+              <p className="text-gray-700 dark:text-gray-300">{consumed}</p>
             </div>
           </div>
         </div>
       </div>
     </section>
   );
-};
+}
