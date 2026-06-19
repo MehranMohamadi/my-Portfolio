@@ -88,7 +88,7 @@ export const IntroSection: React.FC = () => {
                     className="w-48 h-48 sm:w-64 sm:h-64 mx-auto rounded-2xl overflow-hidden ring-4 ring-white/50 dark:ring-gray-600/50 shadow-xl"
                   >
       <Image
-  src="/img/profile.png"
+  src="/img/profile.jpg"
   alt="Profile"
   width={256}
   height={256}

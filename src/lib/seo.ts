@@ -4,7 +4,7 @@ export const siteConfig = {
   defaultLocale: 'en',
   locales: ['en', 'fa', 'ar'] as const,
   ogImage: '/og-image.jpg.png',
-  profileImage: '/img/profile.png',
+  profileImage: '/img/profile.jpg',
   sameAs: [
     'https://github.com/MehranMohamadi',
     'https://www.linkedin.com/in/mehran-mohammadi-far/',
