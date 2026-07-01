@@ -16,7 +16,7 @@ export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [langMenuOpen, setLangMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-  const sections = ["home", "skills", "projects","blog", "about", "contact"];
+  const sections = ["home", "skills", "projects", "blog", "about", "contact"];
 
 
 useEffect(() => {
@@ -117,13 +117,13 @@ const changeLanguage = (lang: string) => {
           {/* Logo */}
           <div className="shrink-0">
             <span className="text-xl sm:text-2xl font-bold bg-linear-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-              Mehran Mohamadi
+              Mehran Mohammadi
             </span>
           </div>
 
           {/* Desktop Navigation */}
          <div className="hidden md:flex items-center gap-6 lg:gap-8">
-  {["home", "skills", "projects","blog", "about", "contact"].map((section) => (
+  {sections.map((section) => (
     <button
       key={section}
       onClick={() => scrollToSection(section)}
@@ -236,7 +236,7 @@ const changeLanguage = (lang: string) => {
             <div
               className="md:hidden py-4 space-y-2 backdrop-blur-xl bg-white/50 dark:bg-gray-900/50 rounded-2xl my-2 border border-white/30 dark:border-gray-700/30"
             >
-              {["home", "skills", "projects", "blog", "about", "contact"].map(
+              {sections.map(
                 (section) => (
                   <button
                     key={section}

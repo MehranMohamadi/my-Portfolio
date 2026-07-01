@@ -1,8 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useApp } from '../contexts/AppContext';
-import { Send, CheckCircle, Mail, User, MessageSquare, Sparkles, Rocket, AlertCircle } from 'lucide-react';
+import { Send, CheckCircle, Mail, User, MessageSquare, Sparkles, Rocket, AlertCircle, Linkedin, Github } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 type ValidationMessageKey =
@@ -132,7 +131,6 @@ function validateFullName(value: string) {
 }
 
 export const ContactSection: React.FC = () => {
-  const { locale } = useApp();
   const t = useTranslations();
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [nameTouched, setNameTouched] = useState(false);
@@ -150,6 +148,32 @@ export const ContactSection: React.FC = () => {
 
     return validationMessageKeys.has(message) ? t(message) : message;
   };
+  const contactLinks = [
+    {
+      href: 'mailto:mehran.mohammadi.frd@gmail.com',
+      label: 'Email',
+      text: 'mehran.mohammadi.frd@gmail.com',
+      icon: Mail,
+    },
+    {
+      href: 'https://t.me/Mehran_ll',
+      label: 'Telegram',
+      text: '@Mehran_ll',
+      icon: Send,
+    },
+    {
+      href: 'https://www.linkedin.com/in/mehran-mohammadi-far/',
+      label: 'LinkedIn',
+      text: 'LinkedIn',
+      icon: Linkedin,
+    },
+    {
+      href: 'https://github.com/MehranMohamadi',
+      label: 'GitHub',
+      text: 'GitHub',
+      icon: Github,
+    },
+  ];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -241,22 +265,24 @@ export const ContactSection: React.FC = () => {
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-3 mt-5">
-            <a
-              href="mailto:mehran.mohammadi.frd@gmail.com"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 dark:bg-gray-800/70 border border-white/40 dark:border-gray-700/40 text-sm text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-            >
-              <Mail className="w-4 h-4" />
-              mehran.mohammadi.frd@gmail.com
-            </a>
-            <a
-              href="https://t.me/Mehran_ll"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 dark:bg-gray-800/70 border border-white/40 dark:border-gray-700/40 text-sm text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-            >
-              <Send className="w-4 h-4" />
-              @Mehran_ll
-            </a>
+            {contactLinks.map((link) => {
+              const Icon = link.icon;
+              const isExternal = link.href.startsWith('http');
+
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  target={isExternal ? '_blank' : undefined}
+                  rel={isExternal ? 'noopener noreferrer' : undefined}
+                  aria-label={`Contact Mehran Mohammadi on ${link.label}`}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 dark:bg-gray-800/70 border border-white/40 dark:border-gray-700/40 text-sm text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                >
+                  <Icon className="w-4 h-4" />
+                  {link.text}
+                </a>
+              );
+            })}
           </div>
         </div>
 

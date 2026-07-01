@@ -4,6 +4,7 @@ import { AboutSection } from "@/components/AboutSection";
 import { DeferredSection } from "@/components/DeferredSection";
 import { Footer } from "@/components/Footer";
 import { ProjectsSection } from "@/components/ProjectsSection";
+// import { ExperienceSection } from "@/components/ExperienceSection";
 import dynamic from "next/dynamic";
 import type { Metadata } from "next";
 import {
@@ -95,7 +96,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
           url: siteConfig.ogImage,
           width: 1200,
           height: 630,
-          alt: `${siteConfig.name} - Frontend Developer`,
+          alt: `${siteConfig.name} - Frontend Engineer`,
         },
       ],
     },
@@ -118,6 +119,22 @@ export default async function HomePage({ params }: PageProps) {
   const projectTitles = Object.fromEntries(
     projectTitleKeys.map((key) => [key, t(key)])
   );
+  // const experienceItems = [
+  //   {
+  //     id: "tsit",
+  //     role: t("experienceRoleFrontend"),
+  //     company: t("experienceCompanyTsit"),
+  //     date: t("experienceDateTsit"),
+  //     responsibilities: [
+  //       t("experienceResponsibilityTsit1"),
+  //       t("experienceResponsibilityTsit2"),
+  //       t("experienceResponsibilityTsit3"),
+  //       t("experienceResponsibilityTsit4"),
+  //       t("experienceResponsibilityTsit5"),
+  //     ],
+  //     impact: t("experienceImpactTsit"),
+  //   },
+  // ];
   const jsonLd = [
     getPersonJsonLd(),
     getWebSiteJsonLd(),
@@ -140,6 +157,12 @@ export default async function HomePage({ params }: PageProps) {
         <DeferredSection id="skills" minHeight={560}>
           <SkillsSection />
         </DeferredSection>
+        {/* <ExperienceSection
+          title={t("experienceTitle")}
+          subtitle={t("experienceSubtitle")}
+          impactLabel={t("experienceImpactLabel")}
+          items={experienceItems}
+        /> */}
         <ProjectsSection
           title={t("projectsTitle")}
           subtitle={t("projectsSubtitle")}

@@ -15,9 +15,9 @@ export type SiteLocale = (typeof siteConfig.locales)[number];
 
 export const localeMetadata = {
   en: {
-    title: 'Mehran Mohammadi | Frontend Developer',
+    title: 'Mehran Mohammadi | Frontend Engineer — Vue, Nuxt, TypeScript',
     description:
-      'Frontend developer specialized in Nuxt, Vue, Next.js, and building modern high-performance web applications.',
+      'Frontend Engineer with 4+ years of experience building production web applications, dashboards, RTL interfaces and scalable product UIs with Vue, Nuxt and TypeScript.',
     ogLocale: 'en_US',
   },
   fa: {
@@ -77,7 +77,7 @@ export function getPersonJsonLd() {
     '@context': 'https://schema.org',
     '@type': 'Person',
     name: siteConfig.name,
-    jobTitle: 'Frontend Developer',
+    jobTitle: 'Frontend Engineer',
     url: siteConfig.siteUrl,
     sameAs: siteConfig.sameAs,
     image: getAbsoluteAssetUrl(siteConfig.profileImage),

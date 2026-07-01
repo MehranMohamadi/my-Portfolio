@@ -1,0 +1,100 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [6 0 R 8 0 R] /Count 2 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+5 0 obj
+<< /Length 2352 >>
+stream
+BT /F2 24 Tf 52 790.00 Td (Mehran Mohammadi) Tj ET
+BT /F1 14 Tf 52 758.00 Td (Frontend Engineer - Vue, Nuxt, TypeScript) Tj ET
+BT /F1 10 Tf 52 738.00 Td (Email: mehran.mohammadi.frd@gmail.com | Telegram: @Mehran_ll) Tj ET
+BT /F1 10 Tf 52 722.00 Td (LinkedIn: linkedin.com/in/mehran-mohammadi-far | GitHub: github.com/MehranMohamadi) Tj ET
+BT /F1 10 Tf 52 706.00 Td (Portfolio: mehranmohammadifrd.ir) Tj ET
+BT /F2 15 Tf 52 676.00 Td (Profile) Tj ET
+BT /F1 10 Tf 52 653.00 Td (Frontend Engineer with 4+ years of experience building production web applications with Vue, Nuxt,) Tj ET
+BT /F1 10 Tf 52 639.00 Td (TypeScript, JavaScript and modern frontend tooling. Focused on scalable product interfaces, clean) Tj ET
+BT /F1 10 Tf 52 625.00 Td (component architecture, performance, RTL/Persian user experiences, dashboards, forms, API-driven flows) Tj ET
+BT /F1 10 Tf 52 611.00 Td (and maintainable UI systems.) Tj ET
+BT /F2 15 Tf 52 585.00 Td (Core Skills) Tj ET
+BT /F1 10 Tf 52 562.00 Td (Core Stack: Vue.js, Nuxt.js, TypeScript, JavaScript, Tailwind CSS) Tj ET
+BT /F1 10 Tf 52 546.00 Td (Frontend Engineering: SSR, Component Architecture, State Management, REST API Integration, Performance) Tj ET
+BT /F1 10 Tf 52 532.00 Td (Optimization, Responsive Design, RTL Interfaces) Tj ET
+BT /F1 10 Tf 52 516.00 Td (Also Worked With: React, Next.js, Svelte) Tj ET
+BT /F1 10 Tf 52 500.00 Td (Tools: Git, Vercel, Figma, npm/pnpm) Tj ET
+BT /F2 15 Tf 52 474.00 Td (Work Experience) Tj ET
+BT /F2 12 Tf 52 451.00 Td (Frontend Developer - Tosee Saman / TSIT) Tj ET
+BT /F1 10 Tf 52 431.00 Td (2022 - Present) Tj ET
+BT /F1 10 Tf 52 415.00 Td (- Built and maintained production web applications using Vue, Nuxt, JavaScript/TypeScript and modern) Tj ET
+BT /F1 10 Tf 52 401.00 Td (frontend tooling.) Tj ET
+BT /F1 10 Tf 52 385.00 Td (- Developed reusable UI components, dashboards, forms, tables, filters and API-driven interfaces.) Tj ET
+BT /F1 10 Tf 52 369.00 Td (- Worked on RTL/Persian interfaces and responsive layouts.) Tj ET
+BT /F1 10 Tf 52 353.00 Td (- Collaborated with backend developers, designers and product stakeholders.) Tj ET
+BT /F1 10 Tf 52 337.00 Td (- Improved maintainability through cleaner component structure and reusable patterns.) Tj ET
+BT /F1 10 Tf 52 321.00 Td (Technologies: Vue, Nuxt, JavaScript, TypeScript, Tailwind CSS, REST APIs, RTL UI) Tj ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 5 0 R >>
+endobj
+7 0 obj
+<< /Length 2821 >>
+stream
+BT /F2 18 Tf 52 790.00 Td (Selected Projects) Tj ET
+BT /F2 12 Tf 52 756.00 Td (Bimehyar - Frontend Developer) Tj ET
+BT /F1 10 Tf 52 736.00 Td (Stack: Vue/Nuxt, Tailwind CSS, REST API, RTL UI) Tj ET
+BT /F1 10 Tf 52 720.00 Td (Built insurance-related user flows, responsive pages, form-heavy interfaces and API integrations.) Tj ET
+BT /F1 10 Tf 52 706.00 Td (Managed multi-step user flows, validation and Persian RTL UX. Result: production-ready insurance) Tj ET
+BT /F1 10 Tf 52 692.00 Td (platform UI with user-focused purchase and comparison flows.) Tj ET
+BT /F2 12 Tf 52 668.00 Td (SkillXP / RPG Skill Tracker - Personal Project / Frontend Developer) Tj ET
+BT /F1 10 Tf 52 648.00 Td (Stack: Nuxt/Vue, TypeScript, Tailwind, Vercel) Tj ET
+BT /F1 10 Tf 52 632.00 Td (Built a dashboard-like interface for XP, streaks, achievements and habit tracking with reusable) Tj ET
+BT /F1 10 Tf 52 618.00 Td (components. Demonstrates product thinking, UI architecture and frontend implementation beyond simple) Tj ET
+BT /F1 10 Tf 52 604.00 Td (landing pages.) Tj ET
+BT /F2 12 Tf 52 580.00 Td (IPEDCO / Tavan Sanat Shargh - Frontend Developer) Tj ET
+BT /F1 10 Tf 52 560.00 Td (Stack: Nuxt/Vue, Tailwind, Responsive UI) Tj ET
+BT /F1 10 Tf 52 544.00 Td (Built corporate website pages, product/service presentation, blog/article structure and contact) Tj ET
+BT /F1 10 Tf 52 530.00 Td (sections. Result: professional company website suitable for presenting services, products and) Tj ET
+BT /F1 10 Tf 52 516.00 Td (articles.) Tj ET
+BT /F2 12 Tf 52 492.00 Td (Additional Production Contributions) Tj ET
+BT /F1 10 Tf 52 472.00 Td (- Fars News: Contributed to frontend development of content-heavy responsive news interfaces.) Tj ET
+BT /F1 10 Tf 52 456.00 Td (- Virasty: Contributed to frontend screens, RTL layouts and component-based product UI.) Tj ET
+BT /F1 10 Tf 52 440.00 Td (- Msg Way: Contributed to dashboard-style communication product UI and API-driven interfaces.) Tj ET
+BT /F1 10 Tf 52 424.00 Td (- Gap Messenger: Contributed to responsive Persian messenger product UI patterns.) Tj ET
+BT /F1 10 Tf 52 408.00 Td (- Nasim Rezvan: Contributed to RTL service application screens, forms and workflows.) Tj ET
+BT /F2 15 Tf 52 382.00 Td (Selected Impact) Tj ET
+BT /F1 10 Tf 52 359.00 Td (- Built production web applications used by real users.) Tj ET
+BT /F1 10 Tf 52 343.00 Td (- Worked on complex RTL/Persian interfaces and responsive layouts.) Tj ET
+BT /F1 10 Tf 52 327.00 Td (- Experienced with Vue/Nuxt SSR applications.) Tj ET
+BT /F1 10 Tf 52 311.00 Td (- Built reusable components and scalable UI structures.) Tj ET
+BT /F1 10 Tf 52 295.00 Td (- Integrated REST APIs, authentication flows, forms, filters and tables.) Tj ET
+BT /F1 10 Tf 52 279.00 Td (- Focused on maintainability, performance and clean frontend architecture.) Tj ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 7 0 R >>
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000121 00000 n 
+0000000191 00000 n 
+0000000266 00000 n 
+0000002670 00000 n 
+0000002812 00000 n 
+0000005685 00000 n 
+trailer
+<< /Size 9 /Root 1 0 R >>
+startxref
+5827
+%%EOF

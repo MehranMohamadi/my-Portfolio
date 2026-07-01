@@ -27,7 +27,7 @@ export const generateMetadata = (): Metadata => ({
         url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: `${siteConfig.name} - Frontend Developer`,
+        alt: `${siteConfig.name} - Frontend Engineer`,
       },
     ],
   },

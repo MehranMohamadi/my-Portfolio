@@ -1,14 +1,20 @@
 'use client';
 
 import React from 'react';
-import { useApp } from '../contexts/AppContext';
-import { ArrowRight, Mail, Code, Zap, Sparkles } from 'lucide-react';
+import { ArrowRight, Download, Github, Linkedin, Mail, Send } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Image from "next/image";
 
 export const IntroSection: React.FC = () => {
-  const { locale } = useApp();
   const t = useTranslations(); 
+  const viewCaseStudiesLabel = t.has('viewCaseStudies') ? t('viewCaseStudies') : t('viewWork');
+  const downloadCvLabel = t.has('downloadCv') ? t('downloadCv') : 'Download CV';
+  const contactLinks = [
+    { href: 'mailto:mehran.mohammadi.frd@gmail.com', label: 'Email', icon: Mail },
+    { href: 'https://t.me/Mehran_ll', label: 'Telegram', icon: Send },
+    { href: 'https://www.linkedin.com/in/mehran-mohammadi-far/', label: 'LinkedIn', icon: Linkedin },
+    { href: 'https://github.com/MehranMohamadi', label: 'GitHub', icon: Github },
+  ];
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -50,16 +56,24 @@ export const IntroSection: React.FC = () => {
               {t('introDescription')}
             </p>
 
-            <div
-              className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start"
-            >
+            <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start">
               <button
                 onClick={() => scrollToSection('projects')}
                 className="group px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:shadow-lg hover:shadow-blue-500/50 transition-[transform,box-shadow] duration-300 flex items-center justify-center gap-2 text-sm sm:text-base"
               >
-                {t('viewWork')}
+                {viewCaseStudiesLabel}
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
+              {/* TODO: place the final CV file at /public/Mehran-Mohammadi-CV.pdf. */}
+              {/* <a
+                href="/Mehran-Mohammadi-CV.pdf"
+                download
+                className="px-6 py-3 backdrop-blur-sm bg-white/70 dark:bg-gray-800/70 border border-gray-200 dark:border-gray-700 rounded-xl hover:shadow-lg transition-[box-shadow,background-color] duration-300 flex items-center justify-center gap-2 text-sm sm:text-base"
+                aria-label="Download Mehran Mohammadi CV"
+              >
+                <Download className="w-4 h-4" />
+                {downloadCvLabel}
+              </a> */}
               <button
                 onClick={() => scrollToSection('contact')}
                 className="px-6 py-3 backdrop-blur-sm bg-white/70 dark:bg-gray-800/70 border border-gray-200 dark:border-gray-700 rounded-xl hover:shadow-lg transition-[box-shadow,background-color] duration-300 flex items-center justify-center gap-2 text-sm sm:text-base"
@@ -67,6 +81,26 @@ export const IntroSection: React.FC = () => {
                 <Mail className="w-4 h-4" />
                 {t('contactMe')}
               </button>
+            </div>
+
+            <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
+              {contactLinks.map((link) => {
+                const Icon = link.icon;
+                const isExternal = link.href.startsWith('http');
+
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    target={isExternal ? '_blank' : undefined}
+                    rel={isExternal ? 'noopener noreferrer' : undefined}
+                    aria-label={`${link.label} contact link for Mehran Mohammadi`}
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-gray-200 dark:border-gray-700 bg-white/70 dark:bg-gray-800/70 text-gray-700 dark:text-gray-200 transition-colors hover:text-blue-600 dark:hover:text-blue-400"
+                  >
+                    <Icon className="h-4 w-4" />
+                  </a>
+                );
+              })}
             </div>
     
           </div>
@@ -89,7 +123,7 @@ export const IntroSection: React.FC = () => {
                   >
       <Image
   src="/img/profile.jpg"
-  alt="Profile"
+  alt="Mehran Mohammadi"
   width={256}
   height={256}
   sizes="(max-width: 640px) 192px, 256px"
