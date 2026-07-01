@@ -15,7 +15,33 @@ const nextConfig: NextConfig = {
       },
     ],
   },
- async headers() {
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'mehranmohammadifrd.ir',
+          },
+        ],
+        destination: 'https://mehrandev.tech/:path*',
+        permanent: true,
+      },
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'www.mehranmohammadifrd.ir',
+          },
+        ],
+        destination: 'https://mehrandev.tech/:path*',
+        permanent: true,
+      },
+    ];
+  },
+  async headers() {
     return [
       {
         source: "/(.*)",
