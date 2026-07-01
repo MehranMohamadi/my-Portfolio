@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: 'Mehran Mohammadi',
-  siteUrl: 'https://mehranmohammadifrd.ir',
+  siteUrl: 'https://mehrandev.tech',
   defaultLocale: 'en',
   locales: ['en', 'fa', 'ar'] as const,
   ogImage: '/og-image.jpg.png',

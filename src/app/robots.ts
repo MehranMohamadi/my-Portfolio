@@ -1,4 +1,5 @@
 import { MetadataRoute } from "next";
+import { siteConfig } from "@/lib/seo";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -6,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    host: "https://mehranmohammadifrd.ir",
-    sitemap: "https://mehranmohammadifrd.ir/sitemap.xml",
+    host: siteConfig.siteUrl,
+    sitemap: `${siteConfig.siteUrl}/sitemap.xml`,
   };
 }
