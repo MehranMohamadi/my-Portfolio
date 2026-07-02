@@ -4,10 +4,12 @@ import { AboutSection } from "@/components/AboutSection";
 import { DeferredSection } from "@/components/DeferredSection";
 import { Footer } from "@/components/Footer";
 import { ProjectsSection } from "@/components/ProjectsSection";
+import { projectDefinitions } from "@/data/projects";
 // import { ExperienceSection } from "@/components/ExperienceSection";
 import dynamic from "next/dynamic";
 import type { Metadata } from "next";
 import {
+  getAbsoluteAssetUrl,
   getAbsoluteUrl,
   getLanguageAlternates,
   getPersonJsonLd,
@@ -35,28 +37,6 @@ type PageProps = {
 };
 
 type Messages = Record<string, string>;
-
-const projectTitleKeys = [
-  "fars",
-  "virasty",
-  "msgway",
-  "gap",
-  "bimehyar",
-  "nasimrezvan",
-  "rpgSkillTracker",
-  "ipedco2026",
-] as const;
-
-const projectDescriptionKeys = [
-  "project1Desc",
-  "project2Desc",
-  "project3Desc",
-  "project4Desc",
-  "project5Desc",
-  "project6Desc",
-  "project7Desc",
-  "project8Desc",
-] as const;
 
 async function getMessages(locale: string): Promise<Messages> {
   try {
@@ -129,10 +109,10 @@ export default async function HomePage({ params }: PageProps) {
   const t = (key: string) => messages[key] ?? key;
   const footerMade = splitFooterMade(t("footerMade"));
   const projectTitles = Object.fromEntries(
-    projectTitleKeys.map((key) => [key, t(key)])
+    projectDefinitions.map((project) => [project.titleKey, t(project.titleKey)])
   );
   const projectDescriptions = Object.fromEntries(
-    projectDescriptionKeys.map((key) => [key, t(key)])
+    projectDefinitions.map((project) => [project.descKey, t(project.descKey)])
   );
   // const experienceItems = [
   //   {
@@ -150,6 +130,40 @@ export default async function HomePage({ params }: PageProps) {
   //     impact: t("experienceImpactTsit"),
   //   },
   // ];
+  const projectsJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: t("projectsTitle"),
+    description: t("projectsSubtitle"),
+    itemListElement: projectDefinitions.map((project, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@type': 'CreativeWork',
+        name: projectTitles[project.titleKey],
+        description: projectDescriptions[project.descKey],
+        url: project.link,
+        image: getAbsoluteAssetUrl(project.image),
+        dateCreated: project.year,
+        creator: {
+          '@type': 'Person',
+          name: siteConfig.name,
+          url: siteConfig.siteUrl,
+        },
+        keywords: [
+          projectTitles[project.titleKey],
+          'Frontend',
+          'Vue',
+          'Nuxt',
+          'TypeScript',
+          'RTL',
+          'Dashboard',
+          'Web Application',
+        ].join(', '),
+      },
+    })),
+  };
+
   const jsonLd = [
     getPersonJsonLd(),
     getWebSiteJsonLd(),
@@ -158,6 +172,7 @@ export default async function HomePage({ params }: PageProps) {
       title: metadata.title,
       description: metadata.description,
     }),
+    projectsJsonLd,
   ];
 
   return (
