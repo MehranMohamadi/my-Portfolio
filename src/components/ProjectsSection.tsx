@@ -18,9 +18,16 @@ type ProjectsSectionProps = {
   subtitle: string;
   viewDetails: string;
   projectTitles: Record<string, string>;
+  projectDescriptions: Record<string, string>;
 };
 
-export function ProjectsSection({ title, subtitle, viewDetails, projectTitles }: ProjectsSectionProps) {
+export function ProjectsSection({
+  title,
+  subtitle,
+  viewDetails,
+  projectTitles,
+  projectDescriptions,
+}: ProjectsSectionProps) {
   return (
     <section
       id="projects"
@@ -85,9 +92,9 @@ export function ProjectsSection({ title, subtitle, viewDetails, projectTitles }:
                     </span> */}
                   </div>
 
-                  {/* <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm">
-                    {t(project.descKey)}
-                  </p> */}
+                  <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm leading-6">
+                    {projectDescriptions[project.descKey]}
+                  </p>
 
                   <Link
                     href={project.link}

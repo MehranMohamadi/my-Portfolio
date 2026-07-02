@@ -21,17 +21,7 @@ export async function generateMetadata({
       template: `%s | ${siteConfig.name}`,
     },
     description: metadata.description,
-    keywords: [
-      'Frontend Engineer',
-      'Nuxt',
-      'Vue',
-      'TypeScript',
-      'Next.js',
-      'Web Developer',
-      'JavaScript',
-      'Portfolio',
-      'Mehran Mohammadi',
-    ],
+    keywords: metadata.keywords,
     alternates: {
       canonical,
       languages: {

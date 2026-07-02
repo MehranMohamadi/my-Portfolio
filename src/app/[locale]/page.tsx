@@ -47,6 +47,17 @@ const projectTitleKeys = [
   "ipedco2026",
 ] as const;
 
+const projectDescriptionKeys = [
+  "project1Desc",
+  "project2Desc",
+  "project3Desc",
+  "project4Desc",
+  "project5Desc",
+  "project6Desc",
+  "project7Desc",
+  "project8Desc",
+] as const;
+
 async function getMessages(locale: string): Promise<Messages> {
   try {
     return (await import(`../../messages/${locale}.json`)).default;
@@ -77,6 +88,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: metadata.title,
     description: metadata.description,
+    keywords: metadata.keywords,
     alternates: {
       canonical,
       languages: {
@@ -118,6 +130,9 @@ export default async function HomePage({ params }: PageProps) {
   const footerMade = splitFooterMade(t("footerMade"));
   const projectTitles = Object.fromEntries(
     projectTitleKeys.map((key) => [key, t(key)])
+  );
+  const projectDescriptions = Object.fromEntries(
+    projectDescriptionKeys.map((key) => [key, t(key)])
   );
   // const experienceItems = [
   //   {
@@ -168,6 +183,7 @@ export default async function HomePage({ params }: PageProps) {
           subtitle={t("projectsSubtitle")}
           viewDetails={t("viewDetails")}
           projectTitles={projectTitles}
+          projectDescriptions={projectDescriptions}
         />
         <DeferredSection id="blog" minHeight={640}>
           <BlogSection />

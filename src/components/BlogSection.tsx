@@ -52,6 +52,9 @@ export const BlogSection: React.FC = () => {
           <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
             {t('blog')}
           </h2>
+          <p className="mx-auto max-w-2xl text-sm sm:text-base text-gray-700 dark:text-gray-300">
+            {t('blogSubtitle')}
+          </p>
         </div>
 
         {/* Tags Filter Chips */}

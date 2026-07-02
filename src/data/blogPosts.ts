@@ -16,6 +16,7 @@ interface BlogPostDefinition {
   category: LocalizedString;
   image: string;
   tags: LocalizedTags;
+  seoKeywords?: LocalizedTags;
   comingSoon?: boolean;
   markdownPath?: LocalizedMarkdownPath;
 }
@@ -32,6 +33,7 @@ export interface BlogPost {
   category: string;
   image: string;
   tags: string[];
+  seoKeywords: string[];
   comingSoon?: boolean;
   markdownPath?: LocalizedMarkdownPath;
 }
@@ -72,6 +74,26 @@ const blogPostDefinitions: BlogPostDefinition[] = [
       en: ['JavaScript', 'Performance', 'Optimization'],
       fa: ['JavaScript', 'Performance', 'بهینه‌سازی'],
       ar: ['JavaScript', 'Performance', 'تحسين'],
+    },
+    seoKeywords: {
+      en: [
+        'Debounce vs Throttle in JavaScript',
+        'JavaScript performance optimization',
+        'event handling optimization',
+        'frontend performance',
+      ],
+      fa: [
+        'تفاوت Debounce و Throttle در JavaScript',
+        'تفاوت Debounce و Throttle در جاوااسکریپت',
+        'بهینه سازی performance در جاوااسکریپت',
+        'بهینه‌سازی رویدادها در فرانت‌اند',
+      ],
+      ar: [
+        'Debounce vs Throttle في JavaScript',
+        'تحسين أداء JavaScript',
+        'تحسين معالجة الأحداث',
+        'أداء الواجهة الأمامية',
+      ],
     },
     markdownPath: {
       en: '/blog/debounce_throttle_blog_en.md',
@@ -115,6 +137,26 @@ const blogPostDefinitions: BlogPostDefinition[] = [
       fa: ['Vue', 'nextTick', 'DOM'],
       ar: ['Vue', 'nextTick', 'DOM'],
     },
+    seoKeywords: {
+      en: [
+        'Vue nextTick guide',
+        'Vue DOM updates',
+        'nextTick in Vue',
+        'Vue Composition API timing',
+      ],
+      fa: [
+        'آموزش nextTick در Vue',
+        'nextTick در Vue چیست',
+        'آپدیت DOM در Vue',
+        'زمان اجرای کد بعد از رندر Vue',
+      ],
+      ar: [
+        'دليل nextTick في Vue',
+        'ما هو nextTick في Vue',
+        'تحديث DOM في Vue',
+        'توقيت Composition API في Vue',
+      ],
+    },
     markdownPath: {
       en: '/blog/vue_next_tick_blog_en.md',
       fa: '/blog/vue_next_tick_blog_fa.md',
@@ -156,6 +198,26 @@ const blogPostDefinitions: BlogPostDefinition[] = [
       en: ['JavaScript', 'Scope', 'Context'],
       fa: ['JavaScript', 'Scope', 'Context'],
       ar: ['JavaScript', 'Scope', 'Context'],
+    },
+    seoKeywords: {
+      en: [
+        'Context and Scope in JavaScript',
+        'JavaScript scope explained',
+        'JavaScript execution context',
+        'this and closures in JavaScript',
+      ],
+      fa: [
+        'تفاوت Scope و Context در JavaScript',
+        'تفاوت Scope و Context در جاوااسکریپت',
+        'execution context در JavaScript',
+        'this و closure در جاوااسکریپت',
+      ],
+      ar: [
+        'Context and Scope في JavaScript',
+        'شرح Scope في JavaScript',
+        'execution context في JavaScript',
+        'this وclosures في JavaScript',
+      ],
     },
     markdownPath: {
       en: '/blog/context_scope_blog_en.md',
@@ -199,6 +261,26 @@ const blogPostDefinitions: BlogPostDefinition[] = [
       fa: ['Vue', 'watch', 'Composition API'],
       ar: ['Vue', 'watch', 'Composition API'],
     },
+    seoKeywords: {
+      en: [
+        'Context and Scope in Vue',
+        'Vue scope explained',
+        'Vue watch inside setup',
+        'Vue composable context',
+      ],
+      fa: [
+        'Scope و Context در Vue',
+        'تفاوت Scope و Context در Vue',
+        'watch داخل setup در Vue',
+        'context در composable های Vue',
+      ],
+      ar: [
+        'Context and Scope في Vue',
+        'شرح Scope في Vue',
+        'watch داخل setup في Vue',
+        'context في Vue composables',
+      ],
+    },
     markdownPath: {
       en: '/blog/vue_context_scope_blog_en.md',
       fa: '/blog/vue_context_scope_blog_fa.md',
@@ -240,6 +322,26 @@ const blogPostDefinitions: BlogPostDefinition[] = [
       en: ['JavaScript', 'Event Loop', 'Async'],
       fa: ['JavaScript', 'Event Loop', 'Async'],
       ar: ['JavaScript', 'Event Loop', 'Async'],
+    },
+    seoKeywords: {
+      en: [
+        'Event Loop in JavaScript',
+        'JavaScript event loop explained',
+        'microtasks and macrotasks',
+        'async JavaScript performance',
+      ],
+      fa: [
+        'Event Loop در جاوااسکریپت',
+        'event loop در JavaScript چیست',
+        'تفاوت microtask و macrotask',
+        'اجرای async در جاوااسکریپت',
+      ],
+      ar: [
+        'Event Loop في JavaScript',
+        'شرح event loop في JavaScript',
+        'microtasks وmacrotasks',
+        'تنفيذ async في JavaScript',
+      ],
     },
     markdownPath: {
       en: '/blog/event_loop_blog_en.md',
@@ -283,6 +385,26 @@ const blogPostDefinitions: BlogPostDefinition[] = [
       fa: ['Nitro', 'بک‌اند', 'JavaScript'],
       ar: ['Nitro', 'الواجهة الخلفية', 'JavaScript'],
     },
+    seoKeywords: {
+      en: [
+        'Nitro.js guide',
+        'Nitro JavaScript server',
+        'Nuxt server engine',
+        'fullstack JavaScript HTTP server',
+      ],
+      fa: [
+        'Nitro.js چیست',
+        'آموزش Nitro.js',
+        'سرور JavaScript با Nitro',
+        'موتور سرور Nuxt',
+      ],
+      ar: [
+        'دليل Nitro.js',
+        'ما هو Nitro.js',
+        'خادم JavaScript باستخدام Nitro',
+        'محرك خادم Nuxt',
+      ],
+    },
     markdownPath: {
       en: '/blog/nitro_js_blog_en.md',
       fa: '/blog/nitro_js_blog_fa.md',
@@ -324,6 +446,23 @@ const blogPostDefinitions: BlogPostDefinition[] = [
       fa: ['AI', 'Frontend'],
       ar: ['AI', 'Frontend'],
     },
+    seoKeywords: {
+      en: [
+        'AI frontend integration',
+        'AI API in frontend apps',
+        'frontend AI workflows',
+      ],
+      fa: [
+        'ادغام AI با فرانت‌اند',
+        'استفاده از API هوش مصنوعی در فرانت‌اند',
+        'هوش مصنوعی در وب اپلیکیشن',
+      ],
+      ar: [
+        'دمج الذكاء الاصطناعي مع الواجهة الأمامية',
+        'واجهات AI في تطبيقات الويب',
+        'سير عمل AI في Frontend',
+      ],
+    },
     comingSoon: true,
   },
 ];
@@ -351,6 +490,7 @@ function localizePost(definition: BlogPostDefinition, locale: string): BlogPost 
     category: definition.category[safeLocale],
     image: definition.image,
     tags: definition.tags[safeLocale],
+    seoKeywords: definition.seoKeywords?.[safeLocale] ?? definition.tags[safeLocale],
     comingSoon: definition.comingSoon,
     markdownPath: definition.markdownPath,
   };

@@ -9,6 +9,7 @@ export const generateMetadata = (): Metadata => ({
   metadataBase: new URL(siteConfig.siteUrl),
   title: metadata.title,
   description: metadata.description,
+  keywords: metadata.keywords,
   alternates: {
     canonical: getAbsoluteUrl(siteConfig.defaultLocale),
     languages: {

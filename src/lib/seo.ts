@@ -15,24 +15,77 @@ export type SiteLocale = (typeof siteConfig.locales)[number];
 
 export const localeMetadata = {
   en: {
-    title: 'Mehran Mohammadi | Frontend Engineer — Vue, Nuxt, TypeScript',
+    title: 'Mehran Mohammadi | Frontend Engineer - Vue, Nuxt, TypeScript',
     description:
-      'Frontend Engineer with 4+ years of experience building production web applications, dashboards, RTL interfaces and scalable product UIs with Vue, Nuxt and TypeScript.',
+      'Frontend Engineer with 4+ years of experience in Vue, Nuxt, TypeScript, production web applications, dashboards, RTL interfaces and scalable product UI.',
+    keywords: [
+      'Frontend Engineer',
+      'Frontend Developer',
+      'Vue.js Developer',
+      'Nuxt Developer',
+      'TypeScript Developer',
+      'JavaScript Developer',
+      'Next.js Developer',
+      'React Developer',
+      'RTL Frontend Developer',
+      'Persian RTL interfaces',
+      'Web Application Development',
+      'Dashboard Development',
+      'Product UI Engineer',
+      'Performance Optimization',
+      'Mehran Mohammadi portfolio',
+    ],
     ogLocale: 'en_US',
   },
   fa: {
-    title: 'مهران محمدی | توسعه دهنده فرانت اند',
+    title: 'مهران محمدی | توسعه‌دهنده فرانت‌اند Vue، Nuxt و TypeScript',
     description:
-      'توسعه دهنده فرانت اند متخصص در Nuxt، Vue، Next.js و ساخت وب اپلیکیشن های مدرن و سریع.',
+      'توسعه‌دهنده فرانت‌اند با ۴+ سال تجربه در Vue، Nuxt، TypeScript، ساخت وب اپلیکیشن، داشبورد مدیریتی، رابط کاربری RTL و UI محصولی.',
+    keywords: [
+      'توسعه‌دهنده فرانت‌اند',
+      'برنامه نویس فرانت اند',
+      'برنامه‌نویس فرانت‌اند',
+      'توسعه‌دهنده Vue.js',
+      'برنامه نویس Vue',
+      'توسعه‌دهنده Nuxt.js',
+      'برنامه نویس Nuxt',
+      'توسعه‌دهنده TypeScript',
+      'طراحی و توسعه وب اپلیکیشن',
+      'ساخت داشبورد مدیریتی',
+      'طراحی رابط کاربری RTL',
+      'پیاده سازی رابط کاربری فارسی',
+      'توسعه رابط کاربری',
+      'پورتفولیو فرانت اند',
+      'مهران محمدی',
+    ],
     ogLocale: 'fa_IR',
   },
   ar: {
-    title: 'مهران محمدي | مطور واجهات أمامية',
+    title: 'مهران محمدي | مطور واجهات Vue وNuxt وTypeScript',
     description:
-      'مطور واجهات أمامية متخصص في Nuxt وVue وNext.js وبناء تطبيقات ويب حديثة وعالية الأداء.',
+      'مطور واجهات أمامية بخبرة 4+ سنوات في Vue وNuxt وTypeScript وبناء تطبيقات ويب ولوحات معلومات وواجهات RTL قابلة للتوسع.',
+    keywords: [
+      'مطور واجهات أمامية',
+      'مطور Frontend',
+      'مطور Vue.js',
+      'مطور Nuxt.js',
+      'مطور TypeScript',
+      'مطور JavaScript',
+      'مطور Next.js',
+      'تطوير تطبيقات ويب',
+      'تطوير لوحات معلومات',
+      'واجهات RTL',
+      'تصميم واجهات مستخدم',
+      'هندسة واجهات أمامية',
+      'محفظة مطور واجهات',
+      'مهران محمدي',
+    ],
     ogLocale: 'ar_AR',
   },
-} satisfies Record<SiteLocale, { title: string; description: string; ogLocale: string }>;
+} satisfies Record<
+  SiteLocale,
+  { title: string; description: string; keywords: string[]; ogLocale: string }
+>;
 
 export function normalizeLocale(locale: string): SiteLocale {
   if (locale === 'fa' || locale === 'ar') {
@@ -81,6 +134,9 @@ export function getPersonJsonLd() {
     url: siteConfig.siteUrl,
     sameAs: siteConfig.sameAs,
     image: getAbsoluteAssetUrl(siteConfig.profileImage),
+    knowsAbout: localeMetadata.en.keywords.filter(
+      (keyword) => keyword !== 'Mehran Mohammadi portfolio'
+    ),
   };
 }
 
@@ -118,6 +174,7 @@ export function getWebPageJsonLd({
     '@type': 'WebPage',
     name: title,
     description,
+    keywords: localeMetadata[safeLocale].keywords.join(', '),
     url,
     inLanguage: safeLocale,
     isPartOf: {

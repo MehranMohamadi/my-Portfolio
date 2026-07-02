@@ -103,10 +103,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const pathname = `/blog/${slug}`;
   const canonical = getAbsoluteUrl(safeLocale, pathname);
   const shareImage = getShareImageUrl(post.image);
+  const keywords = Array.from(
+    new Set([post.title, post.category, ...post.tags, ...post.seoKeywords])
+  );
 
   return {
     title: post.title,
     description: post.excerpt,
+    keywords,
     alternates: {
       canonical,
       languages: {
@@ -258,7 +262,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     datePublished: post.publishedAt,
     dateModified: post.updatedAt ?? post.publishedAt,
     articleSection: post.category,
-    keywords: post.tags.join(', '),
+    keywords: post.seoKeywords.join(', '),
   };
   const webPageJsonLd = getWebPageJsonLd({
     locale: safeLocale,
