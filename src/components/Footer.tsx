@@ -52,13 +52,13 @@ export function Footer({ footerText, footerMadeBefore, footerMadeAfter }: Footer
             {footerText}
           </p>
 
-          <p className="text-gray-700 dark:text-gray-300 flex items-center justify-center gap-2 flex-wrap text-sm">
+          {/* <p className="text-gray-700 dark:text-gray-300 flex items-center justify-center gap-2 flex-wrap text-sm">
             <span>{footerMadeBefore}</span>
             <span>
               <Heart className="w-4 h-4 text-red-500 fill-current inline" />
             </span>
             <span>{footerMadeAfter}</span>
-          </p>
+          </p> */}
         </div>
       </div>
 

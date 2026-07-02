@@ -2,125 +2,130 @@
 
 import React from 'react';
 import { useApp } from '../contexts/AppContext';
-import {
-  Code2, Wind, Component, FileCode, Sparkles, FileType,
-  Github, Package, Figma, Boxes, Store, Layers, Atom,
-  CheckCircle, Paintbrush
-} from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 const skills = [
   {
-    icon: FileCode,
     title: { en: 'Nuxt.js', fa: 'Nuxt.js', ar: 'Nuxt.js' },
+    logos: ['/img/skills/nuxt.svg'],
+    brandColor: '#00DC82',
+    softColor: 'rgba(0, 220, 130, 0.14)',
+    core: true,
     items: { en: 'Server Side Rendering', fa: 'رندر سمت سرور', ar: 'عرض من جانب الخادم' },
-    color: 'from-green-500 to-emerald-500',
-    shadowColor: 'shadow-green-500/40',
   },
   {
-    icon: Component,
     title: { en: 'Vue.js', fa: 'Vue.js', ar: 'Vue.js' },
+    logos: ['/img/skills/vue.svg'],
+    brandColor: '#42B883',
+    softColor: 'rgba(66, 184, 131, 0.14)',
+    core: true,
     items: { en: 'Progressive Framework', fa: 'فریم‌ورک پیشرو', ar: 'إطار تقدمي' },
-    color: 'from-green-600 to-teal-500',
-    shadowColor: 'shadow-green-600/40',
   },
   {
-    icon: Wind,
     title: { en: 'Tailwind CSS', fa: 'Tailwind CSS', ar: 'Tailwind CSS' },
+    logos: ['/img/skills/tailwind.svg'],
+    brandColor: '#38BDF8',
+    softColor: 'rgba(56, 189, 248, 0.14)',
+    core: true,
     items: { en: 'Utility-First CSS', fa: 'سی‌اس‌اس ابزار محور', ar: 'CSS قائم على الأدوات' },
-    color: 'from-cyan-500 to-blue-500',
-    shadowColor: 'shadow-cyan-500/40',
   },
   {
-    icon: Layers,
-    title: { en: 'Next.js', fa: 'Next.js', ar: 'Next.js' },
-    items: { en: 'React Framework', fa: 'فریم‌ورک ری‌اکت', ar: 'إطار React' },
-    color: 'from-neutral-700 to-black',
-    shadowColor: 'shadow-neutral-700/40',
-  },
-  {
-    icon: Atom,
-    title: { en: 'React', fa: 'React', ar: 'React' },
-    items: { en: 'Component-Based UI', fa: 'رابط کامپوننت‌محور', ar: 'واجهة قائمة على المكونات' },
-    color: 'from-cyan-400 to-blue-600',
-    shadowColor: 'shadow-cyan-400/40',
-  },
-  {
-    icon: Code2,
     title: { en: 'JavaScript', fa: 'JavaScript', ar: 'JavaScript' },
+    logos: ['/img/skills/javascript.svg'],
+    brandColor: '#F7DF1E',
+    softColor: 'rgba(247, 223, 30, 0.16)',
+    core: true,
     items: { en: 'ES6+ & Modern JS', fa: 'ES6+ و جاوااسکریپت مدرن', ar: 'ES6+ و JavaScript الحديث' },
-    color: 'from-yellow-500 to-orange-500',
-    shadowColor: 'shadow-yellow-500/40',
   },
   {
-    icon: Sparkles,
+    title: { en: 'AI Coding Tools', fa: 'ابزارهای AI کدنویسی', ar: 'أدوات الذكاء الاصطناعي للبرمجة' },
+    logos: ['/img/skills/openai.svg'],
+    brandColor: '#10A37F',
+    softColor: 'rgba(16, 163, 127, 0.13)',
+    items: { en: 'Codex, ChatGPT & AI Workflows', fa: 'Codex، ChatGPT و جریان‌کارهای AI', ar: 'Codex و ChatGPT وسير عمل AI' },
+  },
+  {
+    title: { en: 'Next.js', fa: 'Next.js', ar: 'Next.js' },
+    logos: ['/img/skills/next.svg'],
+    brandColor: '#111827',
+    softColor: 'rgba(17, 24, 39, 0.1)',
+    items: { en: 'React Framework', fa: 'فریم‌ورک ری‌اکت', ar: 'إطار React' },
+  },
+  {
+    title: { en: 'React', fa: 'React', ar: 'React' },
+    logos: ['/img/skills/react.svg'],
+    brandColor: '#61DAFB',
+    softColor: 'rgba(97, 218, 251, 0.14)',
+    items: { en: 'Component-Based UI', fa: 'رابط کامپوننت‌محور', ar: 'واجهة قائمة على المكونات' },
+  },
+  {
     title: { en: 'Svelte', fa: 'Svelte', ar: 'Svelte' },
+    logos: ['/img/skills/svelte.svg'],
+    brandColor: '#FF3E00',
+    softColor: 'rgba(255, 62, 0, 0.13)',
     items: { en: 'Reactive Framework', fa: 'فریم‌ورک واکنش‌گرا', ar: 'إطار تفاعلي' },
-    color: 'from-orange-600 to-red-500',
-    shadowColor: 'shadow-orange-600/40',
   },
   {
-    icon: FileType,
     title: { en: 'HTML & CSS', fa: 'HTML و CSS', ar: 'HTML و CSS' },
+    logos: ['/img/skills/html5.svg', '/img/skills/css3.svg'],
+    brandColor: '#E34F26',
+    softColor: 'rgba(227, 79, 38, 0.12)',
     items: { en: 'Semantic & Modern', fa: 'معنایی و مدرن', ar: 'دلالي وحديث' },
-    color: 'from-pink-500 to-purple-500',
-    shadowColor: 'shadow-pink-500/40',
   },
   {
-    icon: Github,
     title: { en: 'Git', fa: 'Git', ar: 'Git' },
+    logos: ['/img/skills/git.svg'],
+    brandColor: '#F05032',
+    softColor: 'rgba(240, 80, 50, 0.13)',
     items: { en: 'Version Control', fa: 'کنترل نسخه', ar: 'التحكم في الإصدارات' },
-    color: 'from-gray-700 to-gray-900',
-    shadowColor: 'shadow-gray-700/40',
   },
   {
-    icon: Package,
     title: { en: 'Vite', fa: 'Vite', ar: 'Vite' },
+    logos: ['/img/skills/vite.svg'],
+    brandColor: '#646CFF',
+    softColor: 'rgba(100, 108, 255, 0.13)',
     items: { en: 'Fast Build Tool', fa: 'ابزار بیلد سریع', ar: 'أداة بناء سريعة' },
-    color: 'from-purple-500 to-indigo-500',
-    shadowColor: 'shadow-purple-500/40',
   },
   {
-    icon: Figma,
     title: { en: 'Figma', fa: 'Figma', ar: 'Figma' },
+    logos: ['/img/skills/figma.svg'],
+    brandColor: '#A259FF',
+    softColor: 'rgba(162, 89, 255, 0.12)',
     items: { en: 'Design Collaboration', fa: 'همکاری در طراحی', ar: 'التعاون في التصميم' },
-    color: 'from-pink-500 to-rose-500',
-    shadowColor: 'shadow-pink-500/40',
   },
   {
-    icon: Boxes,
     title: { en: 'Webpack', fa: 'Webpack', ar: 'Webpack' },
+    logos: ['/img/skills/webpack.svg'],
+    brandColor: '#8DD6F9',
+    softColor: 'rgba(141, 214, 249, 0.14)',
     items: { en: 'Module Bundler', fa: 'باندلر ماژول', ar: 'حزم الوحدات' },
-    color: 'from-blue-500 to-sky-500',
-    shadowColor: 'shadow-blue-500/40',
   },
   {
-    icon: Store,
     title: { en: 'Pinia', fa: 'Pinia', ar: 'Pinia' },
+    logos: ['/img/skills/pinia.svg'],
+    brandColor: '#FFD859',
+    softColor: 'rgba(255, 216, 89, 0.15)',
     items: { en: 'State Management', fa: 'مدیریت وضعیت', ar: 'إدارة الحالة' },
-    color: 'from-yellow-400 to-amber-500',
-    shadowColor: 'shadow-yellow-400/40',
   },
   {
-    icon: CheckCircle,
     title: { en: 'ESLint', fa: 'ESLint', ar: 'ESLint' },
+    logos: ['/img/skills/eslint.svg'],
+    brandColor: '#4B32C3',
+    softColor: 'rgba(75, 50, 195, 0.13)',
     items: { en: 'Code Quality', fa: 'کیفیت کد', ar: 'جودة الكود' },
-    color: 'from-indigo-500 to-violet-600',
-    shadowColor: 'shadow-indigo-500/40',
   },
   {
-    icon: Paintbrush,
     title: { en: 'UnoCSS', fa: 'UnoCSS', ar: 'UnoCSS' },
+    logos: ['/img/skills/unocss.svg'],
+    brandColor: '#333333',
+    softColor: 'rgba(51, 51, 51, 0.1)',
     items: { en: 'Atomic CSS Engine', fa: 'موتور CSS اتمیک', ar: 'محرك CSS ذري' },
-    color: 'from-teal-400 to-emerald-500',
-    shadowColor: 'shadow-teal-400/40',
   },
 ];
 
 export const SkillsSection: React.FC = () => {
   const { locale } = useApp();
   const t = useTranslations();
-  const [showAll, setShowAll] = React.useState(false);
   const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null);
   const [networkVisible, setNetworkVisible] = React.useState(false);
   const [lines, setLines] = React.useState<Array<{ id: string; d: string; toIndex: number; duration: number }>>([]);
@@ -130,24 +135,25 @@ export const SkillsSection: React.FC = () => {
   const clearTimerRef = React.useRef<number | null>(null);
   const rafRef = React.useRef<number | null>(null);
 
-  const visibleSkills = showAll ? skills : skills.slice(0, 8);
+  const visibleSkills = skills;
   const relations: Record<number, number[]> = React.useMemo(
     () => ({
-      0: [1, 3, 12],
-      1: [0, 3, 12, 14],
-      2: [3, 4, 7, 14],
-      3: [0, 1, 2, 4, 8],
-      4: [2, 3, 5, 13],
-      5: [3, 4, 7, 8, 9, 11, 13],
-      6: [5, 7, 14],
-      7: [2, 5, 6, 10, 14],
-      8: [3, 5, 9, 13],
-      9: [3, 5, 8, 11],
-      10: [2, 7, 14],
-      11: [3, 5, 9],
-      12: [0, 1, 4],
-      13: [3, 4, 5],
-      14: [1, 2, 6, 7, 10],
+      0: [1, 4, 5, 13],
+      1: [0, 4, 5, 13, 15],
+      2: [4, 5, 6, 8, 15],
+      3: [4, 5, 6, 8, 9, 10, 12, 14],
+      4: [0, 1, 2, 3, 5, 6, 9, 10, 14],
+      5: [0, 1, 2, 4, 6, 9],
+      6: [2, 3, 4, 5, 14],
+      7: [3, 8, 15],
+      8: [2, 3, 7, 11, 15],
+      9: [3, 4, 5, 10, 14],
+      10: [3, 4, 5, 9, 12],
+      11: [2, 8, 15],
+      12: [3, 5, 10],
+      13: [0, 1, 6],
+      14: [3, 4, 5, 6],
+      15: [1, 2, 7, 8, 11],
     }),
     []
   );
@@ -247,7 +253,7 @@ export const SkillsSection: React.FC = () => {
   React.useEffect(() => {
     if (hoveredIndex === null) return;
     scheduleRecalculate();
-  }, [hoveredIndex, showAll, scheduleRecalculate]);
+  }, [hoveredIndex, scheduleRecalculate]);
 
   const onHover = (index: number) => {
     if (clearTimerRef.current !== null) {
@@ -336,7 +342,7 @@ export const SkillsSection: React.FC = () => {
           </svg>
 
           {visibleSkills.map((skill, index) => {
-            const Icon = skill.icon;
+            const logoAlt = `${skill.title.en} logo`;
             return (
               <div
                 key={index}
@@ -344,12 +350,44 @@ export const SkillsSection: React.FC = () => {
                   cardRefs.current[index] = element;
                 }}
                 onMouseEnter={() => onHover(index)}
-                className={`group relative z-0 flex flex-col items-center justify-center bg-white/40 dark:bg-gray-800/40 
-                p-4 rounded-2xl border border-white/20 dark:border-gray-600/20 
-                hover:border-white/50 dark:hover:border-gray-500/50 transition-all duration-300 hover:shadow-xl ${skill.shadowColor} ${getCardClass(index)}`}
+                style={{
+                  borderColor: skill.core ? skill.brandColor : `${skill.brandColor}55`,
+                  boxShadow: skill.core ? `0 18px 45px -28px ${skill.brandColor}` : undefined,
+                }}
+                className={`group relative z-0 flex min-h-32 flex-col items-center justify-center bg-white/45
+                p-4 rounded-2xl border dark:bg-gray-800/45
+                hover:shadow-xl transition-all duration-300
+                ${skill.core ? 'min-h-36 ring-1 dark:ring-white/10' : ''}
+                ${getCardClass(index)}`}
               >
-                <div className={`mb-3 inline-flex p-3 rounded-xl bg-gradient-to-br ${skill.color}`}>
-                  <Icon className="w-5 h-5 text-white" />
+                {skill.core && (
+                  <span
+                    style={{
+                      borderColor: `${skill.brandColor}88`,
+                      color: skill.brandColor,
+                      backgroundColor: skill.softColor,
+                    }}
+                    className="absolute right-3 top-3 rounded-full border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider shadow-sm backdrop-blur dark:bg-gray-950/70"
+                  >
+                    Core
+                  </span>
+                )}
+                <div
+                  style={{
+                    backgroundColor: skill.softColor,
+                    borderColor: `${skill.brandColor}55`,
+                  }}
+                  className={`mb-3 flex h-14 w-14 items-center justify-center rounded-xl border bg-white/80 p-2.5 shadow-sm dark:bg-white/90 ${skill.logos.length > 1 ? '-space-x-1' : ''}`}
+                >
+                  {skill.logos.map((logo) => (
+                    <img
+                      key={logo}
+                      src={logo}
+                      alt={logoAlt}
+                      className={`${skill.logos.length > 1 ? 'h-7 w-7' : 'h-9 w-9'} object-contain`}
+                      loading="lazy"
+                    />
+                  ))}
                 </div>
                 <h3 className="mb-1 text-gray-900 dark:text-white text-sm font-semibold">
                   {skill.title[locale]}
@@ -362,16 +400,6 @@ export const SkillsSection: React.FC = () => {
           })}
         </div>
 
-        {skills.length > 8 && (
-          <div className="mt-8 flex justify-center">
-            <button
-              onClick={() => setShowAll(v => !v)}
-              className="px-6 py-2 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              {showAll ? t('showLess') : t('showMore')}
-            </button>
-          </div>
-        )}
       </div>
       <style jsx>{`
         .skills-network-line {
