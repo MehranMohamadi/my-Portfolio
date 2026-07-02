@@ -6,6 +6,9 @@ import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import { useApp } from "../contexts/AppContext"; // برای تم و ripple
 
+const sections = ["home", "skills", "projects", "blog", "about", "contact"];
+const headerOffset = 80;
+
 export const Header: React.FC = () => {
   const t = useTranslations(); 
   const router = useRouter();
@@ -16,7 +19,6 @@ export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [langMenuOpen, setLangMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-  const sections = ["home", "skills", "projects", "blog", "about", "contact"];
 
 
 useEffect(() => {
@@ -26,49 +28,66 @@ useEffect(() => {
     return;
   }
 
-  let observer: IntersectionObserver | null = null;
-  let timeoutId: ReturnType<typeof setTimeout> | null = null;
-  let idleId: number | null = null;
+  let frameId: number | null = null;
+  const main = document.querySelector("main");
 
-  const startObserving = () => {
-    observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      {
-        root: null,
-        rootMargin: "-50% 0px -50% 0px",
-        threshold: 0,
+  const updateActiveSection = () => {
+    const activationLine = 32;
+    let nextActive = sections[0];
+
+    for (const section of sections) {
+      const element = document.getElementById(section);
+      if (!element) continue;
+
+      const rect = element.getBoundingClientRect();
+      const top = rect.top - headerOffset;
+      const bottom = rect.bottom - headerOffset;
+
+      if (top <= activationLine && bottom > activationLine) {
+        nextActive = section;
+        break;
       }
-    );
 
-    sections.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer?.observe(el);
+      if (top <= activationLine) {
+        nextActive = section;
+      }
+    }
+
+    setActiveSection(nextActive);
+  };
+
+  const scheduleUpdate = () => {
+    if (frameId !== null) return;
+
+    frameId = window.requestAnimationFrame(() => {
+      frameId = null;
+      updateActiveSection();
     });
   };
 
-  const requestIdle = window.requestIdleCallback?.bind(window);
-  const cancelIdle = window.cancelIdleCallback?.bind(window);
+  const mutationObserver = new MutationObserver(scheduleUpdate);
 
-  if (requestIdle) {
-    idleId = requestIdle(startObserving, { timeout: 1600 });
-  } else {
-    timeoutId = globalThis.setTimeout(startObserving, 900);
+  if (main) {
+    mutationObserver.observe(main, { childList: true, subtree: true });
   }
 
+  scheduleUpdate();
+  const delayedUpdateId = window.setTimeout(scheduleUpdate, 750);
+
+  window.addEventListener("scroll", scheduleUpdate, { passive: true });
+  window.addEventListener("resize", scheduleUpdate);
+  window.addEventListener("hashchange", scheduleUpdate);
+
   return () => {
-    if (idleId !== null && cancelIdle) {
-      cancelIdle(idleId);
+    mutationObserver.disconnect();
+    window.clearTimeout(delayedUpdateId);
+    window.removeEventListener("scroll", scheduleUpdate);
+    window.removeEventListener("resize", scheduleUpdate);
+    window.removeEventListener("hashchange", scheduleUpdate);
+
+    if (frameId !== null) {
+      window.cancelAnimationFrame(frameId);
     }
-    if (timeoutId !== null) {
-      globalThis.clearTimeout(timeoutId);
-    }
-    observer?.disconnect();
   };
 }, [locale, pathname]);
 
@@ -84,7 +103,9 @@ useEffect(() => {
 
   const element = document.getElementById(id);
   if (element) {
-    element.scrollIntoView({ behavior: "smooth" });
+    const top = window.scrollY + element.getBoundingClientRect().top - headerOffset;
+
+    window.scrollTo({ top, behavior: "smooth" });
     setActiveSection(id);
     setMobileMenuOpen(false);
   }

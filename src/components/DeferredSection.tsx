@@ -43,9 +43,14 @@ export function DeferredSection({ id, minHeight, children }: DeferredSectionProp
     return () => observer.disconnect();
   }, [shouldRender]);
 
-  if (shouldRender) {
-    return <>{children}</>;
-  }
-
-  return <div ref={ref} id={id} style={{ minHeight }} aria-hidden="true" />;
+  return (
+    <div
+      ref={ref}
+      id={id}
+      style={{ minHeight: shouldRender ? undefined : minHeight }}
+      aria-hidden={shouldRender ? undefined : true}
+    >
+      {shouldRender ? children : null}
+    </div>
+  );
 }
