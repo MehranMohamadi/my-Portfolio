@@ -1,6 +1,6 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { Sun, Moon, Globe, Menu, X } from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
+import { Sun, Moon, Globe } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
@@ -19,6 +19,8 @@ export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [langMenuOpen, setLangMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
 
 
 useEffect(() => {
@@ -91,6 +93,39 @@ useEffect(() => {
   };
 }, [locale, pathname]);
 
+useEffect(() => {
+  if (!mobileMenuOpen) {
+    return;
+  }
+
+  const handlePointerDown = (event: PointerEvent) => {
+    const target = event.target;
+
+    if (
+      target instanceof Node &&
+      mobileMenuRef.current &&
+      !mobileMenuRef.current.contains(target) &&
+      !mobileMenuButtonRef.current?.contains(target)
+    ) {
+      setMobileMenuOpen(false);
+    }
+  };
+
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (event.key === "Escape") {
+      setMobileMenuOpen(false);
+    }
+  };
+
+  document.addEventListener("pointerdown", handlePointerDown);
+  document.addEventListener("keydown", handleKeyDown);
+
+  return () => {
+    document.removeEventListener("pointerdown", handlePointerDown);
+    document.removeEventListener("keydown", handleKeyDown);
+  };
+}, [mobileMenuOpen]);
+
 
  const scrollToSection = (id: string) => {
   const homePath = `/${locale}`;
@@ -127,17 +162,19 @@ useEffect(() => {
 const changeLanguage = (lang: string) => {
   const segments = pathname.split('/').filter(Boolean);
   segments[0] = lang;
+  setLangMenuOpen(false);
+  setMobileMenuOpen(false);
   router.push('/' + segments.join('/'));
 };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-2xl bg-white/80 dark:bg-gray-900/80 border-b-2 border-white/30 dark:border-gray-700/30 shadow-lg">
       <div className="absolute top-0 left-0 right-0 h-1/2 bg-linear-to-b from-white/30 dark:from-white/5 to-transparent pointer-events-none"></div>
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="flex items-center justify-between h-16">
+      <nav className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 relative">
+        <div className="flex items-center justify-between gap-2 h-16">
           {/* Logo */}
-          <div className="shrink-0">
-            <span className="text-xl sm:text-2xl font-bold bg-linear-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+          <div className="min-w-0 flex-1 md:flex-none">
+            <span className="block truncate text-lg sm:text-2xl font-bold bg-linear-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
               Mehran Mohammadi
             </span>
           </div>
@@ -222,67 +259,84 @@ const changeLanguage = (lang: string) => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center gap-2">
+          <div className="md:hidden flex shrink-0 items-center gap-1.5">
             <button
               onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-              className="p-2 rounded-xl backdrop-blur-md bg-white/60 dark:bg-gray-800/60 border border-white/40 dark:border-gray-600/40 shadow-lg"
+              className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/40 bg-white/60 shadow-lg backdrop-blur-md dark:border-gray-600/40 dark:bg-gray-800/60"
               aria-label="Toggle theme"
             >
-              {theme === "light" ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+              {theme === "light" ? <Moon className="w-4.5 h-4.5" /> : <Sun className="w-4.5 h-4.5" />}
             </button>
             <button
+              ref={mobileMenuButtonRef}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl backdrop-blur-md bg-white/60 dark:bg-gray-800/60 border border-white/40 dark:border-gray-600/40 shadow-lg"
-              aria-label="Toggle menu"
+              className="relative flex h-9 w-9 items-center justify-center rounded-xl border border-white/40 bg-white/60 shadow-lg backdrop-blur-md transition-colors duration-300 dark:border-gray-600/40 dark:bg-gray-800/60"
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-navigation"
             >
-                {mobileMenuOpen ? (
-                  <div
-                    key="close"
-                  >
-                    <X className="w-6 h-6" />
-                  </div>
-                ) : (
-                  <div
-                    key="menu"
-                  >
-                    <Menu className="w-6 h-6" />
-                  </div>
-                )}
+              <span className="sr-only">{mobileMenuOpen ? "Close menu" : "Open menu"}</span>
+              <span
+                className={`absolute h-0.5 w-5 rounded-full bg-gray-800 transition-transform duration-300 ease-out dark:bg-gray-100 ${
+                  mobileMenuOpen ? "translate-y-0 rotate-45" : "-translate-y-1.5 rotate-0"
+                }`}
+              />
+              <span
+                className={`absolute h-0.5 w-5 rounded-full bg-gray-800 transition-opacity duration-200 ease-out dark:bg-gray-100 ${
+                  mobileMenuOpen ? "opacity-0" : "opacity-100"
+                }`}
+              />
+              <span
+                className={`absolute h-0.5 w-5 rounded-full bg-gray-800 transition-transform duration-300 ease-out dark:bg-gray-100 ${
+                  mobileMenuOpen ? "translate-y-0 -rotate-45" : "translate-y-1.5 rotate-0"
+                }`}
+              />
             </button>
           </div>
         </div>
 
         {/* Mobile Menu */}
-          {mobileMenuOpen && (
             <div
-              className="md:hidden py-4 space-y-2 backdrop-blur-xl bg-white/50 dark:bg-gray-900/50 rounded-2xl my-2 border border-white/30 dark:border-gray-700/30"
+              ref={mobileMenuRef}
+              id="mobile-navigation"
+              className={`md:hidden grid overflow-hidden rounded-2xl border bg-white/70 shadow-xl shadow-black/5 backdrop-blur-xl origin-top transition-[grid-template-rows,opacity,transform,margin,border-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] dark:bg-gray-900/70 ${
+                mobileMenuOpen
+                  ? "grid-rows-[1fr] my-2 border-white/30 opacity-100 translate-y-0 scale-100 pointer-events-auto dark:border-gray-700/30"
+                  : "grid-rows-[0fr] my-0 border-transparent opacity-0 -translate-y-1 scale-[0.98] pointer-events-none dark:border-transparent"
+              }`}
+              aria-hidden={!mobileMenuOpen}
             >
-              {sections.map(
-                (section) => (
-                  <button
-                    key={section}
-                    onClick={() => scrollToSection(section)}
-                    className="block w-full text-start px-4 py-2 rounded-lg hover:bg-linear-to-r hover:from-blue-500/20 hover:to-purple-500/20 transition-colors duration-300"
-                  >
-                    {t(section)}
-                  </button>
-                )
-              )}
+              <div className="min-h-0 overflow-hidden">
+                <div className="space-y-1.5 p-3">
+                  {sections.map(
+                    (section) => (
+                      <button
+                        key={section}
+                        onClick={() => scrollToSection(section)}
+                        tabIndex={mobileMenuOpen ? 0 : -1}
+                        className="block w-full text-start px-4 py-2.5 rounded-xl hover:bg-linear-to-r hover:from-blue-500/20 hover:to-purple-500/20 transition-colors duration-300"
+                      >
+                        {t(section)}
+                      </button>
+                    )
+                  )}
 
-              {/* Mobile Language Switcher */}
-              <div className="pt-2 border-t border-gray-200 dark:border-gray-700">
-                {languages.map((lang) => (
-                  <button
-                    key={lang.code}
-                    onClick={() => changeLanguage(lang.code)}
-                    className="block w-full text-start px-4 py-2 rounded-lg transition-colors duration-300"
-                  >
-                    {lang.name}
-                  </button>
-                ))}
+                  <div className="mt-2 pt-2 border-t border-gray-200 dark:border-gray-700">
+                    {languages.map((lang) => (
+                      <button
+                        key={lang.code}
+                        onClick={() => changeLanguage(lang.code)}
+                        tabIndex={mobileMenuOpen ? 0 : -1}
+                        className="block w-full text-start px-4 py-3 leading-6 rounded-xl hover:bg-linear-to-r hover:from-blue-500/20 hover:to-purple-500/20 transition-colors duration-300"
+                      >
+                        {lang.name}
+                      </button>
+                    ))}
+                  </div>
+                </div>
               </div>
+
             </div>
-          )}
       </nav>
     </header>
   );
