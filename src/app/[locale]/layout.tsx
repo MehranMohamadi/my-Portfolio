@@ -2,7 +2,16 @@ import '../../styles/global.css';
 import { Providers } from '../../components/Provider';
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
-import { getAbsoluteUrl, getLanguageAlternates, localeMetadata, normalizeLocale, siteConfig } from '@/lib/seo';
+import {
+  getAbsoluteUrl,
+  getDefaultOpenGraphImage,
+  getLanguageAlternates,
+  getOpenGraphAlternateLocales,
+  localeMetadata,
+  normalizeLocale,
+  siteConfig,
+  siteIcons,
+} from '@/lib/seo';
 
 export async function generateMetadata({
   params,
@@ -16,12 +25,22 @@ export async function generateMetadata({
 
   return {
     metadataBase: new URL(siteConfig.siteUrl),
+    applicationName: siteConfig.shortName,
     title: {
       default: metadata.title,
       template: `%s | ${siteConfig.name}`,
     },
     description: metadata.description,
     keywords: metadata.keywords,
+    authors: [{ name: siteConfig.name, url: siteConfig.siteUrl }],
+    creator: siteConfig.name,
+    publisher: siteConfig.name,
+    icons: siteIcons,
+    formatDetection: {
+      email: false,
+      address: false,
+      telephone: false,
+    },
     alternates: {
       canonical,
       languages: {
@@ -46,15 +65,9 @@ export async function generateMetadata({
       url: canonical,
       siteName: siteConfig.name,
       locale: metadata.ogLocale,
+      alternateLocale: getOpenGraphAlternateLocales(safeLocale),
       type: 'website',
-      images: [
-        {
-          url: siteConfig.ogImage,
-          width: 1200,
-          height: 630,
-          alt: `${siteConfig.name} - Frontend Engineer`,
-        },
-      ],
+      images: getDefaultOpenGraphImage(),
     },
     twitter: {
       card: 'summary_large_image',

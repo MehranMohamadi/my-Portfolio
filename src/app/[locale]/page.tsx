@@ -11,7 +11,9 @@ import type { Metadata } from "next";
 import {
   getAbsoluteAssetUrl,
   getAbsoluteUrl,
+  getDefaultOpenGraphImage,
   getLanguageAlternates,
+  getOpenGraphAlternateLocales,
   getPersonJsonLd,
   getWebPageJsonLd,
   getWebSiteJsonLd,
@@ -82,15 +84,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       url: canonical,
       siteName: siteConfig.name,
       locale: metadata.ogLocale,
+      alternateLocale: getOpenGraphAlternateLocales(safeLocale),
       type: "website",
-      images: [
-        {
-          url: siteConfig.ogImage,
-          width: 1200,
-          height: 630,
-          alt: `${siteConfig.name} - Frontend Engineer`,
-        },
-      ],
+      images: getDefaultOpenGraphImage(),
     },
     twitter: {
       card: "summary_large_image",

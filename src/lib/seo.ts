@@ -1,15 +1,30 @@
+import type { Metadata } from 'next';
+
 export const siteConfig = {
   name: 'Mehran Mohammadi',
-  siteUrl: 'https://mehrandev.tech',
+  shortName: 'Mehran Dev',
+  siteUrl: 'https://mehranmohammadifrd.ir',
   defaultLocale: 'en',
   locales: ['en', 'fa', 'ar'] as const,
-  ogImage: '/og-image.jpg.png',
+  ogImage: '/og-image.png',
+  brandImage: '/img/brand/mehran-brand.png',
   profileImage: '/img/profile.jpg',
   sameAs: [
     'https://github.com/MehranMohamadi',
     'https://www.linkedin.com/in/mehran-mohammadi-far/',
   ],
 };
+
+export const siteIcons = {
+  icon: [
+    { url: '/favicon.ico', sizes: '32x32' },
+    { url: '/icon.png', sizes: '512x512', type: 'image/png' },
+    { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+  ],
+  shortcut: [{ url: '/favicon.ico' }],
+  apple: [{ url: '/apple-icon.png', sizes: '180x180', type: 'image/png' }],
+} satisfies Metadata['icons'];
 
 export type SiteLocale = (typeof siteConfig.locales)[number];
 
@@ -141,6 +156,26 @@ export function getShareImageUrl(pathOrUrl = siteConfig.ogImage) {
   const image = pathOrUrl.toLowerCase().endsWith('.svg') ? siteConfig.ogImage : pathOrUrl;
 
   return getAbsoluteAssetUrl(image);
+}
+
+export function getOpenGraphAlternateLocales(locale: string) {
+  const safeLocale = normalizeLocale(locale);
+
+  return siteConfig.locales
+    .filter((item) => item !== safeLocale)
+    .map((item) => localeMetadata[item].ogLocale);
+}
+
+export function getDefaultOpenGraphImage(alt = `${siteConfig.name} - Frontend Engineer`) {
+  return [
+    {
+      url: siteConfig.ogImage,
+      width: 1200,
+      height: 630,
+      alt,
+      type: 'image/png',
+    },
+  ];
 }
 
 export function getLanguageAlternates(pathname = '') {
