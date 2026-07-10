@@ -1,11 +1,10 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 import { cache } from 'react';
-import type { ReactNode } from 'react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { Calendar, Clock, ArrowLeft } from 'lucide-react';
+import { Calendar, Clock, ArrowLeft, ArrowRight } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import type { Components } from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
@@ -163,6 +162,7 @@ export default async function BlogPostPage({ params }: PageProps) {
   const messages = await getMessages(safeLocale);
   const t = (key: string) => messages[key] ?? key;
   const footerMade = splitFooterMade(t("footerMade"));
+  const backToBlogLabel = locale === 'fa' ? 'بازگشت به وبلاگ' : locale === 'ar' ? 'العودة إلى المدونة' : 'Back to blog';
   const markdownComponents: Components = {
     h2: ({ children, ...props }) => (
       <h2 className="mt-12 mb-4 text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-white" {...props}>
@@ -220,26 +220,29 @@ export default async function BlogPostPage({ params }: PageProps) {
     hr: (props) => <hr className="my-10 border-gray-200 dark:border-gray-700" {...props} />,
     pre: ({ children, ...props }) => (
       <pre
-        className="my-6 overflow-x-auto rounded-2xl border border-gray-800/50 bg-[#0f172a] p-4 text-sm leading-6 text-slate-100 shadow-lg"
+        className="my-6 overflow-x-auto rounded-2xl border border-gray-800/50 bg-[#0f172a] p-4 text-sm leading-6 text-slate-100 shadow-lg [&>code]:bg-transparent [&>code]:p-0 [&>code]:text-slate-100"
         dir="ltr"
         {...props}
       >
         {children}
       </pre>
     ),
-    code: ({ inline, children, ...props }: { inline?: boolean; children?: ReactNode }) =>
-      inline ? (
+    code: ({ children, className, ...props }) => {
+      const isBlock = Boolean(className) || String(children).includes('\n');
+
+      return (
         <code
-          className="rounded bg-gray-100 px-1.5 py-0.5 text-[0.9em] text-pink-700 dark:bg-gray-800 dark:text-pink-300"
+          className={
+            isBlock
+              ? `${className ?? ''} bg-transparent p-0 font-mono text-sm text-slate-100`
+              : 'rounded bg-gray-100 px-1.5 py-0.5 font-mono text-[0.9em] text-pink-700 dark:bg-gray-800 dark:text-pink-300'
+          }
           {...props}
         >
           {children}
         </code>
-      ) : (
-        <code className="font-mono text-sm text-slate-100" {...props}>
-          {children}
-        </code>
-      ),
+      );
+    },
   };
   const articleJsonLd = {
     '@context': 'https://schema.org',
@@ -276,22 +279,22 @@ export default async function BlogPostPage({ params }: PageProps) {
   return (
     <div className="min-h-screen relative">
       <Header />
-      <main className="overflow-x-hidden bg-background pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+      <main className="overflow-x-hidden bg-background pt-16 pb-16 sm:pt-24 sm:px-6 lg:px-8">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify([articleJsonLd, webPageJsonLd]) }}
         />
         <article className="max-w-4xl mx-auto" dir={isRtl ? 'rtl' : 'ltr'}>
-          <Link
-            href={`/${locale}#blog`}
-            className="inline-flex items-center gap-2 mb-8 text-sm font-medium text-blue-600 dark:text-blue-400 hover:gap-3 transition-[color,gap] duration-300"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            {locale === 'fa' ? 'بازگشت به وبلاگ' : locale === 'ar' ? 'العودة إلى المدونة' : 'Back to blog'}
-          </Link>
-
-          <div className="overflow-hidden rounded-3xl border border-white/20 bg-white/60 dark:bg-gray-900/60 backdrop-blur-xl shadow-2xl">
+          <div className="overflow-hidden bg-white/60 dark:bg-gray-900/60 sm:rounded-3xl sm:border sm:border-white/20 sm:shadow-2xl backdrop-blur-xl">
             <div className="relative h-64 sm:h-80">
+              <Link
+                href={`/${locale}#blog`}
+                aria-label={backToBlogLabel}
+                title={backToBlogLabel}
+                className="absolute start-4 top-4 z-10 inline-flex size-10 items-center justify-center rounded-full bg-white/85 text-gray-900 shadow-sm backdrop-blur transition-colors hover:bg-white dark:bg-gray-900/85 dark:text-white dark:hover:bg-gray-800"
+              >
+                {isRtl ? <ArrowRight className="size-5" /> : <ArrowLeft className="size-5" />}
+              </Link>
               <ImageWithFallback
                 src={post.image}
                 alt={post.title}
