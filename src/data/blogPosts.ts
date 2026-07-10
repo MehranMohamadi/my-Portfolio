@@ -54,7 +54,7 @@ const blogPostDefinitions: BlogPostDefinition[] = [
     },
     date: {
       en: 'Oct 15, 2024',
-      fa: '۲۴ مهر ۱۴۰۳',
+      fa: '۲۴ مهر ۱۴۰۴',
       ar: '١٥ أكتوبر ٢٠٢٤',
     },
     publishedAt: '2024-10-15T00:00:00.000Z',
@@ -116,7 +116,7 @@ const blogPostDefinitions: BlogPostDefinition[] = [
     },
     date: {
       en: 'Feb 10, 2025',
-      fa: '۲۲ بهمن ۱۴۰۳',
+      fa: '۲۲ بهمن ۱۴۰۴',
       ar: '١٠ فبراير ٢٠٢٥',
     },
     publishedAt: '2025-02-10T00:00:00.000Z',
@@ -302,7 +302,7 @@ const blogPostDefinitions: BlogPostDefinition[] = [
     },
     date: {
       en: 'Mar 01, 2025',
-      fa: '۱۱ اسفند ۱۴۰۳',
+      fa: '۱۱ اسفند ۱۴۰۴',
       ar: '١ مارس ٢٠٢٥',
     },
     publishedAt: '2025-03-01T00:00:00.000Z',

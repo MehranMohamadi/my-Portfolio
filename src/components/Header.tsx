@@ -27,6 +27,7 @@ useEffect(() => {
   const homePath = `/${locale}`;
 
   if (pathname !== homePath) {
+    setActiveSection(pathname.startsWith(`${homePath}/blog/`) ? "blog" : "home");
     return;
   }
 
