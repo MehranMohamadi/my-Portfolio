@@ -63,6 +63,6 @@ export const projectDefinitions: readonly ProjectDefinition[] = [
     titleKey: 'ipedco2026',
     descKey: 'project8Desc',
     year: '2026',
-    link: 'https://ipedco2026.vercel.app/',
+    link: 'https://ipedco.com/',
   },
 ];
