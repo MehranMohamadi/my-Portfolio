@@ -1,5 +1,6 @@
 import '../../styles/global.css';
 import { Providers } from '../../components/Provider';
+import { ChatWidget } from '../../components/ChatWidget';
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import {

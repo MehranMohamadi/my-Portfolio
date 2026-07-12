@@ -3,8 +3,9 @@
 import React from 'react';
 import { useApp } from '../contexts/AppContext';
 import { useTranslations } from 'next-intl';
+import { portfolioSkills, type PortfolioLocale } from '@/data/skills';
 
-const skills = [
+const skillPresentation = [
   {
     title: { en: 'Nuxt.js', fa: 'Nuxt.js', ar: 'Nuxt.js' },
     logos: ['/img/skills/nuxt.svg'],
@@ -122,6 +123,11 @@ const skills = [
     items: { en: 'Atomic CSS Engine', fa: 'موتور CSS اتمیک', ar: 'محرك CSS ذري' },
   },
 ];
+
+const skills = skillPresentation.map((skill, index) => ({
+  ...skill,
+  title: portfolioSkills[index] ?? skill.title,
+}));
 
 export const SkillsSection: React.FC = () => {
   const { locale } = useApp();
@@ -390,10 +396,10 @@ export const SkillsSection: React.FC = () => {
                   ))}
                 </div>
                 <h3 className="mb-1 text-gray-900 dark:text-white text-sm font-semibold">
-                  {skill.title[locale]}
+                  {skill.title[locale as PortfolioLocale]}
                 </h3>
                 <p className="text-gray-700 dark:text-gray-300 text-[11px] text-center">
-                  {skill.items[locale]}
+                  {skill.items[locale as PortfolioLocale]}
                 </p>
               </div>
             );

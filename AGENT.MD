@@ -33,6 +33,7 @@ Use this file as the first project briefing so future agents spend fewer tokens 
 
 - Contact API expects `RESEND_API_KEY`.
 - Optional env vars: `RESEND_FROM_EMAIL`, `ADMIN_EMAIL`, `CONTACT_AUTO_REPLY=true`.
+- Portfolio chat expects `GEMINI_API_KEY`; the key is used only by the server-side `/api/chat` route.
 - Do not print or commit `.env.local` values.
 
 ## Work Rules
