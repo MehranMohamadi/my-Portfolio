@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { Sun, Moon, Globe } from "lucide-react";
+import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
@@ -175,9 +176,13 @@ const changeLanguage = (lang: string) => {
         <div className="flex items-center justify-between gap-2 h-16">
           {/* Logo */}
           <div className="min-w-0 flex-1 md:flex-none">
-            <span className="block truncate text-lg sm:text-2xl font-bold bg-linear-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+            <Link
+              href={`/${locale}`}
+              className="block truncate text-lg sm:text-2xl font-bold bg-linear-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent"
+              aria-label="Go to home page"
+            >
               Mehran Mohammadi
-            </span>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
