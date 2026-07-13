@@ -465,6 +465,53 @@ const blogPostDefinitions: BlogPostDefinition[] = [
     },
     comingSoon: true,
   },
+  {
+    id: 12,
+    slug: 'gpt-5-6-model-family-guide',
+    title: {
+      en: 'GPT-5.6: Which Model Is Right for Your Project?',
+      fa: 'GPT-5.6؛ کدام مدل برای پروژه شما مناسب است؟',
+      ar: 'GPT-5.6: أي نموذج يناسب مشروعك؟',
+    },
+    excerpt: {
+      en: 'A practical, source-backed guide to choosing GPT-5.6 Sol, Terra, or Luna for real-world AI workflows.',
+      fa: '',
+      ar: 'دليل عملي موثق لاختيار GPT-5.6 Sol أو Terra أو Luna لسير عمل الذكاء الاصطناعي.',
+    },
+    date: {
+      en: 'Jul 09, 2026',
+      fa: '۱۸ تیر ۱۴۰۵',
+      ar: '٩ يوليو ٢٠٢٦',
+    },
+    publishedAt: '2026-07-09T00:00:00.000Z',
+    updatedAt: '2026-07-10T00:00:00.000Z',
+    readTime: {
+      en: '18 min read',
+      fa: '۱۸ دقیقه',
+      ar: '١٨ دقيقة',
+    },
+    category: {
+      en: 'AI',
+      fa: 'هوش مصنوعی',
+      ar: 'الذكاء الاصطناعي',
+    },
+    image: '/img/image.png',
+    tags: {
+      en: ['OpenAI', 'GPT-5.6', 'Agents'],
+      fa: ['OpenAI', 'GPT-5.6', 'Agent'],
+      ar: ['OpenAI', 'GPT-5.6', 'Agents'],
+    },
+    seoKeywords: {
+      en: ['GPT-5.6 Sol Terra Luna', 'GPT-5.6 pricing', 'OpenAI multi-agent', 'Programmatic Tool Calling'],
+      fa: ['GPT-5.6 چیست', 'GPT-5.6 Sol Terra Luna', 'قیمت GPT-5.6', 'Multi-agent در OpenAI', 'Programmatic Tool Calling'],
+      ar: ['GPT-5.6 Sol Terra Luna', 'أسعار GPT-5.6', 'OpenAI Multi-agent', 'Programmatic Tool Calling'],
+    },
+    markdownPath: {
+      en: '/blog/gpt_5_6_models_en.md',
+      fa: '/blog/gpt_5_6_models_fa.md',
+      ar: '/blog/gpt_5_6_models_ar.md',
+    },
+  },
 ];
 
 function normalizeLocale(locale: string): BlogLocale {

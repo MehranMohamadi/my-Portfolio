@@ -179,6 +179,17 @@ export default async function BlogPostPage({ params }: PageProps) {
         {children}
       </p>
     ),
+    a: ({ children, href, ...props }) => (
+      <a
+        href={href}
+        target={href?.startsWith('http') ? '_blank' : undefined}
+        rel={href?.startsWith('http') ? 'noopener noreferrer' : undefined}
+        className="font-medium text-blue-700 underline decoration-blue-400/60 underline-offset-4 transition-colors hover:text-blue-900 dark:text-blue-300 dark:hover:text-blue-100"
+        {...props}
+      >
+        {children}
+      </a>
+    ),
     ul: ({ children, ...props }) => (
       <ul className="my-4 list-disc space-y-2 ps-6 text-gray-700 dark:text-gray-300" {...props}>
         {children}
