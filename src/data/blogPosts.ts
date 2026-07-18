@@ -69,7 +69,7 @@ const blogPostDefinitions: BlogPostDefinition[] = [
       fa: 'JavaScript',
       ar: 'JavaScript',
     },
-    image: '/img/debounce-throttle-cover.svg',
+    image: '/img/exec-8ee2d38a-cd25-4787-94ee-830352c9c490.png',
     tags: {
       en: ['JavaScript', 'Performance', 'Optimization'],
       fa: ['JavaScript', 'Performance', 'بهینه‌سازی'],
@@ -120,18 +120,18 @@ const blogPostDefinitions: BlogPostDefinition[] = [
       ar: '١٠ فبراير ٢٠٢٥',
     },
     publishedAt: '2025-02-10T00:00:00.000Z',
-    updatedAt: '2025-02-10T00:00:00.000Z',
+    updatedAt: '2026-07-18T00:00:00.000Z',
     readTime: {
-      en: '7 min read',
-      fa: '۷ دقیقه',
-      ar: '٧ دقائق',
+      en: '12 min read',
+      fa: '۱۲ دقیقه',
+      ar: '١٢ دقيقة',
     },
     category: {
       en: 'Vue.js',
       fa: 'Vue.js',
       ar: 'Vue.js',
     },
-    image: '/img/vue-nexttick-cover.svg',
+    image: '/img/f3f1f1dc-27ff-4f37-86f5-8ec1a905fc61.png',
     tags: {
       en: ['Vue', 'nextTick', 'DOM'],
       fa: ['Vue', 'nextTick', 'DOM'],
@@ -193,7 +193,7 @@ const blogPostDefinitions: BlogPostDefinition[] = [
       fa: 'JavaScript',
       ar: 'JavaScript',
     },
-    image: '/img/context-scope-cover.svg',
+    image: '/img/javascript-context-scope-guide.png',
     tags: {
       en: ['JavaScript', 'Scope', 'Context'],
       fa: ['JavaScript', 'Scope', 'Context'],
@@ -255,7 +255,7 @@ const blogPostDefinitions: BlogPostDefinition[] = [
       fa: 'Vue.js',
       ar: 'Vue.js',
     },
-    image: '/img/vue-nexttick-cover.svg',
+    image: '/img/vue-context-scope-guide.png',
     tags: {
       en: ['Vue', 'watch', 'Composition API'],
       fa: ['Vue', 'watch', 'Composition API'],
@@ -317,7 +317,7 @@ const blogPostDefinitions: BlogPostDefinition[] = [
       fa: 'JavaScript',
       ar: 'JavaScript',
     },
-    image: '/img/event-loop-cover.svg',
+    image: '/img/javascript-event-loop-guide.png',
     tags: {
       en: ['JavaScript', 'Event Loop', 'Async'],
       fa: ['JavaScript', 'Event Loop', 'Async'],
@@ -379,7 +379,7 @@ const blogPostDefinitions: BlogPostDefinition[] = [
       fa: 'بک‌اند',
       ar: 'الواجهة الخلفية',
     },
-    image: '/img/nitro-js-cover.svg',
+    image: '/img/nitro-js-guide.png',
     tags: {
       en: ['Nitro', 'Backend', 'JavaScript'],
       fa: ['Nitro', 'بک‌اند', 'JavaScript'],
@@ -495,7 +495,7 @@ const blogPostDefinitions: BlogPostDefinition[] = [
       fa: 'هوش مصنوعی',
       ar: 'الذكاء الاصطناعي',
     },
-    image: '/img/image.png',
+    image: '/img/gpt-5-6-model-family-guide.png',
     tags: {
       en: ['OpenAI', 'GPT-5.6', 'Agents'],
       fa: ['OpenAI', 'GPT-5.6', 'Agent'],
